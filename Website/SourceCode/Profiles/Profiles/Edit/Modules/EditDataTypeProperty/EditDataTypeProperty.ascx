@@ -2,6 +2,8 @@
     Inherits="Profiles.Edit.Modules.EditDataTypeProperty.EditDataTypeProperty" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register TagName="Options" TagPrefix="security" Src="~/Edit/Modules/SecurityOptions/SecurityOptions.ascx" %>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
     /* Names of the links provided in the GridView */
@@ -46,7 +48,7 @@
                 fixed_toolbar_container: '.tinymceToolbar',
                 plugins: 'paste lists link image print preview table media<%= getHTMLEditorConfigurablePluginsOptions() %>',
                 toolbar1: 'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | indent outdent | bullist numlist',
-                toolbar2: 'link image media | print preview | table<%= getHTMLEditorConfigurableToolbarOptions() %>',
+                toolbar2: 'link image | print preview | table<%= getHTMLEditorConfigurableToolbarOptions() %>',
                 paste_word_valid_elements: "b,strong,i,em,h1,h2,h3,p,ol,ul,li",
                 paste_retain_style_properties: "color font-size", 
                 content_css: '/Framework/CSS/profiles.css',
@@ -60,7 +62,73 @@
                         $('[id*=NewContentHidden]').val(editor.getContent());
                         return false;
                     });
-                }
+                },
+                file_picker_callback: function (callback, value, meta) {
+                    if (meta.filetype == 'image' || meta.filetype == 'media') {
+                        //Get file/image upload configuration; return on none set
+                        var storageURL = meta.filetype == 'image' ? '<%=getConfigSetting("ProfilesImageStorageURL")%>' : '<%=getConfigSetting("ProfilesFileStorageURL")%>';
+                        var storageName = '<%=getConfigSetting("ProfilesImageStorageName")%>';
+                        if (!storageURL || !storageName)
+                        {
+                            return;
+                        }
+
+                        var input = document.createElement('input');
+                        input.setAttribute('type', 'file');
+                        input.onchange = function() {
+                            var file = this.files[0];
+                            var reader = new FileReader();
+                            reader.onload = function () {
+                                //Hide form and show progress indicator
+                                $('.mce-form').hide();
+                                $('.mce-form').parent().append('<div class="uploadInProgress mce-container" style="margin-top: 62px;text-align: center;"><label class="mce-label">File upload in progress...</label></div>');
+
+                                // Register the blob in TinyMCEs image blob registry
+                                var id = 'profilesOverview' + (new Date()).getTime();
+                                var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                                var base64 = reader.result.split(',')[1];
+                                var blobInfo = blobCache.create(id, file, base64);
+                                blobCache.add(blobInfo);
+
+                                //Upload to cloud storage in subject's container with filename prefixed to prevent overwritting
+                                var subjectID = '<%= SubjectID %>';
+                                var fileName = id + '_' + file.name;
+                                var requestBody = JSON.stringify({
+                                        "StorageAccount": storageName,
+                                        "ContainerName": subjectID,
+                                        "FileName": fileName,
+                                        "File": base64
+                                    });
+                                $.ajax({
+                                    url: storageURL,
+                                    method: 'POST',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    data: requestBody,
+                                    dataType: 'json',
+                                    complete: function () {
+                                        //Remove progress indicator, show form
+                                        $('.uploadInProgress').remove();
+                                        $('.mce-form').show();
+                                    },
+                                    success: function (response, textStatus, jQxhr) {
+                                        //Disable source input
+                                        $('.mce-filepicker > input').prop('disabled', true);
+                                        $('.mce-filepicker > input').css('background', '#c5c5c5');
+
+                                        //Callback with URL to large copy of photo in cloud storage; populate the Title field with the file name
+                                        callback(response["Large"], { title: file.name });
+                                    },
+                                    error: function (jqXhr, textStatus, error) {
+                                        tinymce.activeEditor.windowManager.alert("An error occurred while uploading the image.");
+                                    }
+                                });
+                            };
+                            reader.readAsDataURL(file);
+                        };
+                        input.click();
+                    }
+                },
             });
         }, 10);
     }

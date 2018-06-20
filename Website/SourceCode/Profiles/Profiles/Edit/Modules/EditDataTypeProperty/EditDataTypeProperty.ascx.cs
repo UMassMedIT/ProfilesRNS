@@ -46,7 +46,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             /* Add TinyMCE Editor */
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
-            jsscript.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/tinymce/tinymce.min.js");
+            jsscript.Attributes.Add("src", Root.Domain + "/scripts/tinymce/tinymce.min.js");
             Page.Header.Controls.Add(jsscript);
 
             /* Add client side before postback code to save the editor contents on submit.  */
@@ -393,7 +393,12 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             }
         }
 
-        private Int64 SubjectID { get; set; }
+        public string getConfigSetting(string name)
+        {
+            return ConfigurationManager.AppSettings[name];
+        }
+
+        protected Int64 SubjectID { get; set; }
         private Int64 PredicateID { get; set; }
         private string PredicateURI { get; set; }
 
