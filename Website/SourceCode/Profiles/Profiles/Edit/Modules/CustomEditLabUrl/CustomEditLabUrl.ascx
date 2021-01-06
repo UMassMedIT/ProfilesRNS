@@ -26,7 +26,6 @@
                             <security:Options runat="server" ID="securityOptions"></security:Options>
                         </asp:Panel>
                         <br />
-
                     </div>
                 </td>
             </tr>
@@ -45,15 +44,15 @@
                                     </div>
                                 </asp:Panel>
                                 <asp:Panel runat="server" ID="pnlEditLabUrl" Visible="false">
-                                    <asp:TextBox runat="server"  ClientIDMode="Static" Width="100%" TextMode="Url" ID="txtLabUrlInput"></asp:TextBox>
+                                    <asp:TextBox runat="server"  ClientIDMode="Static" Width="100%" TextMode="SingleLine" ID="txtLabUrlInput"></asp:TextBox>
                                     <div>
                                         <asp:RegularExpressionValidator 
                                         Display="Dynamic" 
                                         ControlToValidate="txtLabUrlInput"
                                         ID="maxLengthValidator"
-                                        ValidationExpression="^[\s\S]{0,400}$"
+                                        ValidationExpression="^(https|http){1}:\/\/[^\s$.?#].[^\s]*$"
                                         runat="server"
-                                        ErrorMessage="Needs to be a webpage url"></asp:RegularExpressionValidator>
+                                        ErrorMessage="Needs to be a webpage url with http or https"></asp:RegularExpressionValidator>
                                     </div>
                                 </asp:Panel>
                             </td>
