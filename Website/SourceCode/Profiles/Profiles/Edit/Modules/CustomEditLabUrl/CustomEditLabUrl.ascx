@@ -76,7 +76,6 @@
                                         <asp:ImageButton ID="lnkEdit" runat="server" OnClick="btnEditProperty_OnClick" ImageUrl="~/Edit/Images/icon_edit.gif" CausesValidation="False" Text="Edit" AlternateText="Edit"></asp:ImageButton>
                                     </div>
                                 </asp:Panel>
-
                             </td>
                         </tr>
                     </table>
