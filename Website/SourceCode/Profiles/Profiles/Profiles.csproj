@@ -265,6 +265,7 @@
     <Content Include="Profile\Modules\CustomViewEagleI\CustomViewEagleI.ascx" />
     <Content Include="Profile\Modules\CustomViewEagleI\Images\logo.gif" />
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
+    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\person-sample.xml" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\crossdomain.xml" />
