@@ -170,7 +170,8 @@ namespace Profiles.Edit.Modules.CustomEditSummary
 
         private bool doSaveSummery()
         {
-           return data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(this.OriginalSummary), data.GetStoreNode(txtSummaryInput.Text.Replace("\n", "").Trim()), this.PropertyListXML);
+           var cleanedText = Server.HtmlEncode(txtSummaryInput.Text.Replace("\n", "").Trim());
+           return data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(this.OriginalSummary), data.GetStoreNode(cleanedText), this.PropertyListXML);
         }
     }
 }

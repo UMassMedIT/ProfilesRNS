@@ -170,7 +170,8 @@ namespace Profiles.Edit.Modules.CustomEditLabUrl
 
         private bool doSaveSummery()
         {
-            return data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(this.OriginalLabUrl), data.GetStoreNode(txtLabUrlInput.Text.Replace("\n", "").Trim()), this.PropertyListXML);
+            var cleanedText = Server.HtmlEncode(txtLabUrlInput.Text.Replace("\n", "").Trim());
+            return data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(this.OriginalLabUrl), data.GetStoreNode(cleanedText), this.PropertyListXML);
 
         }
     }
