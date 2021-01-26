@@ -1757,7 +1757,9 @@
     <Content Include="Profile\Modules\CustomViewPersonSameDepartment\CustomViewPersonSameDepartment.ascx" />
     <Content Include="Profile\Profile.aspx" />
     <Content Include="Profile\XSLT\Awards.xslt" />
-    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt" />
+    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Profile\XSLT\CoAuthorDetail.xslt" />
     <Content Include="Profile\XSLT\ConceptDetail.xslt" />
     <Content Include="Profile\XSLT\Narrative.xslt" />
@@ -1882,6 +1884,7 @@
     <None Include="Properties\PublishProfiles\Profiles DEV - profilesbetaweb.pubxml" />
     <None Include="Properties\PublishProfiles\Profiles PROD - ProfilesWebPrd.pubxml" />
     <None Include="Properties\PublishProfiles\Profiles STAGING - profilesstg.pubxml" />
+    <None Include="Properties\PublishProfiles\profilesbetaweb.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

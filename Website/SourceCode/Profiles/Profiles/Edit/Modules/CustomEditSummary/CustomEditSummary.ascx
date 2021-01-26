@@ -98,7 +98,7 @@
                                         ID="maxLengthValidator"
                                         ValidationExpression="^[\s\S]{0,400}$"
                                         runat="server"
-                                        ErrorMessage="400 Character Max on this bad boy."></asp:RegularExpressionValidator>
+                                        ErrorMessage="400 Character Max on the Summary."></asp:RegularExpressionValidator>
                                     </div>
                                 </asp:Panel>
                             </td>
