@@ -1,0 +1,1129 @@
+﻿<?xml version="1.0"?>
+<rdf:RDF xmlns:geo="http://aims.fao.org/aos/geopolitical.owl#" xmlns:afn="http://jena.hpl.hp.com/ARQ/function#" xmlns:orng="http://orng.info/ontology/orng#" xmlns:prns="http://profiles.catalyst.harvard.edu/ontology/prns#" xmlns:umass="http://profiles.umassmed.edu/ontology#" xmlns:obo="http://purl.obolibrary.org/obo/" xmlns:dcelem="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:event="http://purl.org/NET/c4dm/event.owl#" xmlns:bibo="http://purl.org/ontology/bibo/" xmlns:vann="http://purl.org/vocab/vann/" xmlns:vitro07="http://vitro.mannlib.cornell.edu/ns/vitro/0.7#" xmlns:vitro="http://vitro.mannlib.cornell.edu/ns/vitro/public#" xmlns:vivo="http://vivoweb.org/ontology/core#" xmlns:pvs="http://vivoweb.org/ontology/provenance-support#" xmlns:scirr="http://vivoweb.org/ontology/scientific-research-resource#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:swvs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:skco="http://www.w3.org/2004/02/skos/core#" xmlns:owl2="http://www.w3.org/2006/12/owl2-xml#" xmlns:skos="http://www.w3.org/2008/05/skos#" xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  <rdf:Description rdf:about="http://localhost:9000/profile/129741">
+    <foaf:firstName>Craig</foaf:firstName>
+    <foaf:lastName>Mello</foaf:lastName>
+    <orng:hasLinks rdf:resource="http://localhost:9000/profile/15541214" />
+    <orng:hasTwitter rdf:resource="http://localhost:9000/profile/24569574" />
+    <prns:coAuthorOf rdf:resource="http://localhost:9000/profile/132944" />
+    <prns:coAuthorOf rdf:resource="http://localhost:9000/profile/133350" />
+    <prns:coAuthorOf rdf:resource="http://localhost:9000/profile/129900" />
+    <prns:coAuthorOf rdf:resource="http://localhost:9000/profile/133230" />
+    <prns:coAuthorOf rdf:resource="http://localhost:9000/profile/129805" />
+    <prns:emailEncrypted>7tOk75PU3x6OR6Tk3BkVc0qykXlWZ+h1</prns:emailEncrypted>
+    <prns:fullName>Craig Mello PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/6007" />
+    <prns:hasNetwork rdf:resource="http://localhost:9000/profile/129741/198" />
+    <prns:hasNetwork rdf:resource="http://localhost:9000/profile/129741/345" />
+    <prns:hasNetwork rdf:resource="http://localhost:9000/profile/129741/476" />
+    <prns:hasNetwork rdf:resource="http://localhost:9000/profile/129741/94" />
+    <prns:latitude>42.27587600000000</prns:latitude>
+    <prns:longitude>-71.76211600000000</prns:longitude>
+    <prns:personId>1009</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22338870" />
+    <prns:physicalNeighborOf rdf:resource="http://localhost:9000/profile/130234" />
+    <prns:physicalNeighborOf rdf:resource="http://localhost:9000/profile/132233" />
+    <prns:physicalNeighborOf rdf:resource="http://localhost:9000/profile/130547" />
+    <prns:physicalNeighborOf rdf:resource="http://localhost:9000/profile/132070" />
+    <prns:physicalNeighborOf rdf:resource="http://localhost:9000/profile/132965" />
+    <prns:similarTo rdf:resource="http://localhost:9000/profile/129913" />
+    <prns:similarTo rdf:resource="http://localhost:9000/profile/132965" />
+    <prns:similarTo rdf:resource="http://localhost:9000/profile/133231" />
+    <prns:similarTo rdf:resource="http://localhost:9000/profile/10909832" />
+    <prns:similarTo rdf:resource="http://localhost:9000/profile/133350" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Mello, Craig</rdfs:label>
+    <umass:honoraryTitle>Blais University Chair in Molecular Medicine (est. 2003)</umass:honoraryTitle>
+    <umass:LabUrl rdf:resource="https://mellolab.umassmed.edu" />
+    <umass:Rotation>
+      &lt;h1&gt;
+      Potential Rotation Projects:&lt;/h1&gt;
+      &lt;p&gt;
+      There are numerous potential rotation project available in the Mello lab:&lt;/p&gt;
+      &lt;p&gt;
+      Projects include: Investigation of RNAi and related mechanisms, including Piwi Argonaute pathways and their affects on fertility and epigenetic inheritance; Investigation of germline determination and cell-fate specification during embryogenesis; the exploration of CRISPR mediated genome editing tools for&amp;nbsp;&lt;em&gt;C. elegans&lt;/em&gt;&amp;nbsp;and other organisms; and finally the use of CRISPR to generate&amp;nbsp;&lt;em&gt;C. elegans&lt;/em&gt;&amp;nbsp;models for human genetic disease.&lt;/p&gt;
+    </umass:Rotation>
+    <umass:Summary>I don't know if this will work with really long text that we set with around 400 characters. I don't really know what 400 characters looks like and I'm not sure this control by default is gonna stop there without some javascript to get in the way or some validation logic on the textbox that doesn't let it get too long.</umass:Summary>
+    <vivo:authorInAuthorship rdf:resource="http://localhost:9000/profile/22045627" />
+    <vivo:educationalTraining rdf:resource="http://localhost:9000/profile/16438597" />
+    <vivo:educationalTraining rdf:resource="http://localhost:9000/profile/16438598" />
+    <vivo:email>Craig.Mello@umassmed.edu</vivo:email>
+    <vivo:hasResearchArea rdf:resource="http://localhost:9000/profile/108076" />
+    <vivo:hasResearchArea rdf:resource="http://localhost:9000/profile/123911" />
+    <vivo:hasResearchArea rdf:resource="http://localhost:9000/profile/104894" />
+    <vivo:hasResearchArea rdf:resource="http://localhost:9000/profile/105598" />
+    <vivo:hasResearchArea rdf:resource="http://localhost:9000/profile/108230" />
+    <vivo:mailingAddress rdf:resource="http://localhost:9000/profile/6020" />
+    <vivo:overview>&lt;h1&gt;Academic Background&lt;/h1&gt;&lt;h2&gt;Blais University Chair in Molecular Medicine&lt;/h2&gt;&lt;p&gt;&lt;span style="font-size: small;"&gt;Dr. Craig C. Mello received his B.Sc. degree in Biochemistry from Brown University in 1982, and received his Ph.D. from Harvard University in 1990. From 1990 to 1994 he conducted postdoctoral research at the Fred Hutchinson Cancer Research Center in Seattle, WA. He has been a member of the University of Massachusetts Medical School faculty since 1995, and a Howard Hughes Medical Investigator since 2000. His pioneering research on RNAi, in collaboration with Dr. Andrew Fire, has been recognized with numerous awards culminating with the prestigious 2006 Nobel Prize in Physiology or Medicine.&lt;/span&gt;&lt;/p&gt;&lt;h1&gt;RNA-mediated Gene Regulation&lt;/h1&gt;&lt;p&gt;&lt;img title="Photo: Craig Mello" src="../profile/Modules/CustomViewPersonGeneralInfo/ImageHandler.ashx?NodeID=129741&amp;amp;photoNum=1" alt="Photo: Craig Mello" align="right" border="1" hspace="10" vspace="12" /&gt;&lt;/p&gt;&lt;p&gt;In much the same way that we use short search queries to navigate the World Wide Web, cells use short segments of genetic code to find and regulate matching information. The proteins that mediate these searches are highly conserved in plants and animals and are essential for viability and fertility. Craig Mello is investigating how these search mechanisms work and how organisms use them to regulate, share, and propagate genetic information.&lt;/p&gt;&lt;p&gt;For more information about Dr. Mello's research, please visit his Howard Hughes Medical Institute page at:&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.hhmi.org/research/rna-interference-and-development-c-elegans"&gt;https://www.hhmi.org/research/rna-interference-and-development-c-elegans&lt;/a&gt;&lt;/p&gt;</vivo:overview>
+    <vivo:personInPosition rdf:resource="http://localhost:9000/profile/22338870" />
+    <vivo:personInPosition rdf:resource="http://localhost:9000/profile/22338864" />
+    <vivo:personInPosition rdf:resource="http://localhost:9000/profile/22338865" />
+    <vivo:personInPosition rdf:resource="http://localhost:9000/profile/22338866" />
+    <vivo:personInPosition rdf:resource="http://localhost:9000/profile/22338867" />
+    <vivo:personInPosition rdf:resource="http://localhost:9000/profile/22338868" />
+    <vivo:personInPosition rdf:resource="http://localhost:9000/profile/22338869" />
+    <vivo:phoneNumber>508-856-1602</vivo:phoneNumber>
+    <vivo:preferredTitle>Distinguished Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/104894">
+    <prns:meshDescriptorUI>D018510</prns:meshDescriptorUI>
+    <prns:meshSemanticGroupName>Chemicals &amp; Drugs</prns:meshSemanticGroupName>
+    <prns:numberOfAuthors>11</prns:numberOfAuthors>
+    <prns:numberOfPublications>47</prns:numberOfPublications>
+    <prns:uniquenessWeight>0.948665</prns:uniquenessWeight>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <rdfs:label>RNA, Helminth</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/105598">
+    <prns:meshDescriptorUI>D034741</prns:meshDescriptorUI>
+    <prns:meshSemanticGroupName>Chemicals &amp; Drugs</prns:meshSemanticGroupName>
+    <prns:numberOfAuthors>168</prns:numberOfAuthors>
+    <prns:numberOfPublications>588</prns:numberOfPublications>
+    <prns:uniquenessWeight>0.703634</prns:uniquenessWeight>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <rdfs:label>RNA, Small Interfering</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/108076">
+    <prns:meshDescriptorUI>D017173</prns:meshDescriptorUI>
+    <prns:meshSemanticGroupName>Living Beings</prns:meshSemanticGroupName>
+    <prns:numberOfAuthors>69</prns:numberOfAuthors>
+    <prns:numberOfPublications>379</prns:numberOfPublications>
+    <prns:uniquenessWeight>0.705691</prns:uniquenessWeight>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <rdfs:label>Caenorhabditis elegans</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/108230">
+    <prns:meshDescriptorUI>D034622</prns:meshDescriptorUI>
+    <prns:meshSemanticGroupName>Phenomena</prns:meshSemanticGroupName>
+    <prns:meshSemanticGroupName>Physiology</prns:meshSemanticGroupName>
+    <prns:numberOfAuthors>170</prns:numberOfAuthors>
+    <prns:numberOfPublications>512</prns:numberOfPublications>
+    <prns:uniquenessWeight>0.749925</prns:uniquenessWeight>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <rdfs:label>RNA Interference</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/10909832">
+    <foaf:firstName>Raffi</foaf:firstName>
+    <foaf:lastName>Aroian</foaf:lastName>
+    <prns:emailEncrypted>/8Cj4J3U0wmNQqrK6QEZYUqsmXgcLOkRPw==</prns:emailEncrypted>
+    <prns:fullName>Raffi Van Aroian PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5981" />
+    <prns:latitude>42.27913100000000</prns:latitude>
+    <prns:longitude>-71.76550320000000</prns:longitude>
+    <prns:mainImage rdf:resource="http://localhost/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=10909832" />
+    <prns:personId>3952</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22339711" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Aroian, Raffi</rdfs:label>
+    <umass:PostDocs>&lt;p&gt;Test of posdocs&lt;/p&gt;</umass:PostDocs>
+    <umass:Rotation>
+      &lt;p&gt;
+      The Aroian Group is actively recruiting graduate students to:&lt;/p&gt;
+      &lt;p&gt;
+      1. use microbiology and genetics to develop new methods for delivery of protein therapies (anthelmintics) to the GI tract&lt;/p&gt;
+      &lt;p&gt;
+      2. discovery and mechanism of action studies of new anthelmintics to control soil-transmitted helminths&lt;/p&gt;
+      &lt;p&gt;
+      3. study how vertebrate hosts and their immune system interact with intestinal nematodes, with the particular goal of controlling autoimmune disease&lt;/p&gt;
+      &lt;p&gt;
+      4. study innate immune mechanisms that protect animals against pore-forming toxin attack&lt;/p&gt;
+    </umass:Rotation>
+    <vivo:email>Raffi.Aroian@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/11976485">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Molecular, Cell and Cancer Biology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/123911">
+    <prns:meshDescriptorUI>D029742</prns:meshDescriptorUI>
+    <prns:meshSemanticGroupName>Chemicals &amp; Drugs</prns:meshSemanticGroupName>
+    <prns:numberOfAuthors>43</prns:numberOfAuthors>
+    <prns:numberOfPublications>249</prns:numberOfPublications>
+    <prns:uniquenessWeight>0.789462</prns:uniquenessWeight>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <rdfs:label>Caenorhabditis elegans Proteins</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129478">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Cell Biology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129489">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Family Medicine and Community Health</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129494">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Interdisciplinary Graduate Program</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129497">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Medicine</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129509">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Biochemistry and Molecular Pharmacology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129519">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Program in Molecular Medicine</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129521">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Psychiatry</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129525">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>RNA Therapeutics Institute</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129564">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Cancer Center</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129566">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Bioinformatics and Computational Biology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129639">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Division" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Epidemiology of Chronic Diseases</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129658">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Division" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Infectious Diseases And Immunology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129722">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>UMMS - Graduate School of Biomedical Sciences</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129724">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>UMMS - Programs, Centers and Institutes</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129725">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>UMMS - School of Medicine</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129726">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>University of Massachusetts Medical School</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129741/198">
+    <prns:maxWeight>10.8484</prns:maxWeight>
+    <prns:minWeight>0.0138111</prns:minWeight>
+    <prns:numberOfConnections>245</prns:numberOfConnections>
+    <prns:predicateNode rdf:resource="http://localhost:9000/profile/198" />
+    <rdf:predicate rdf:resource="http://vivoweb.org/ontology/core#hasResearchArea" />
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#Network" />
+    <rdfs:label>research areas</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129741/345">
+    <prns:maxWeight>3.79332</prns:maxWeight>
+    <prns:minWeight>0.0234661</prns:minWeight>
+    <prns:numberOfConnections>22</prns:numberOfConnections>
+    <prns:predicateNode rdf:resource="http://localhost:9000/profile/345" />
+    <rdf:predicate rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#coAuthorOf" />
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#Network" />
+    <rdfs:label>coauthor of</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129741/476">
+    <prns:maxWeight>211.902</prns:maxWeight>
+    <prns:minWeight>13.6804</prns:minWeight>
+    <prns:numberOfConnections>60</prns:numberOfConnections>
+    <prns:predicateNode rdf:resource="http://localhost:9000/profile/476" />
+    <rdf:predicate rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#similarTo" />
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#Network" />
+    <rdfs:label>similar to</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129741/94">
+    <prns:maxWeight>1</prns:maxWeight>
+    <prns:minWeight>1</prns:minWeight>
+    <prns:numberOfConnections>63</prns:numberOfConnections>
+    <prns:predicateNode rdf:resource="http://localhost:9000/profile/94" />
+    <rdf:predicate rdf:resource="http://vivoweb.org/ontology/core#authorInAuthorship" />
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#Network" />
+    <rdfs:label>selected publications</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129805">
+    <foaf:firstName>Oliver</foaf:firstName>
+    <foaf:lastName>Rando</foaf:lastName>
+    <prns:emailEncrypted>ws2s8JGIvAmDRa/L6QEZYUqsmXgcLOkRPw==</prns:emailEncrypted>
+    <prns:fullName>Oliver J Rando MD, PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5981" />
+    <prns:latitude>42.27985300000000</prns:latitude>
+    <prns:longitude>-71.79190270000000</prns:longitude>
+    <prns:mainImage rdf:resource="http://localhost/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=129805" />
+    <prns:personId>1067</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22336786" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Rando, Oliver</rdfs:label>
+    <umass:PostDocs>&lt;P&gt;&lt;FONT size=2 face="Verdana, Helvetica"&gt;For more information about the Postdoctoral position in Dr. Rando’s lab please use the link provided.&lt;BR&gt;&lt;/FONT&gt;&lt;A href="https://www.hrapply.com/umm/AppJobView.jsp?link=17560&amp;amp;page=AppJobList.jsp&amp;amp;skimSessionName=com.hrlogix.view.cont.app.JobListTable&amp;amp;skimName=requisition.requisition_id&amp;amp;skimNdx=16&amp;amp;op=reset"&gt;&lt;U&gt;&lt;FONT color=#0000ff size=2 face="Verdana, Helvetica"&gt;Post doc position&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;&lt;/P&gt;</umass:PostDocs>
+    <umass:Rotation>&lt;h5 class="MsoPlainText"&gt;&lt;/h5&gt;&lt;h3 class="MsoPlainText"&gt;Rotation projects are available to study chromatin structure and function.&lt;/h3&gt;&lt;h5 class="MsoPlainText"&gt;Project 1. Measure histone dynamics in yeast.&lt;/h5&gt;&lt;p class="MsoPlainText"&gt;&lt;font face="Arial, Helvetica" size="2"&gt;Histone dynamics play major roles in chromatin metabolism and in the inheritance of chromatin states. To measure histone replacement rates in yeast, we have created yeast strains carrying inducible epitope-tagged histones H3 and H2A. Using microarrays, we will measure histone replacement rates in a variety of mutant yeast to ascertain the role of various chromatin remodeling factors in histone exchange reactions.&lt;/font&gt;&lt;/p&gt;&lt;h5 class="MsoPlainText"&gt;Project 2. Characterize mechanisms for epigenetic inheritance in yeast.&lt;/h5&gt;&lt;p class="MsoPlainText"&gt;&lt;font face="Arial, Helvetica" size="2"&gt;We have identified a variety of genes whose expression state in yeast is epigenetically heritable. We will screen the yeast genome for genes that affect the inheritance of these expression patterns.&lt;/font&gt;&lt;/p&gt;&lt;h5 class="MsoPlainText"&gt;Project 3. Measure histone dynamics in embryonic stem cells.&lt;/h5&gt;&lt;p class="MsoPlainText"&gt;&lt;font face="Arial, Helvetica" size="2"&gt;Embryonic stem cells are pluripotent cells that can give rise to every type of cell in the adult animal. The role of chromatin structure in maintaining this pluripotent state is poorly understood, but it appears that stem cell chromatin is exceptionally labile relative to that in differentiated cells. We will create stem cell lines with inducible tagged histones to measure histone replacement rates across the mouse genome.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</umass:Rotation>
+    <vivo:email>oliver.rando@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129900">
+    <foaf:firstName>Zhiping</foaf:firstName>
+    <foaf:lastName>Weng</foaf:lastName>
+    <prns:emailEncrypted>18ms9p2U9VWVTqXD6QEZYUqsmXgcLOkRPw==</prns:emailEncrypted>
+    <prns:fullName>Zhiping Weng PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5981" />
+    <prns:latitude>42.27985300000000</prns:latitude>
+    <prns:longitude>-71.79190270000000</prns:longitude>
+    <prns:mainImage rdf:resource="http://localhost/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=129900" />
+    <prns:personId>1152</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22337122" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Weng, Zhiping</rdfs:label>
+    <umass:PostDocs>&lt;P&gt;The project aims to develop computational algorithms and software programs for analyzing high-throughput sequence data such as ChIP-Seq RNA-Seq small RNA sequencing data. PhD required. A strong background in computational biology especially experience with analyzing high-throughput sequencing data is highly desirable. Excellent communication and writing skills and the ability to work with experimental and computational collaborators are essential. &lt;BR&gt;&amp;nbsp;&lt;BR&gt;To apply please forward CV cover letter and three references to:&amp;nbsp; &lt;A href="mailto:Zhiping.Weng@umassmed.edu"&gt;Zhiping.Weng@umassmed.edu&lt;/A&gt;&lt;/P&gt;</umass:PostDocs>
+    <umass:Rotation>&lt;p&gt;Please contact Dr. Weng for information on rotations that are available in her lab.&lt;/p&gt;</umass:Rotation>
+    <vivo:email>zhiping.weng@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/129913">
+    <foaf:firstName>Victor</foaf:firstName>
+    <foaf:lastName>Ambros</foaf:lastName>
+    <prns:emailEncrypted>+8im8puIvDqPSbnL2jQBbVish3AdZqIQLvY=</prns:emailEncrypted>
+    <prns:fullName>Victor R Ambros PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5981" />
+    <prns:latitude>42.27913100000000</prns:latitude>
+    <prns:longitude>-71.76550320000000</prns:longitude>
+    <prns:mainImage rdf:resource="http://localhost/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=129913" />
+    <prns:personId>1164</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22337144" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Ambros, Victor</rdfs:label>
+    <umass:Rotation>&lt;h1 &gt;Rotations&lt;/h1&gt;&lt;p &gt;Project 1: Genetic screens for proteins that modify or regulate the activity of microRNAs in &lt;i&gt;C. elegans&lt;/i&gt;.&lt;/p&gt;</umass:Rotation>
+    <vivo:email>Victor.Ambros@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/130234">
+    <foaf:firstName>Daniel</foaf:firstName>
+    <foaf:lastName>Breslin</foaf:lastName>
+    <prns:emailEncrypted>6cCr75GWvDmQTrjIwBo0dVS+h24VZ+hbL+eK</prns:emailEncrypted>
+    <prns:fullName>Daniel L Breslin MD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5989" />
+    <prns:latitude>42.27587600000000</prns:latitude>
+    <prns:longitude>-71.76211600000000</prns:longitude>
+    <prns:personId>1453</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22337904" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Breslin, Daniel</rdfs:label>
+    <vivo:email>Daniel.Breslin@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Assistant Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/130547">
+    <foaf:firstName>Jeffrey</foaf:firstName>
+    <foaf:lastName>Manning</foaf:lastName>
+    <prns:emailEncrypted>58Sj4Iaf6ySvSqXKwBoTQFutm2oWLOkRPw==</prns:emailEncrypted>
+    <prns:fullName>Jeffrey D Manning MD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5979" />
+    <prns:latitude>42.27587600000000</prns:latitude>
+    <prns:longitude>-71.76211600000000</prns:longitude>
+    <prns:personId>1735</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22338409" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Manning, Jeffrey</rdfs:label>
+    <vivo:email>Jeffrey_Manning@brown.edu</vivo:email>
+    <vivo:preferredTitle>Instructor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/132070">
+    <foaf:firstName>Phoebe</foaf:firstName>
+    <foaf:lastName>Moore</foaf:lastName>
+    <prns:emailEncrypted>3cmq45afvBaNRLnB6QEZYUqsmXgcLOkRPw==</prns:emailEncrypted>
+    <prns:fullName>Phoebe S Moore PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5991" />
+    <prns:latitude>42.27587600000000</prns:latitude>
+    <prns:longitude>-71.76211600000000</prns:longitude>
+    <prns:mainImage rdf:resource="http://localhost/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=132070" />
+    <prns:personId>3105</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22339040" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Moore, Phoebe</rdfs:label>
+    <umass:PostDocs></umass:PostDocs>
+    <vivo:email>phoebe.moore@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Associate Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/132233">
+    <foaf:firstName>Kate</foaf:firstName>
+    <foaf:lastName>Lapane</foaf:lastName>
+    <prns:emailEncrypted>5sCx49q28wuDRa7k3BkVc0qykXlWZ+h1</prns:emailEncrypted>
+    <prns:fullName>Kate L Lapane PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5981" />
+    <prns:latitude>42.27587600000000</prns:latitude>
+    <prns:longitude>-71.76211600000000</prns:longitude>
+    <prns:mainImage rdf:resource="http://localhost/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=132233" />
+    <prns:personId>3252</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22339150" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Lapane, Kate</rdfs:label>
+    <vivo:email>Kate.Lapane@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/132944">
+    <foaf:firstName>Darryl</foaf:firstName>
+    <foaf:lastName>Conte</foaf:lastName>
+    <prns:emailEncrypted>ycC39I2WvBiNRb/B6QEZYUqsmXgcLOkRPw==</prns:emailEncrypted>
+    <prns:fullName>Darryl Conte PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5989" />
+    <prns:latitude>42.27913100000000</prns:latitude>
+    <prns:longitude>-71.76550320000000</prns:longitude>
+    <prns:personId>4</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22342766" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Conte, Darryl</rdfs:label>
+    <vivo:email>darryl.conte@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Assistant Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/132965">
+    <foaf:firstName>Phillip</foaf:firstName>
+    <foaf:lastName>Zamore</foaf:lastName>
+    <orng:hasLinks rdf:resource="http://localhost:9000/profile/17598628" />
+    <prns:emailEncrypted>/cms6piT4lW4SqbL2xE0dVS+h24VZ+hbL+eK</prns:emailEncrypted>
+    <prns:fullName>Phillip D Zamore PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5996" />
+    <prns:latitude>42.27587600000000</prns:latitude>
+    <prns:longitude>-71.76211600000000</prns:longitude>
+    <prns:mainImage rdf:resource="http://localhost/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=132965" />
+    <prns:personId>418</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22342124" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Zamore, Phillip</rdfs:label>
+    <umass:honoraryTitle>Gretchen Stone Cook Chair in Biomedical Sciences (est. 2005)</umass:honoraryTitle>
+    <umass:PostDocs>&lt;span class="Apple-style-span" style="font-family: arial, sans-serif; font-size: 12px; line-height: 18px; "&gt;A postdoctoral position is available to study in this laboratory. Contact Dr.&amp;nbsp;Zamore for additional details&lt;/span&gt;</umass:PostDocs>
+    <umass:Rotation>&lt;h1&gt;&lt;font face="Arial, Helvetica" size="3"&gt;Potential Rotation Projects&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;&lt;font face="Arial, Helvetica" size="3"&gt;Our laboratory uses a combination of biochemistry, cell biology, and genetics to dissect the RNAi pathway. A rotation project is available to explore the mechanisms that underlie the RNAi phenomenon or the biological pathways in which RNAi enzymes participate in flies, mice and humans.&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font class="Apple-style-span" face="Arial, Helvetica"&gt;&lt;br&gt;&lt;/font&gt;&lt;/p&gt;</umass:Rotation>
+    <vivo:email>Phillip.Zamore@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Chair and Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/133230">
+    <foaf:firstName>Neal</foaf:firstName>
+    <foaf:lastName>Silverman</foaf:lastName>
+    <orng:hasTwitter rdf:resource="http://localhost:9000/profile/18434263" />
+    <prns:emailEncrypted>48Sk6tqp+xeUTrnJyBo0dVS+h24VZ+hbL+eK</prns:emailEncrypted>
+    <prns:fullName>Neal Silverman PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5981" />
+    <prns:latitude>42.27985300000000</prns:latitude>
+    <prns:longitude>-71.79190270000000</prns:longitude>
+    <prns:mainImage rdf:resource="http://localhost/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=133230" />
+    <prns:personId>657</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22336970" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Silverman, Neal</rdfs:label>
+    <vivo:email>Neal.Silverman@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/133231">
+    <foaf:firstName>Heidi</foaf:firstName>
+    <foaf:lastName>Tissenbaum</foaf:lastName>
+    <prns:emailEncrypted>5cSs4p3UxhKRWK7KyxUBbXmqmXwLceEQLq2aYmU=</prns:emailEncrypted>
+    <prns:fullName>Heidi A Tissenbaum PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5981" />
+    <prns:latitude>42.27587600000000</prns:latitude>
+    <prns:longitude>-71.76211600000000</prns:longitude>
+    <prns:personId>658</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22336974" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Tissenbaum, Heidi</rdfs:label>
+    <umass:Rotation>
+      &lt;p&gt;
+      &lt;span style="font-family: arial, helvetica, sans-serif; font-size: 14px;"&gt;Graduate students are encouraged to contact &lt;/span&gt;&lt;a href="mailto:Heidi.Tissenbaum@umassmed.edu" style="font-family: arial, helvetica, sans-serif; font-size: 14px;"&gt;Heidi Tissenbaum&lt;/a&gt;&lt;span style="font-family: arial, helvetica, sans-serif; font-size: 14px;"&gt;&amp;nbsp;to discuss projects available for rotations. Each student has a project tailored for both their abilities and class time commitments.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;
+    </umass:Rotation>
+    <vivo:email>Heidi.Tissenbaum@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/133350">
+    <foaf:firstName>Masaki</foaf:firstName>
+    <foaf:lastName>Shirayama</foaf:lastName>
+    <prns:emailEncrypted>4MC255+TvCiKQrnF0BUZYXmqmXwLceEQLq2aYmU=</prns:emailEncrypted>
+    <prns:fullName>Masaki Shirayama PhD</prns:fullName>
+    <prns:hasFacultyRank rdf:resource="http://localhost:9000/profile/5989" />
+    <prns:latitude>42.27913100000000</prns:latitude>
+    <prns:longitude>-71.76550320000000</prns:longitude>
+    <prns:personId>765</prns:personId>
+    <prns:personInPrimaryPosition rdf:resource="http://localhost:9000/profile/22337451" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+    <rdfs:label>Shirayama, Masaki</rdfs:label>
+    <vivo:email>Masaki.Shirayama@umassmed.edu</vivo:email>
+    <vivo:preferredTitle>Assistant Professor</vivo:preferredTitle>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/15590085">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Division" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/16438597">
+    <prns:trainingAtOrganization>Brown University</prns:trainingAtOrganization>
+    <prns:trainingLocation>Providence, RI, United States</prns:trainingLocation>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#EducationalTraining" />
+    <rdfs:label>Brown University, Biochemistry</rdfs:label>
+    <vivo:degreeEarned>BS</vivo:degreeEarned>
+    <vivo:majorField>Biochemistry</vivo:majorField>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/16438598">
+    <prns:trainingAtOrganization>Harvard University</prns:trainingAtOrganization>
+    <prns:trainingLocation>Cambridge, MA, United States</prns:trainingLocation>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#EducationalTraining" />
+    <rdfs:label>Harvard University, Cellular/Developmental Biology</rdfs:label>
+    <vivo:degreeEarned>PHD</vivo:degreeEarned>
+    <vivo:majorField>Cellular/Developmental Biology</vivo:majorField>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/19169085">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Department" />
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
+    <rdfs:label>Population and Quantitative Health Sciences</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22045627">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Authorship" />
+    <rdfs:label>Authorship 88154</rdfs:label>
+    <vivo:authorRank>14</vivo:authorRank>
+    <vivo:linkedAuthor rdf:resource="http://localhost:9000/profile/129741" />
+    <vivo:linkedInformationResource rdf:resource="http://localhost:9000/profile/22045727" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22045727">
+    <bibo:pmid>31839538</bibo:pmid>
+    <prns:hasAuthorList>Dokshin GA, Davis GM, Sawle AD, Eldridge MD, Nicholls PK, Gourley TE, Romer KA, Molesworth LW, Tatnell HR, Ozturk AR, de Rooij DG, Hannon GJ, Page DC, Mello CC, Carmell MA</prns:hasAuthorList>
+    <prns:hasPublicationVenue>Developmental cell</prns:hasPublicationVenue>
+    <prns:informationResourceReference>Dokshin GA, Davis GM, Sawle AD, Eldridge MD, Nicholls PK, Gourley TE, Romer KA, Molesworth LW, Tatnell HR, Ozturk AR, de Rooij DG, Hannon GJ, Page DC, Mello CC, Carmell MA. GCNA Interacts with Spartan and Topoisomerase II to Regulate Genome Stability. Dev Cell. 2019 Dec 04.</prns:informationResourceReference>
+    <prns:medlineTA>Dev Cell</prns:medlineTA>
+    <prns:publicationDate>2019-12-04T00:00:00</prns:publicationDate>
+    <prns:year>2019</prns:year>
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/AcademicArticle" />
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/Article" />
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/Document" />
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#InformationResource" />
+    <rdfs:label>GCNA Interacts with Spartan and Topoisomerase II to Regulate Genome Stability.</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22336786">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129509" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Professor</rdfs:label>
+    <vivo:hrJobTitle>Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22336970">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129497" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/129658" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Professor</rdfs:label>
+    <vivo:hrJobTitle>Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22336974">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/11976485" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Professor</rdfs:label>
+    <vivo:hrJobTitle>Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22337122">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129509" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Professor</rdfs:label>
+    <vivo:hrJobTitle>Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22337144">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129519" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Professor</rdfs:label>
+    <vivo:hrJobTitle>Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22337451">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129525" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Assistant Professor</rdfs:label>
+    <vivo:hrJobTitle>Assistant Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22337904">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129521" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Assistant Professor</rdfs:label>
+    <vivo:hrJobTitle>Assistant Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22338409">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129489" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Instructor</rdfs:label>
+    <vivo:hrJobTitle>Instructor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22338864">
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129519" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>2</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129725" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22338865">
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129525" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>3</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129725" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22338866">
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129566" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>4</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129722" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22338867">
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129478" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>5</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129722" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22338868">
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129494" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>6</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129722" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22338869">
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129564" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>7</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129724" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22338870">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129525" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Distinguished Professor</rdfs:label>
+    <vivo:hrJobTitle>Distinguished Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22339040">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129521" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Associate Professor</rdfs:label>
+    <vivo:hrJobTitle>Associate Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22339150">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/19169085" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/129639" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Professor</rdfs:label>
+    <vivo:hrJobTitle>Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22339711">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129519" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Professor</rdfs:label>
+    <vivo:hrJobTitle>Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22342124">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129525" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Chair and Professor</rdfs:label>
+    <vivo:hrJobTitle>Chair and Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/22342766">
+    <prns:isPrimaryPosition>true</prns:isPrimaryPosition>
+    <prns:positionInDepartment rdf:resource="http://localhost:9000/profile/129525" />
+    <prns:positionInDivision rdf:resource="http://localhost:9000/profile/15590085" />
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Position" />
+    <rdfs:label>Assistant Professor</rdfs:label>
+    <vivo:hrJobTitle>Assistant Professor</vivo:hrJobTitle>
+    <vivo:positionInOrganization rdf:resource="http://localhost:9000/profile/129726" />
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/5979">
+    <prns:sortOrder>15</prns:sortOrder>
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#FacultyRank" />
+    <rdfs:label>Instructor</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/5981">
+    <prns:sortOrder>1</prns:sortOrder>
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#FacultyRank" />
+    <rdfs:label>Professor</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/5989">
+    <prns:sortOrder>11</prns:sortOrder>
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#FacultyRank" />
+    <rdfs:label>Assistant Professor</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/5991">
+    <prns:sortOrder>8</prns:sortOrder>
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#FacultyRank" />
+    <rdfs:label>Associate Professor</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/5996">
+    <prns:sortOrder>2</prns:sortOrder>
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#FacultyRank" />
+    <rdfs:label>Chair And Professor</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/6007">
+    <prns:sortOrder>4</prns:sortOrder>
+    <rdf:type rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#FacultyRank" />
+    <rdfs:label>Distinguished Professor</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://localhost:9000/profile/6020">
+    <rdf:type rdf:resource="http://vivoweb.org/ontology/core#Address" />
+    <rdfs:label>Worcester MA 01605</rdfs:label>
+    <vivo:address1>University of Massachusetts Medical School</vivo:address1>
+    <vivo:address2>368 Plantation Street, Suite AS5-2047</vivo:address2>
+    <vivo:address3>Worcester MA 01605</vivo:address3>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://orng.info/ontology/orng#hasLinks">
+    <prns:tagName>orng:hasLinks</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>Websites</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://orng.info/ontology/orng#hasTwitter">
+    <prns:tagName>orng:hasTwitter</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>Twitter</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#coAuthorOf">
+    <prns:tagName>prns:coAuthorOf</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>coauthor of</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#emailEncrypted">
+    <prns:tagName>prns:emailEncrypted</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>email address</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#FacultyRank">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Faculty Rank</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#fullName">
+    <prns:tagName>prns:fullName</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>full name</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#hasAuthorList">
+    <prns:tagName>prns:hasAuthorList</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>author list</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#hasFacultyRank">
+    <prns:tagName>prns:hasFacultyRank</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>has faculty rank</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#hasNetwork">
+    <prns:tagName>prns:hasNetwork</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>has network</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#hasPublicationVenue">
+    <prns:tagName>prns:hasPublicationVenue</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>published in</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#informationResourceReference">
+    <prns:tagName>prns:informationResourceReference</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>information resource reference</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#isPrimaryPosition">
+    <prns:tagName>prns:isPrimaryPosition</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>is primary position</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#latitude">
+    <prns:tagName>prns:latitude</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>latitude</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#longitude">
+    <prns:tagName>prns:longitude</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>longitude</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#mainImage">
+    <prns:tagName>prns:mainImage</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>photo</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#maxWeight">
+    <prns:tagName>prns:maxWeight</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>maximum weight</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#medlineTA">
+    <prns:tagName>prns:medlineTA</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>journal title abbreviation</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#meshDescriptorUI">
+    <prns:tagName>prns:meshDescriptorUI</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>MeSH DescriptorUI</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#meshSemanticGroupName">
+    <prns:tagName>prns:meshSemanticGroupName</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>MeSH semantic group name</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#minWeight">
+    <prns:tagName>prns:minWeight</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>minimum weight</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#numberOfAuthors">
+    <prns:tagName>prns:numberOfAuthors</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>number of authors</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#numberOfConnections">
+    <prns:tagName>prns:numberOfConnections</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>number of connections</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#numberOfPublications">
+    <prns:tagName>prns:numberOfPublications</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>number of publications</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#personId">
+    <prns:tagName>prns:personId</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Person ID</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#personInPrimaryPosition">
+    <prns:tagName>prns:personInPrimaryPosition</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>person in primary position</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#physicalNeighborOf">
+    <prns:tagName>prns:physicalNeighborOf</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>physical neighbor</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment">
+    <prns:tagName>prns:positionInDepartment</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>position in department</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision">
+    <prns:tagName>prns:positionInDivision</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>position in division</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#predicateNode">
+    <prns:tagName>prns:predicateNode</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>predicate node</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#publicationDate">
+    <prns:tagName>prns:publicationDate</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>publication date</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#similarTo">
+    <prns:tagName>prns:similarTo</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>similar to</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#sortOrder">
+    <prns:tagName>prns:sortOrder</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>sort order</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#trainingAtOrganization">
+    <prns:tagName>prns:trainingAtOrganization</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>educational organization</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#trainingLocation">
+    <prns:tagName>prns:trainingLocation</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>training location</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#uniquenessWeight">
+    <prns:tagName>prns:uniquenessWeight</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>uniqueness weight</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.catalyst.harvard.edu/ontology/prns#year">
+    <prns:tagName>prns:year</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>year</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.umassmed.edu/ontology#honoraryTitle">
+    <prns:tagName>umass:honoraryTitle</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Endowed Chair Honorary Title</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.umassmed.edu/ontology#LabUrl">
+    <prns:tagName>umass:LabUrl</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Lab URL</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.umassmed.edu/ontology#PostDocs">
+    <prns:tagName>umass:PostDocs</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Post Docs</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.umassmed.edu/ontology#Rotation">
+    <prns:tagName>umass:Rotation</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Rotation Projects</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://profiles.umassmed.edu/ontology#Summary">
+    <prns:tagName>umass:Summary</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Summary</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/ontology/bibo/AcademicArticle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Academic Article</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/ontology/bibo/Article">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Article</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/ontology/bibo/Document">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Document</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/ontology/bibo/pmid">
+    <prns:tagName>bibo:pmid</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>PubMed Identifier</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#Address">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Address</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#address1">
+    <prns:tagName>vivo:address1</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>address line 1</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#address2">
+    <prns:tagName>vivo:address2</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>address line 2</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#address3">
+    <prns:tagName>vivo:address3</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>address line 3</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#authorInAuthorship">
+    <prns:tagName>vivo:authorInAuthorship</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>selected publications</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#authorRank">
+    <prns:tagName>vivo:authorRank</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty" />
+    <rdfs:label>author rank in publication</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#Authorship">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Authorship</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#degreeEarned">
+    <prns:tagName>vivo:degreeEarned</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>degree earned</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#Department">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Department</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#Division">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Division</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#educationalTraining">
+    <prns:tagName>vivo:educationalTraining</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>education and training</rdfs:label>
+    <rdfs:label>Educational Training</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#email">
+    <prns:tagName>vivo:email</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>email</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#hasResearchArea">
+    <prns:tagName>vivo:hasResearchArea</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>research areas</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#hrJobTitle">
+    <prns:tagName>vivo:hrJobTitle</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>HR job title</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#InformationResource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Information Resource</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#linkedAuthor">
+    <prns:tagName>vivo:linkedAuthor</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>linked author</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#linkedInformationResource">
+    <prns:tagName>vivo:linkedInformationResource</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>linked information resource</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#mailingAddress">
+    <prns:tagName>vivo:mailingAddress</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>mailing address</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#majorField">
+    <prns:tagName>vivo:majorField</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>major field of degree</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#overview">
+    <prns:tagName>vivo:overview</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty" />
+    <rdfs:label>overview</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#personInPosition">
+    <prns:tagName>vivo:personInPosition</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>positions</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#phoneNumber">
+    <prns:tagName>vivo:phoneNumber</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>phone</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#Position">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Position</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#positionInOrganization">
+    <prns:tagName>vivo:positionInOrganization</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>position in organization</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://vivoweb.org/ontology/core#preferredTitle">
+    <prns:tagName>vivo:preferredTitle</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty" />
+    <rdfs:label>preferred title</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate">
+    <prns:tagName>rdf:predicate</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>predicate</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+    <prns:tagName>rdf:type</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>type</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <prns:tagName>rdfs:label</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>label</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#Concept">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Concept</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Agent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Agent</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/firstName">
+    <prns:tagName>foaf:firstName</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty" />
+    <rdfs:label>first name</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/lastName">
+    <prns:tagName>foaf:lastName</prns:tagName>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty" />
+    <rdfs:label>last name</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Organization">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Organization</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Person">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Person</rdfs:label>
+  </rdf:Description>
+</rdf:RDF>
