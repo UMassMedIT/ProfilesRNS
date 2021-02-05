@@ -46,7 +46,7 @@
     </xsl:if>
     <xsl:if test="rdf:RDF[1]/rdf:Description[1]/umass:honoraryTitle !=''">
       <tr>
-        <th>Honorary Title</th>
+        <th>Endowed Title</th>
         <td>
           <span itemprop="honoraryTitle">
             <xsl:value-of select="rdf:RDF[1]/rdf:Description[1]/umass:honoraryTitle"/>
