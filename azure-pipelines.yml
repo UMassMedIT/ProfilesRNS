@@ -57,20 +57,18 @@ stages:
         SearchPattern: '**\bin\**\*.pdb'
         PublishSymbols: false
       continueOnError: true
-    - task: CopyFiles@2
-      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    - task: DotNetCoreCLI@2
       inputs:
-        SourceFolder: $(Build.Repository.LocalPath)
-        TargetFolder: $(Build.ArtifactStagingDirectory)
-        Contents: $(Parameters.Contents)
-        flattenFolders: true
+        command: 'publish'
+        publishWebProjects: true
+        arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
         
 
 
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
-        PathtoPublish: $(build.artifactstagingdirectory)
+        PathtoPublish: $(build.artifactstagingdirectory)/Output
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
 
