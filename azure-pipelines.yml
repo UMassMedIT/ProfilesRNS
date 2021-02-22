@@ -89,13 +89,12 @@ stages:
       #services: { string: string | container } # container resources to run as a service container
       timeoutInMinutes: 10        # how long to run the job before automatically cancelling
       #cancelTimeoutInMinutes: nonEmptyString  # how much time to give 'run always even if cancelled tasks' before killing them
-      variables:
-        Comecc: 'data source=DEVAGLISTENER;Initial Catalog=Comecc;Integrated Security=true;MultipleActiveResultSets=True;App=EntityFramework'
+      #variables:
 
       environment: 
         name: Development
         resourceType: VirtualMachine
-        tags: saintbernard_dev 
+        tags: Profiles_dev 
         # Tags needs to be updated per Pipeline
       strategy: 
         runOnce:
@@ -103,23 +102,21 @@ stages:
             steps:
 
              - task: IISWebAppManagementOnMachineGroup@0
-               displayName: 'IIS Vir App config'
+               displayName: 'IIS website config'
                inputs:
-                IISDeploymentType: 'IISWebApplication'
-                ParentWebsiteNameForApplication: 'dev-w3.umassmed.edu'
-                VirtualPathForApplication: '/EmployeeGiving'
-                PhysicalPathForApplication: 'D:\WebContent\dev-w3.umassmed.edu\EmployeeGiving'
+                 IISDeploymentType: 'IISWebsite'
+                 ActionIISWebsite: 'CreateOrUpdateWebsite'
+                 WebsiteName: 'Default Web Site'
+                 WebsitePhysicalPath: 'D:\WebContent\Profiles'
+                 WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
 
              - task: IISWebAppDeploymentOnMachineGroup@0
-               displayName: 'IIS Web App Deploy'
+               displayName: 'IIS Web site Deploy'
                inputs:
-                WebSiteName: 'dev-$(Parameters.Websitename)'
-                VirtualApplication: $(Parameters.VirtualApplication)
-                Package: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)/$(Parameters.packagetype)'
-                #XmlTransformation: true
-                RemoveAdditionalFilesFlag: true
-                #AdditionalArguments: '-transform **\*.$(Release.EnvironmentName).config -xml **\*.config'
-                XmlVariableSubstitution: true
+                 WebSiteName: 'Default Web Site'
+                 Package: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)/$(Parameters.packagetype)'
+                 RemoveAdditionalFilesFlag: true
+                 XmlVariableSubstitution: true
 
              #- task: FileTransform@1
               # inputs:
