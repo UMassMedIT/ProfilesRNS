@@ -64,7 +64,7 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
-        PathtoPublish: $(build.artifactstagingdirectory)/build
+        PathtoPublish: $(build.artifactstagingdirectory)/build/Profiles.zip
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
 
