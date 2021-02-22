@@ -57,7 +57,7 @@ stages:
       displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build/TransformConfig'
       inputs:
         SourceFolder: $(Build.Repository.LocalPath)
-        TargetFolder: $(Build.ArtifactStagingDirectory)/build
+        TargetFolder: $(Build.ArtifactStagingDirectory)/build/TransformConfig
         Contents: $(Parameters.Contents)
         flattenFolders: true
         
@@ -77,8 +77,8 @@ stages:
 
 - stage: Development  
   jobs:
-    - deployment: DeployEmployeeGiving_Dev
-      displayName: DeployEmployeeGiving_Dev
+    - deployment: DeployProfiles_Dev
+      displayName: DeployProfiles_Dev
       #pool:                # see pool schema
         #name: SSP Deploy
         #demands: 
