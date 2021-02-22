@@ -54,7 +54,7 @@ stages:
         msbuildArgs: $(Parameters.msbuildArgs)
 
     - task: CopyFiles@2
-      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build'
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build/TransformConfig'
       inputs:
         SourceFolder: $(Build.Repository.LocalPath)
         TargetFolder: $(Build.ArtifactStagingDirectory)/build
@@ -71,7 +71,7 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
-        PathtoPublish: $(build.artifactstagingdirectory)/build/*.config
+        PathtoPublish: $(build.artifactstagingdirectory)/build/TransformConfig
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
 
