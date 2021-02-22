@@ -13,7 +13,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   Parameters.Artifactname: 'ProfilesRNS_Drop'
-  Parameters.Contents: '/**/*.zip'
+  Parameters.Contents: '/**/Profiles.zip'
   Parameters.packagetype: '*.zip'
   Parameters.Websitename: 'w3.umassmed.edu'
   Parameters.VirtualApplication: 'Profiles'
