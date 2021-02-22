@@ -9,15 +9,15 @@ trigger:
      - Developer
 
 variables:
-  Parameters.solution: '**/*.sln'
+  Parameters.solution: '**/Website/SourceCode/Profiles/Profiles.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  Parameters.Artifactname: 'SaintBernard_Drop'
-  Parameters.Contents: '**/octopacked/**/*.nupkg'
-  Parameters.packagetype: '*.nupkg'
+  Parameters.Artifactname: 'ProfilesRNS_Drop'
+  Parameters.Contents: '/**/*.zip'
+  Parameters.packagetype: '*.zip'
   Parameters.Websitename: 'w3.umassmed.edu'
-  Parameters.VirtualApplication: 'EmployeeGiving'
-  Parameters.msbuildArgs: '/t:rebuild /p:RunOctoPack=true'
+  Parameters.VirtualApplication: 'Profiles'
+  Parameters.msbuildArgs: '/t:rebuild '
 
 
 stages:
@@ -26,7 +26,7 @@ stages:
   - job: Build
     pool:
       name: Azure Pipelines
-      vmImage: vs2017-win2016
+      vmImage: windows-latest
       # vmImage requires update per pipeline
       demands:
       - msbuild
@@ -40,8 +40,9 @@ stages:
     - task: NuGetCommand@2
       displayName: NuGet restore
       inputs:
-        restoreSolution: $(Parameters.solution)
-        vstsFeed: e57654ea-8986-4442-b88f-96cf69b7150e/8ed80d69-3c75-4a5f-9568-001a5691616d
+        command: 'restore'
+        restoreSolution: '$(Parameters.solution)'
+        feedsToUse: 'config'
     - task: VSBuild@1
       displayName: Build solution
       inputs:
@@ -49,15 +50,7 @@ stages:
         platform: $(BuildPlatform)
         configuration: $(BuildConfiguration)
         msbuildArgs: $(Parameters.msbuildArgs)
-    - task: VSTest@2
-      displayName: Test Assemblies
-      inputs:
-        testAssemblyVer2: >
-          **\$(BuildConfiguration)\*test*.dll
 
-          !**\obj\**
-        platform: $(BuildPlatform)
-        configuration: $(BuildConfiguration)
     - task: PublishSymbols@2
       displayName: Publish symbols path
       inputs:
@@ -72,11 +65,7 @@ stages:
         Contents: $(Parameters.Contents)
         flattenFolders: true
         
-    #- task: DotNetCoreCLI@2
-      #displayName: 'dotnet publish'
-      #inputs:
-       #command: publish
-       #publishWebProjects: true
+
 
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
