@@ -1,0 +1,144 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+ branches:
+   include:
+     - Developer
+
+variables:
+  Parameters.solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  Parameters.Artifactname: 'SaintBernard_Drop'
+  Parameters.Contents: '**/octopacked/**/*.nupkg'
+  Parameters.packagetype: '*.nupkg'
+  Parameters.Websitename: 'w3.umassmed.edu'
+  Parameters.VirtualApplication: 'EmployeeGiving'
+  Parameters.msbuildArgs: '/t:rebuild /p:RunOctoPack=true'
+
+
+stages:
+- stage: Build_Application
+  jobs:
+  - job: Build
+    pool:
+      name: Azure Pipelines
+      vmImage: vs2017-win2016
+      # vmImage requires update per pipeline
+      demands:
+      - msbuild
+      - visualstudio
+      - vstest
+    steps:
+    - task: NuGetToolInstaller@0
+      displayName: Use NuGet 4.4.1
+      inputs:
+        versionSpec: 4.4.1
+    - task: NuGetCommand@2
+      displayName: NuGet restore
+      inputs:
+        restoreSolution: $(Parameters.solution)
+        vstsFeed: e57654ea-8986-4442-b88f-96cf69b7150e/8ed80d69-3c75-4a5f-9568-001a5691616d
+    - task: VSBuild@1
+      displayName: Build solution
+      inputs:
+        solution: $(Parameters.solution)
+        platform: $(BuildPlatform)
+        configuration: $(BuildConfiguration)
+        msbuildArgs: $(Parameters.msbuildArgs)
+    - task: VSTest@2
+      displayName: Test Assemblies
+      inputs:
+        testAssemblyVer2: >
+          **\$(BuildConfiguration)\*test*.dll
+
+          !**\obj\**
+        platform: $(BuildPlatform)
+        configuration: $(BuildConfiguration)
+    - task: PublishSymbols@2
+      displayName: Publish symbols path
+      inputs:
+        SearchPattern: '**\bin\**\*.pdb'
+        PublishSymbols: false
+      continueOnError: true
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+      inputs:
+        SourceFolder: $(Build.Repository.LocalPath)
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+        Contents: $(Parameters.Contents)
+        flattenFolders: true
+        
+    #- task: DotNetCoreCLI@2
+      #displayName: 'dotnet publish'
+      #inputs:
+       #command: publish
+       #publishWebProjects: true
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Artifact
+      inputs:
+        PathtoPublish: $(build.artifactstagingdirectory)
+        ArtifactName: $(Parameters.ArtifactName)
+      condition: succeededOrFailed()
+
+- stage: Development  
+  jobs:
+    - deployment: DeployEmployeeGiving_Dev
+      displayName: DeployEmployeeGiving_Dev
+      #pool:                # see pool schema
+        #name: SSP Deploy
+        #demands: 
+      #dependsOn: Build
+      #condition: succeeded('Build')
+      continueOnError: true                # 'true' if future jobs should run even if this job fails; defaults to 'false'
+      # container: containerReference # container to run the job inside
+      #services: { string: string | container } # container resources to run as a service container
+      timeoutInMinutes: 10        # how long to run the job before automatically cancelling
+      #cancelTimeoutInMinutes: nonEmptyString  # how much time to give 'run always even if cancelled tasks' before killing them
+      variables:
+        Comecc: 'data source=DEVAGLISTENER;Initial Catalog=Comecc;Integrated Security=true;MultipleActiveResultSets=True;App=EntityFramework'
+
+      environment: 
+        name: Development
+        resourceType: VirtualMachine
+        tags: saintbernard_dev 
+        # Tags needs to be updated per Pipeline
+      strategy: 
+        runOnce:
+          deploy:
+            steps:
+
+             - task: IISWebAppManagementOnMachineGroup@0
+               displayName: 'IIS Vir App config'
+               inputs:
+                IISDeploymentType: 'IISWebApplication'
+                ParentWebsiteNameForApplication: 'dev-w3.umassmed.edu'
+                VirtualPathForApplication: '/EmployeeGiving'
+                PhysicalPathForApplication: 'D:\WebContent\dev-w3.umassmed.edu\EmployeeGiving'
+
+             - task: IISWebAppDeploymentOnMachineGroup@0
+               displayName: 'IIS Web App Deploy'
+               inputs:
+                WebSiteName: 'dev-$(Parameters.Websitename)'
+                VirtualApplication: $(Parameters.VirtualApplication)
+                Package: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)/$(Parameters.packagetype)'
+                #XmlTransformation: true
+                RemoveAdditionalFilesFlag: true
+                #AdditionalArguments: '-transform **\*.$(Release.EnvironmentName).config -xml **\*.config'
+                XmlVariableSubstitution: true
+
+             #- task: FileTransform@1
+              # inputs:
+                #folderPath: 'D:\WebContent\dev-w3.umassmed.edu\EmployeeGiving'
+                #FolderPath is pipeline specific
+                #enableXmlTransform: true
+                #xmlTransformationRules: '-transform web.Development.config -xml web.config'
+             - task: DeleteFiles@1
+               inputs:
+                SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
+                Contents: $(Parameters.packagetype)
+
