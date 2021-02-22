@@ -71,7 +71,7 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
-        PathtoPublish: $(build.artifactstagingdirectory)/*.config
+        PathtoPublish: $(build.artifactstagingdirectory)/build/*.config
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
 
