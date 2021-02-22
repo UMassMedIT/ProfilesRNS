@@ -13,7 +13,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   Parameters.Artifactname: 'ProfilesRNS_Drop'
-  Parameters.Contents: '/**/Profiles.zip'
+  Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
   Parameters.packagetype: '*.zip'
   Parameters.Websitename: 'w3.umassmed.edu'
   Parameters.VirtualApplication: 'Profiles'
@@ -53,18 +53,25 @@ stages:
         configuration: $(BuildConfiguration)
         msbuildArgs: $(Parameters.msbuildArgs)
 
-    #- task: CopyFiles@2
-    #  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build'
-    #  inputs:
-    #    SourceFolder: $(Build.Repository.LocalPath)
-    #    TargetFolder: $(Build.ArtifactStagingDirectory)/build
-    #    Contents: $(Parameters.Contents)
-    #    flattenFolders: true
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build'
+      inputs:
+        SourceFolder: $(Build.Repository.LocalPath)
+        TargetFolder: $(Build.ArtifactStagingDirectory)/build
+        Contents: $(Parameters.Contents)
+        flattenFolders: true
         
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
         PathtoPublish: $(build.artifactstagingdirectory)/build/Profiles.zip
+        ArtifactName: $(Parameters.ArtifactName)
+      condition: succeededOrFailed()
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Artifact
+      inputs:
+        PathtoPublish: $(build.artifactstagingdirectory)/*.config
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
 
