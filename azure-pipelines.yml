@@ -118,12 +118,18 @@ stages:
                  RemoveAdditionalFilesFlag: true
                  XmlVariableSubstitution: true
 
-             #- task: FileTransform@1
-              # inputs:
-                #folderPath: 'D:\WebContent\dev-w3.umassmed.edu\EmployeeGiving'
+             - task: CopyFiles@1
+               inputs:
+                SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
+                Contents: 'web.dev.config'
+                TargetFolder: 'D:\WebContent\Profiles'
+             - task: FileTransform@1
+               inputs:
+                folderPath: 'D:\WebContent\Profiles'
                 #FolderPath is pipeline specific
-                #enableXmlTransform: true
-                #xmlTransformationRules: '-transform web.Development.config -xml web.config'
+                enableXmlTransform: true
+                xmlTransformationRules: '-transform web.Deve.config -xml web.config'
+
              - task: DeleteFiles@1
                inputs:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
