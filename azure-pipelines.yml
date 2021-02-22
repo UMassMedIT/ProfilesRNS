@@ -17,7 +17,8 @@ variables:
   Parameters.packagetype: '*.zip'
   Parameters.Websitename: 'w3.umassmed.edu'
   Parameters.VirtualApplication: 'Profiles'
-  Parameters.msbuildArgs: '/t:rebuild '
+  Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
+
 
 
 stages:
@@ -37,6 +38,7 @@ stages:
       displayName: Use NuGet 4.4.1
       inputs:
         versionSpec: 4.4.1
+
     - task: NuGetCommand@2
       displayName: NuGet restore
       inputs:
@@ -51,24 +53,18 @@ stages:
         configuration: $(BuildConfiguration)
         msbuildArgs: $(Parameters.msbuildArgs)
 
-    - task: PublishSymbols@2
-      displayName: Publish symbols path
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build'
       inputs:
-        SearchPattern: '**\bin\**\*.pdb'
-        PublishSymbols: false
-      continueOnError: true
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'publish'
-        publishWebProjects: true
-        arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
+        SourceFolder: $(Build.Repository.LocalPath)
+        TargetFolder: $(Build.ArtifactStagingDirectory)/build
+        Contents: $(Parameters.Contents)
+        flattenFolders: true
         
-
-
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
-        PathtoPublish: $(build.artifactstagingdirectory)/Output
+        PathtoPublish: $(build.artifactstagingdirectory)/build
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
 
