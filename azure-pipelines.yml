@@ -53,13 +53,13 @@ stages:
         configuration: $(BuildConfiguration)
         msbuildArgs: $(Parameters.msbuildArgs)
 
-    - task: CopyFiles@2
-      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build'
-      inputs:
-        SourceFolder: $(Build.Repository.LocalPath)
-        TargetFolder: $(Build.ArtifactStagingDirectory)/build
-        Contents: $(Parameters.Contents)
-        flattenFolders: true
+    #- task: CopyFiles@2
+    #  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build'
+    #  inputs:
+    #    SourceFolder: $(Build.Repository.LocalPath)
+    #    TargetFolder: $(Build.ArtifactStagingDirectory)/build
+    #    Contents: $(Parameters.Contents)
+    #    flattenFolders: true
         
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
