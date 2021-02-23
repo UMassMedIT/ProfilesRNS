@@ -6,7 +6,7 @@
 trigger:
  branches:
    include:
-     - Developer
+     - Develop
 
 variables:
   Parameters.solution: '**/Website/SourceCode/Profiles/Profiles.sln'
