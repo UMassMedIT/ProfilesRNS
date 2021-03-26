@@ -30,7 +30,8 @@
 </head>
 <body id="bodyMaster" runat="server">
 <form runat="server" id="form1" enctype="multipart/form-data" method="post">
-
+	<%-- Addressing Cookie Without SameSite Attribute Scan finding.  Add Anti-Forgery Token --%>
+	<%= System.Web.Helpers.AntiForgery.GetHtml() %>
     <div id="divStatus">
         <div class="loader">
           <img alt="Loading..." src="<%=GetURLDomain()%>/Edit/Images/loader.gif" />
