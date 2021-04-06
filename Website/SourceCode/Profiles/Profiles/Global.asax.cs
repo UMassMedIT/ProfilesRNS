@@ -43,6 +43,11 @@ namespace Profiles
         /// <param name="e"> .Net Event Arguments</param>
         protected void Application_Start(object sender, EventArgs e)
         {
+            /* Addressing Cookie Without SameSite Attribute Scan finding.Check Anti-Forgery Token */
+            /* By default System.Web.Helpers.AntiForgery.GetHtml() add XFrameOptionsHeader but so does the web.config setting (required for
+             * other hosted content like images and css).  This avoids us getting duplicate headers. */
+            System.Web.Helpers.AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
+
             RegisterRoutes(RouteTable.Routes);
             LoadModuleCatalogue();
         }
@@ -93,9 +98,9 @@ namespace Profiles
 
          */
 
-        /// </summary>
-        /// <param name="routes">RouteTable.Routes is passed as a RouteCollection by ref used to store all routes in the routing framework.</param>
-        private static void RegisterRoutes(RouteCollection routes)
+            /// </summary>
+            /// <param name="routes">RouteTable.Routes is passed as a RouteCollection by ref used to store all routes in the routing framework.</param>
+            private static void RegisterRoutes(RouteCollection routes)
         {
             Framework.Utilities.DataIO d = new Framework.Utilities.DataIO();
 

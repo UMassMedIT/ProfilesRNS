@@ -22,6 +22,7 @@ using System.Web.UI.HtmlControls;
 
 
 using Profiles.Framework.Utilities;
+using System.Web.Helpers;
 
 namespace Profiles.Framework
 {
@@ -52,6 +53,11 @@ namespace Profiles.Framework
         {
             try
             {
+                /* Addressing Cookie Without SameSite Attribute Scan finding.  Check Anti-Forgery Token */
+                if (IsPostBack)
+                {
+                    AntiForgery.Validate();
+                }
 
 
                 toolkitScriptMaster.AsyncPostBackTimeout = 3600;
