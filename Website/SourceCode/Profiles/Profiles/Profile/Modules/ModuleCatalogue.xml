@@ -13,13 +13,14 @@ For details, see: LICENSE.txt
 <ModuleList>
   <Module ModulePath="Modules" NameSpace="NetworkRadial" FileName="NetworkRadial.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="NetworkCluster" FileName="NetworkCluster.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="NetworkClusterGroup" FileName="NetworkClusterGroup.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="NetworkMap" FileName="NetworkMap.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewPersonGeneralInfo" FileName="CustomViewPersonGeneralInfo.ascx" Enabled="true"/>    
   <Module ModulePath="Modules" NameSpace="PropertyList" FileName="PropertyList.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewPersonSameDepartment" FileName="CustomViewPersonSameDepartment.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewInformationResource" FileName="CustomViewInformationResource.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="PassiveHeader" FileName="PassiveHeader.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CustomViewAuthorInAuthorship" FileName="CustomViewAuthorInAuthorship.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewAuthorInAuthorship" FileName="CustomViewAuthorInAuthorship.ascx" Enabled="true" CSS="CustomViewAuthorInAuthorship.css"/>
   <Module ModulePath="Modules" NameSpace="CustomViewConceptSimilarMesh" FileName="CustomViewConceptSimilarMesh.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewConceptTopJournal" FileName="CustomViewConceptTopJournal.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewConceptPublication" FileName="CustomViewConceptPublication.ascx" Enabled="true"/>
@@ -28,7 +29,6 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="NetworkTimeline" FileName="NetworkTimeline.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="PassiveList" FileName="PassiveList.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="PassiveText" FileName="PassiveText.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="NetworkDetails" FileName="NetworkDetails.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="ConceptConnection" FileName="ConceptConnection.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CoAuthorConnection" FileName="CoAuthorConnection.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SimilarConnection" FileName="SimilarConnection.ascx" Enabled="true"/>
@@ -37,5 +37,9 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewListProperty" FileName="CustomViewListProperty.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewEagleI" FileName="CustomViewEagleI.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewResearcherRole" FileName="CustomViewResearcherRole.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewGroupGeneralInfo" FileName="CustomViewGroupGeneralInfo.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="FeaturedPresentations.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="FeaturedVideos.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="Twitter.ascx" Enabled="true"/>
 </ModuleList>
 

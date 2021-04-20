@@ -15,8 +15,7 @@
 
     <%--<div style="position: absolute; z-index: 999;">--%>
 	    <div>
-		    <div style="width: 600px; font-size: 12px; line-height: 16px; border-bottom: 1px dotted #999;
-			    padding-bottom: 12px; margin-bottom: 6px;">
+		    <div style="font-size: 12px; line-height: 16px; border-bottom: 1px dotted #999; padding-bottom: 12px; margin-bottom: 6px;">
 			    This cluster graph shows the co-authors (green circles) and top co-authors of co-authors (blue circles) of <span style="font-weight: bold; color: #666;">
 				    <asp:Label ID="lblProfileName" runat="server"></asp:Label></span> (red circle). 
 			    The size of a circle is proportional to the number of publications that author has. The thickness of a line connecting two authors' names 
@@ -51,8 +50,8 @@
     </div>
         <br />   
         To see the data from this visualization as text, <a id="divShowTimelineTable" tabindex="0" class="jQueryLink">click here.</a>
-        <br />
-        To view this visualization using Flash (for older browsers), <a id="divShowFlash" tabindex="0" class="jQueryLink">click here.</a>           
+        <!--<br />
+        To view this visualization using Flash (for older browsers), <a id="divShowFlash" tabindex="0" class="jQueryLink">click here.</a>-->
 </div>
 <div id="divDataText" style="display:none;margin-top:12px;margin-bottom:8px;">
 	<div style="width: 600px; font-size: 12px; line-height: 16px; border-bottom: 1px dotted #999;
@@ -70,7 +69,7 @@
     To return to the cluster graph, <a id="dirReturnToTimeline" tabindex="0" class="jQueryLink">click here.</a>                       
 </div>
 <div id="divFlashGraph" style="display:none; position: relative;" class="clusterView">
-    <iframe id="iFrameFlashGraph" runat="server" width="610px" height="700px" frameborder="0" style="overflow:hidden;" ></iframe>
+    <asp:HtmlIframe><iframe id="iFrameFlashGraph" runat="server" width="610px" height="700px" frameborder="0" style="overflow:hidden;" ></iframe></asp:HtmlIframe>
         <br />
     To return to the HTML5 visulization, <a id="divReturnToHTML5" tabindex="0" class="jQueryLink">click here.</a>                    
 </div>

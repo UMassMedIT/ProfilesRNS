@@ -12,15 +12,8 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Xml;
-using System.Xml.Xsl;
 using System.Configuration;
-
-using Profiles.Profile.Utilities;
 using Profiles.Search.Utilities;
 using Profiles.Framework.Utilities;
 
@@ -49,7 +42,7 @@ namespace Profiles.Search.Modules.MiniSearch
             //Profiles.Search.Utilities.DataIO dropdowns = new Profiles.Search.Utilities.DataIO();
             if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowInstitutions"]) == true)
             {
-                litInstitution.Text = SearcDropDowns.BuildDropdown("institution","150","");
+                litInstitution.Text = SearchDropDowns.BuildDropdown("institution","150","");
             }
             else
             {

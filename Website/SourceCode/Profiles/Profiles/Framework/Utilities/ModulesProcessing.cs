@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Reflection;
-using System.Web.UI.HtmlControls;
 using System.Web.UI;
 using System.Xml;
 
@@ -107,7 +105,7 @@ namespace Profiles.Framework.Utilities
                     {
 
 
-                        modulelist.Add(new Module(ModuleCatalogueCache.Instance.GetModule(key).Path, key, moduleparams, displayrule));
+                        modulelist.Add(new Module(ModuleCatalogueCache.Instance.GetModule(key).Path, key, moduleparams, displayrule, ModuleCatalogueCache.Instance.GetModule(key).css));
                     }
                 }
             }

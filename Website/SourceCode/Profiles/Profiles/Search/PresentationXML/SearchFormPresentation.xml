@@ -1,7 +1,6 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="3"/>
   <WindowName>Search</WindowName>
-  <PageTitle>Search</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
@@ -17,6 +16,14 @@
           <Param Name="HTML">
             <div id="gadgets-tools-left" class="gadgets-gadget-parent"></div>
           </Param>
+        </ParamList>
+      </Module>
+    </Panel>
+    <Panel Type="left">
+      <Module ID="LatestUpdates">
+        <ParamList>
+          <Param Name="Show">3</Param>
+          <Param Name="SeeMore">True</Param>
         </ParamList>
       </Module>
     </Panel>

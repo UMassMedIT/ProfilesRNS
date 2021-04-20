@@ -14,7 +14,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 using System.Xml;
 using System.Configuration;
 using System.Data;
@@ -23,7 +22,6 @@ using System.Security.Cryptography;
 using System.Text;
 
 using Profiles.Framework.Utilities;
-using System.Data.SqlTypes;
 
 namespace Profiles.Search.Utilities
 {
@@ -90,7 +88,7 @@ namespace Profiles.Search.Utilities
             search.Append("</SearchOptions>");
 
             searchxml.LoadXml(search.ToString());
-
+            HttpContext.Current.Session["searchrequest"] = search.ToString();
             return searchxml;
 
         }
@@ -100,7 +98,7 @@ namespace Profiles.Search.Utilities
             string division, string divisionallexcept,
             string classuri, string limit, string offset,
             string sortby, string sortdirection,
-            string otherfilters, string facrank, ref string searchrequest)
+            string otherfilters, string facrank, bool cacheinsession, ref string searchrequest)
         {
 
             System.Text.StringBuilder search = new System.Text.StringBuilder();
@@ -143,7 +141,7 @@ namespace Profiles.Search.Utilities
             search.Append("<SearchOptions>");
             search.Append("<MatchOptions>");
             if (string.IsNullOrEmpty(exactphrase))
-               exactphrase = string.Empty;
+               exactphrase = "false";
 
            // if (exactphrase.IsNullOrEmpty())
                // exactphrase = string.Empty;
@@ -355,6 +353,9 @@ namespace Profiles.Search.Utilities
             searchrequest = this.EncryptRequest(search.ToString());
             searchxml.LoadXml(search.ToString());
 
+            if (cacheinsession)
+                HttpContext.Current.Session["searchrequest"] = search.ToString();
+
             return searchxml;
 
         }
@@ -550,8 +551,6 @@ namespace Profiles.Search.Utilities
             byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
             tDes.Clear();
             return Convert.ToBase64String(resultArray, 0, resultArray.Length);
-
-
         }
 
         public string DecryptRequest(string request)
@@ -583,7 +582,6 @@ namespace Profiles.Search.Utilities
             {
                 throw ex;
             }
-
         }
 
         private string NameSort(string direction)
@@ -750,9 +748,10 @@ namespace Profiles.Search.Utilities
                 try
                 {
 
-                    string sql = "EXEC [Profile.Data].[Organization.GetInstitutions]";
+                    string sql = "EXEC [Profile.Data].[Organization.GetInstitutions] @OnlyActivePrimaryAffiliation=1";
 
-                    SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+                    using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+                    {
 
                     while (sqldr.Read())
                         institutions.Add(new GenericListItem(sqldr["InstitutionName"].ToString(), sqldr["URI"].ToString()));
@@ -760,7 +759,7 @@ namespace Profiles.Search.Utilities
                     //Always close your readers
                     if (!sqldr.IsClosed)
                         sqldr.Close();
-
+                    }
                     //Defaulted this to be one hour
                     Framework.Utilities.Cache.SetWithTimeout("GetInstitutions", institutions, 3600);
 

@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Xml;
-using System.Net;
 using System.IO;
 using System.Text;
-using System.Runtime.Serialization;
-using System.Configuration;
 
 
 
@@ -71,7 +63,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
 
             if (this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", namespaces) != null)
             {
-                Stream stream = data.GetUserPhotoList(base.RDFTriple.Subject);
+                Stream stream = data.GetUserPhotoList150x300(base.RDFTriple.Subject, base.RDFTriple.Session.SessionID);
 
                 if (stream != null)
                 {

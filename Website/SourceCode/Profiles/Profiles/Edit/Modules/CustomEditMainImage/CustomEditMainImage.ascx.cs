@@ -12,21 +12,9 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
-using System.Text;
 using System.Xml;
-using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
-using Profiles.Edit.Utilities;
 
 
 namespace Profiles.Edit.Modules.CustomEditMainImage
@@ -35,8 +23,9 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
     {
         Profiles.Profile.Utilities.DataIO propdata;
 
+
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
 
             if (!IsPostBack)
             {
@@ -46,7 +35,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
             this.DrawProfilesModule();
 
             if (Session["phAddCustomPhoto.Visible"] != null)
-                pnlUpload.Visible = true;           
+                pnlUpload.Visible = true;
 
         }
 
@@ -69,7 +58,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
 
             this.PredicateURI = Request.QueryString["predicateuri"].Replace("!", "#");
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, PredicateURI, false, true, false);
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Root.Domain + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
             securityOptions.Subject = this.SubjectID;
             securityOptions.PredicateURI = PredicateURI;
@@ -89,7 +78,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
             {
 
                 phAddCustomPhoto.Visible = true;
-                
+
             }
             else
             {
@@ -104,9 +93,9 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
             {
                 imgPhoto.ImageUrl = this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/Network/Connection/@ResourceURI").Value + "&rnd=" + Guid.NewGuid().ToString();
                 lblNoImage.Visible = false;
-                imgPhoto.Visible = true;                
-                
-            
+                imgPhoto.Visible = true;
+
+
             }
             else
             {
@@ -126,8 +115,13 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
 
             byte[] imageBytes = new byte[AsyncFileUpload1.PostedFile.InputStream.Length + 1];
             AsyncFileUpload1.PostedFile.InputStream.Read(imageBytes, 0, imageBytes.Length);
+            Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
+            XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(BaseData);
+            if (BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Person']", namespaces) != null)
+                data.SaveImage(this.SubjectID, imageBytes, this.PropertyListXML);
+            if (BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Group']", namespaces) != null)
+                data.SaveGroupImage(this.SubjectID, imageBytes, this.PropertyListXML);
 
-            data.SaveImage(this.SubjectID, imageBytes, this.PropertyListXML);
             base.GetSubjectProfile();
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, this.PredicateURI, false, true, false);
             this.DrawProfilesModule();

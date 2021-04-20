@@ -12,16 +12,9 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
-using System.Xml.Xsl;
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
-using System.Globalization;
 using Profiles.Edit.Utilities;
 
 namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
@@ -62,7 +55,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
             //btnEditProperty.Text = "Add " + PropertyLabel;
-            imbAddArror.Visible = true;
+            imbAddArrow.Visible = true;
 
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, predicateuri, false, true, false);
             this.MaxCardinality = this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@MaxCardinality").Value;
@@ -87,7 +80,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
                 phEditProperty.Visible = true;
                 //phDelAll.Visible = true;
                 btnInsertCancel_OnClick(sender, e);
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlInsertProperty.Visible"] = null;
             }
             else
@@ -96,7 +89,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
                 phEditProperty.Visible = true;
                 //phDelAll.Visible = false;
                 pnlInsertProperty.Visible = true;
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertProperty.Visible"] = true;
 
             }
@@ -134,7 +127,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             txtLabel.Text = "";
             pnlInsertProperty.Visible = false;
             pnlInsertPropertyBulk.Visible = true;
-            imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+            imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
             upnlEditSection.Update();
         }
 
@@ -143,7 +136,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             txtLabelBulk.Text = "";
             pnlInsertProperty.Visible = true;
             pnlInsertPropertyBulk.Visible = false;
-            imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+            imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
             upnlEditSection.Update();
         }
 
@@ -272,7 +265,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
                 this.FillPropertyGrid(true);
                 pnlInsertProperty.Visible = true;
                 txtLabel.Text = "";
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertProperty.Visible"] = true;
                 upnlEditSection.Update();
             }
@@ -383,7 +376,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             if (!editaddnew)
             {
                 btnEditProperty.Visible = false;
-                imbAddArror.Visible = false;
+                imbAddArrow.Visible = false;
             }
 
             this.SubjectID = Convert.ToInt64(base.GetRawQueryStringItem("subject"));
@@ -398,7 +391,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             }
 
             btnEditProperty.Visible = true;
-            imbAddArror.Visible = true;       
+            imbAddArrow.Visible = true;       
             if (literalstate.Count > 0)
             {
 
@@ -411,7 +404,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
                 if (MaxCardinality == literalstate.Count.ToString())
                 {
                     btnEditProperty.Visible = false;
-                    imbAddArror.Visible = false;
+                    imbAddArrow.Visible = false;
                     btnInsertProperty.Visible = false;
                 }
             }

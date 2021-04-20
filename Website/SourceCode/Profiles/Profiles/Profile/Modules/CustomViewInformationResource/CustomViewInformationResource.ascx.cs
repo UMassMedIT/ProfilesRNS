@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
-using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
 
 namespace Profiles.Profile.Modules.CustomViewInformationResource
 {
@@ -54,11 +46,7 @@ namespace Profiles.Profile.Modules.CustomViewInformationResource
                 authors.Add(new GenericListItem(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + x.Value + "']/prns:fullName", base.Namespaces).InnerText, x.Value));
             }
 
-
-            imgSubjectArea.Src = Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif";
-
-            imgAuthor.Src = Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif";
-
+            
 
             if (subjectareas.Count > 0)
             {

@@ -13,17 +13,11 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Xml;
-using System.Web.UI.WebControls;
-using System.IO;
 using System.Web.UI.HtmlControls;
 
 using Profiles.Framework.Utilities;
-using Profiles.Search.Utilities;
 
 namespace Profiles.Proxy
 {
@@ -89,6 +83,13 @@ namespace Profiles.Proxy
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Searchcss);
+
+            HtmlLink Editcss = new HtmlLink();
+            Editcss.Href = Root.Domain + "/Edit/CSS/edit.css";
+            Editcss.Attributes["rel"] = "stylesheet";
+            Editcss.Attributes["type"] = "text/css";
+            Editcss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(Editcss);
         }
         public XmlDocument PresentationXML { get; set; }
 

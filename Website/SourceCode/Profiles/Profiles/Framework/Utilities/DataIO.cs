@@ -18,9 +18,6 @@ using System.Linq;
 using System.Xml;
 using System.Configuration;
 using System.Web;
-using System.Web.Caching;
-
-using Profiles.Profile.Utilities;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -204,20 +201,21 @@ namespace Profiles.Framework.Utilities
             if (Framework.Utilities.Cache.FetchObject("GetRESTBasePath") == null)
             {
 
-                string sql = "select [value] from [Framework.].[parameter] with(nolock) where parameterid = 'basepath'";
+                string sql = "exec [FRAMEWORK.].[GetBasePath]";
 
-                SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
-
-                while (sqldr.Read())
+                using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                 {
-                    rtn = sqldr[0].ToString();
+
+                    while (sqldr.Read())
+                    {
+                        rtn = sqldr[0].ToString();
+                    }
+
+                    if (!sqldr.IsClosed)
+                        sqldr.Close();
+
                 }
-
-
-                if (!sqldr.IsClosed)
-                    sqldr.Close();
-
-                Framework.Utilities.Cache.SetWithTimeout("GetRESTBasePath", rtn, 10000);
+                Framework.Utilities.Cache.Set("GetRESTBasePath", rtn);
             }
             else
             {
@@ -227,6 +225,7 @@ namespace Profiles.Framework.Utilities
             return rtn;
         }
 
+
         public string GetRESTBaseURI()
         {
             string rtn = string.Empty;
@@ -234,19 +233,20 @@ namespace Profiles.Framework.Utilities
             if (Framework.Utilities.Cache.FetchObject("GetRESTBaseURI") == null)
             {
 
-                string sql = "select [value] from [Framework.].[parameter] with(nolock) where parameterid = 'baseuri'";
+                string sql = "exec [FRAMEWORK.].[GetBaseURI]";
 
-                SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
-
-                while (sqldr.Read())
+                using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                 {
-                    rtn = sqldr[0].ToString();
+
+                    while (sqldr.Read())
+                    {
+                        rtn = sqldr[0].ToString();
+                    }
+
+                    if (!sqldr.IsClosed)
+                        sqldr.Close();
                 }
-
-                if (!sqldr.IsClosed)
-                    sqldr.Close();
-
-                Framework.Utilities.Cache.SetWithTimeout("GetRESTBaseURI", rtn, 10000);
+                Framework.Utilities.Cache.Set("GetRESTBaseURI", rtn);
             }
             else
             {
@@ -408,6 +408,37 @@ namespace Profiles.Framework.Utilities
                     Framework.Utilities.DebugLogging.Log("NUMBER OF PARAMS " + sqlParam.Length);
 
                 AddSQLParameters(sqlcmd, sqlParam);
+
+            }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message);
+                Framework.Utilities.DebugLogging.Log(ex.StackTrace);
+            }
+            return sqlcmd;
+        }
+
+        public SqlCommand GetDBCommand(String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
+        {
+
+            SqlCommand sqlcmd = null;
+
+            try
+            {
+                string Connectionstring = this.GetConnectionString();
+                sqlcmd = new SqlCommand(CmdText, GetDBConnection(Connectionstring));
+                sqlcmd.CommandType = CmdType;
+                sqlcmd.CommandTimeout = GetCommandTimeout();
+                Framework.Utilities.DebugLogging.Log("CONNECTION STRING " + Connectionstring);
+                Framework.Utilities.DebugLogging.Log("COMMAND TEXT " + CmdText);
+                Framework.Utilities.DebugLogging.Log("COMMAND TYPE " + CmdType.ToString());
+                if (sqlParam != null)
+                    Framework.Utilities.DebugLogging.Log("NUMBER OF PARAMS " + sqlParam.Length);
+
+
+                if (sqlParam != null)
+                    AddSQLParameters(sqlcmd, sqlParam);
+
 
             }
             catch (Exception ex)
@@ -681,7 +712,7 @@ namespace Profiles.Framework.Utilities
 
 
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
 
             try
             {
@@ -697,7 +728,7 @@ namespace Profiles.Framework.Utilities
                 session.UserURI = param[5].Value.ToString();
                 //session.ShortDisplayName = param[6].Value.ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
 
@@ -917,5 +948,47 @@ namespace Profiles.Framework.Utilities
 
         #endregion
 
+
+        #region "Groups"
+        public bool IsGroupAdmin(int UserID)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlDataReader reader = null;
+            int property = 0;
+
+            try
+            {
+
+                dbconnection.Open();
+
+
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                reader = GetDBCommand(dbconnection, "select Count(*) from [Profile.Data].[Group.Admin] where UserID = " + UserID, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                while (reader.Read())
+                {
+                    property = reader.GetInt32(0);
+                }
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
+            return property > 0;
+        }
+
+
+        #endregion
     }
 }

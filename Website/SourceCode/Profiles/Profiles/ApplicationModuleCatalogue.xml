@@ -28,6 +28,9 @@ For details, see: LICENSE.txt
   <Application ApplicaitonPath="LoginProcessShib" ModulePath="Modules" Enabled="true"/>
   <Application ApplicaitonPath="ORNG" ModulePath="Modules" Enabled="true"/>
   <Application ApplicaitonPath="ORCID" ModulePath="Modules" Enabled="true"/>
+  <Application ApplicaitonPath="Activity" ModulePath="Modules" Enabled="true"/>
+  <Application ApplicaitonPath="GroupAdmin" ModulePath="Modules" Enabled="true"/>
+  <Application ApplicaitonPath="Lists" ModulePath="Modules" Enabled="true"/>
 </ApplicationList>
 
 

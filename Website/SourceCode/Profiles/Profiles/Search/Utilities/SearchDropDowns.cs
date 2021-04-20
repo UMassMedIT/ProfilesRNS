@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 using Profiles.Framework.Utilities;
 
 namespace Profiles.Search.Utilities
 {
-    public static class SearcDropDowns
+    public static class SearchDropDowns
     {
 
 

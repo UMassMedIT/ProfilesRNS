@@ -13,9 +13,9 @@
 using Profiles.Framework.Utilities;
 using Profiles.Login.Objects;
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Profiles.Login.Utilities
 {
@@ -75,6 +75,7 @@ namespace Profiles.Login.Utilities
                     sm.Session().UserID = user.UserID;
                     sm.Session().PersonID = user.PersonID;
                     sm.Session().LoginDate = DateTime.Now;
+                    sm.Session().ViewSecurityGroup = -20;
                     Session session = sm.Session();
                     SessionUpdate(ref session);
                     SessionActivityLog();
@@ -136,6 +137,7 @@ namespace Profiles.Login.Utilities
                     sm.Session().UserID = user.UserID;
                     sm.Session().PersonID = user.PersonID;
                     sm.Session().LoginDate = DateTime.Now;
+                    sm.Session().ViewSecurityGroup = -20;
                     Session session = sm.Session();
                     SessionUpdate(ref session);
                     SessionActivityLog();

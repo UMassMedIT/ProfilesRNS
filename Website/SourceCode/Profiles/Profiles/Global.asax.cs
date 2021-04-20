@@ -11,19 +11,12 @@
   
 */
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.Security;
-using System.Web.SessionState;
 using System.Web.Routing;
 using System.Web.Compilation;
-using System.Configuration;
 using System.Diagnostics;
-using System.Data;
-
-using Profiles.Profile.Utilities;
 
 using Profiles.Framework.Utilities;
 
@@ -202,7 +195,7 @@ namespace Profiles
                       "\nSTACKTRACE: " + ex.StackTrace,
                       EventLogEntryType.Error);
                 }
-                catch (Exception f) { }
+                catch (Exception) { }
 
                 //After the error is written to the event log, a copy of the same message is loaded into a session variable and then
                 //displayed in the ErrorPage.aspx file.     

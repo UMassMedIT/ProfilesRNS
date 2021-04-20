@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Connects.Profiles.Service.ServiceContracts</RootNamespace>
     <AssemblyName>Connects.Profiles.Service.ServiceContracts</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -104,10 +104,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Profiles.Common\Connects.Profiles.Common.csproj">
-      <Project>{72ABCD78-6907-4F63-8C59-392C9F3CE506}</Project>
-      <Name>Connects.Profiles.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Connects.Profiles.Service.DataContracts\Connects.Profiles.Service.DataContracts.csproj">
       <Project>{4E11DE8F-C111-44E4-8AF8-B66EDEC9152D}</Project>
       <Name>Connects.Profiles.Service.DataContracts</Name>

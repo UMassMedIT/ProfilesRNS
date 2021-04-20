@@ -12,13 +12,10 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Xsl;
-using System.Web.UI.HtmlControls;
 using System.Configuration;
 
 using Profiles.Framework.Utilities;
@@ -88,6 +85,11 @@ namespace Profiles.Search.Modules.SearchResults
             if (String.IsNullOrEmpty(Request.QueryString["searchrequest"])==false)
             {
                 searchrequest = data.DecryptRequest(Request.QueryString["searchrequest"]);
+                xmlsearchrequest.LoadXml(searchrequest);
+            }
+            else if (Session["searchrequest"] != null)
+            {
+                searchrequest = Session["searchrequest"].ToString();
                 xmlsearchrequest.LoadXml(searchrequest);
             }
             else if (string.IsNullOrEmpty(base.MasterPage.SearchRequest) == false)
@@ -335,7 +337,8 @@ namespace Profiles.Search.Modules.SearchResults
                         break;
 
                     default:
-                        xmlsearchrequest = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept,  "http://xmlns.com/foaf/0.1/Person", perpage.ToString(), (startrecord - 1).ToString(), sort, sortdirection, otherfilters, "",ref searchrequest);                    
+                        xmlsearchrequest = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept,  "http://xmlns.com/foaf/0.1/Person", perpage.ToString(), (startrecord - 1).ToString(), sort, sortdirection, otherfilters, "", true,ref searchrequest);
+                        HttpContext.Current.Session["PERSON-SEARCH-ADD"] = "true";
                         break;
                 }
                 

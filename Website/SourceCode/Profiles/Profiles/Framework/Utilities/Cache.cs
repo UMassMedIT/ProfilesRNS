@@ -11,15 +11,11 @@
   
 */
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Xml;
 using System.Configuration;
 using System.Web;
 using System.Web.Caching;
-using System.Text;
 using System.Security.Cryptography;
-using System.Diagnostics;
 
 
 namespace Profiles.Framework.Utilities
@@ -54,7 +50,7 @@ namespace Profiles.Framework.Utilities
                 }
                 else
                 {
-                    HttpRuntime.Cache.Insert(hashkey, data, dependency, DateTime.Now.AddSeconds(defaultTimeout), System.Web.Caching.Cache.NoSlidingExpiration);
+                    HttpRuntime.Cache.Insert(hashkey, data, dependency, DateTime.Now.AddSeconds(cachetimeout), System.Web.Caching.Cache.NoSlidingExpiration);
                 }
             }
             catch (Exception e)

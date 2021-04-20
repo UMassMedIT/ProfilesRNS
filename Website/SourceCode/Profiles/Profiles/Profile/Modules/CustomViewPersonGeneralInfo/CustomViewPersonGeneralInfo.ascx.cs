@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
-using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
 using Profiles.ORNG.Utilities;
 
 namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
@@ -65,7 +58,11 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             {
                 args.AddParam("orcid", "", base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:orcidId", base.Namespaces).InnerText);
                 args.AddParam("orcidurl", "", Profiles.ORCID.Utilities.config.ORCID_URL + "/" + base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:orcidId", base.Namespaces).InnerText);
-                args.AddParam("orcidinfosite", "", Profiles.ORCID.Utilities.config.InfoSite);
+                string infosite;
+                if (Profiles.ORCID.Utilities.config.InfoSite == null) infosite = Root.Domain + "/about/default.aspx?tab=orcid";
+                else if (Profiles.ORCID.Utilities.config.InfoSite.Equals("")) infosite = Root.Domain + "/about/default.aspx?tab=orcid";
+                else infosite = Profiles.ORCID.Utilities.config.InfoSite;
+                args.AddParam("orcidinfosite", "", infosite);
                 args.AddParam("orcidimage", "", Root.Domain + "/Framework/Images/orcid_16x16(1).gif");
                 args.AddParam("orcidimageguid", "", Guid.NewGuid().ToString());
             }

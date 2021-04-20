@@ -13,17 +13,13 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Xml;
 using System.Web.UI.WebControls;
-using System.IO;
 using System.Web.UI.HtmlControls;
 
 using Profiles.Framework.Utilities;
-using Profiles.Search.Utilities;
 
 namespace Profiles.Search
 {
@@ -31,12 +27,20 @@ namespace Profiles.Search
     {
         Profiles.Framework.Template masterpage;
 
+
+
         //public void Page_Load(object sender, EventArgs e)
         override protected void OnInit(EventArgs e)
         {
             masterpage = (Framework.Template)base.Master;
 
-            
+            if (Request.UrlReferrer == null || !Request.UrlReferrer.ToString().ToLower().Contains("/search"))
+            {
+                Session["DIRECTSEARCHTYPE"] = null;
+                Session["SEARCHREQUEST"] = null;
+                masterpage.SearchRequest = null;
+            }
+
             string tab = string.Empty;
 
 
@@ -59,7 +63,7 @@ namespace Profiles.Search
 
                 Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
 
-                data.SearchRequest("", "", "", "", "", "", "", "", "", "", "", "15", "0", "", "", "", "", ref searchrequest);
+                data.SearchRequest("", "", "", "", "", "", "", "", "", "", "", "15", "0", "", "", "", "", true, ref searchrequest);
 
                 Response.Redirect(Root.Domain + "/search/default.aspx?searchtype=" + this.SearchType + "&searchrequest=" + searchrequest, true);
 
@@ -134,13 +138,19 @@ namespace Profiles.Search
             Searchcss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Searchcss);
 
+            HtmlLink Activitycss = new HtmlLink();
+            Activitycss.Href = Root.Domain + "/Activity/CSS/activity.css";
+            Activitycss.Attributes["rel"] = "stylesheet";
+            Activitycss.Attributes["type"] = "text/css";
+            Activitycss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(Activitycss);
 
             HtmlLink Checkboxcss = new HtmlLink();
             Checkboxcss.Href = Root.Domain + "/Search/CSS/comboTreeCheck.css";
             Checkboxcss.Attributes["rel"] = "stylesheet";
             Checkboxcss.Attributes["type"] = "text/css";
             Checkboxcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(Searchcss);
+            Page.Header.Controls.Add(Checkboxcss);
 
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
@@ -187,6 +197,12 @@ namespace Profiles.Search
             string nodeuri = string.Empty;
             string nodeid = string.Empty;
 
+
+            if (Request.QueryString["new"] == "true")
+            {
+                Session["searchrequest"] = null;
+                masterpage.SearchRequest = null;
+            }
 
             if (this.SearchType.IsNullOrEmpty() == false)
                 searchtype = this.SearchType;
@@ -273,8 +289,12 @@ namespace Profiles.Search
             if (Request.QueryString["sortdirection"].IsNullOrEmpty() == false)
                 sortdirection = Request.QueryString["sortdirection"];
 
+
+
             if (Request.QueryString["searchrequest"].IsNullOrEmpty() == false)
                 searchrequest = Request.QueryString["searchrequest"];
+            else if (Session["searchrequest"] != null)
+                searchrequest = data.EncryptRequest(Session["searchrequest"].ToString());
             else if (masterpage.SearchRequest.IsNullOrEmpty() == false)
                 searchrequest = masterpage.SearchRequest;
 
@@ -313,10 +333,12 @@ namespace Profiles.Search
                     if (searchrequest != string.Empty)
                         xml.LoadXml(data.DecryptRequest(searchrequest));
                     else
-                        xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, classuri, perpage, offset, sortby, sortdirection, otherfilters, "", ref searchrequest);
+                        xml = data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept, department, departmentallexcept, division, divisionallexcept, classuri, perpage, offset, sortby, sortdirection, otherfilters, "", true, ref searchrequest);
                     break;
             }
 
+            searchrequest = xml.OuterXml;
+            Session["SearchRequest"] = searchrequest;
 
             if (nodeuri != string.Empty && nodeid != string.Empty)
                 masterpage.RDFData = data.WhySearch(xml, nodeuri, Convert.ToInt64(nodeid));

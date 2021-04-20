@@ -1,35 +1,13 @@
-﻿/*  
- 
-    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
-    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
-    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
-    National Center for Research Resources and Harvard University.
-
-
-    Code licensed under a BSD License. 
-    For details, see: LICENSE.txt 
-  
-*/
+﻿
+using Profiles.Framework.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
-using System.Text;
 using System.Xml;
-using System.Xml.Xsl;
-
-using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
-using Profiles.Edit.Utilities;
 
 namespace Profiles.Edit.Modules.SecurityOptions
 {
-    public partial class SecurityOptions : System.Web.UI.UserControl
+    public partial class SecurityOptions : BaseModule
     {
         public event EventHandler BubbleClick;
         protected void Page_Load(object sender, EventArgs e)
@@ -39,10 +17,28 @@ namespace Profiles.Edit.Modules.SecurityOptions
 
             DrawProfilesModule();
         }
+        override protected void OnInit(EventArgs e)
+        {
+            this.Load += Page_Load;
+
+            base.OnInit(e);
+        }
 
         private void DrawProfilesModule()
         {
             List<SecurityItem> si = new List<SecurityItem>();
+
+            if (this.PropertyListXML != null)
+            {
+                if ("0".Equals(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property[@URI='" + this.PredicateURI + "']/@NumberOfConnections").Value))
+                    divHidden.Visible = true;
+                else
+                    divHidden.Visible = false;
+            }
+            else
+            {
+                divHidden.Visible = false;
+            }
 
             foreach (XmlNode securityitem in this.SecurityGroups.SelectNodes("SecurityGroupList/SecurityGroup"))
             {
@@ -62,19 +58,18 @@ namespace Profiles.Edit.Modules.SecurityOptions
                 RadioButton rb = (RadioButton)e.Row.FindControl("rdoSecurityOption");
                 HiddenField hf = (HiddenField)e.Row.FindControl("hdnPrivacyCode");
                 RadioButton rdoSecurityOption = (RadioButton)e.Row.FindControl("rdoSecurityOption");
-                Literal l = (Literal) e.Row.FindControl("rdoSecurityOptionLabel");
-                HiddenField hl = (HiddenField)e.Row.FindControl("hdnLabel");
 
                 rdoSecurityOption.GroupName = "SecurityOption";
 
                 hf.Value = si.PrivacyCode.ToString();
-                l.Text = "<label for=\"" + rb.UniqueID.Replace("$", "_") + "\">" + si.Label + "</label>";
-                hl.Value = si.Label;
 
                 if (si.PrivacyCode == this.PrivacyCode)
                 {
+                    if (this.PrivacyCode == 0)
+                        si.Label = "<b>" + si.Label + "</b>";
+
                     rb.Checked = true;
-                    litVisibility.Text = "(" + si.Label + ")";
+                    imbSecurityOptions.Text = "Edit Visibility (" + si.Label + ")";
                 }
                 else
                 {
@@ -84,33 +79,24 @@ namespace Profiles.Edit.Modules.SecurityOptions
         }
         protected void imbSecurityOptions_OnClick(object sender, EventArgs e)
         {
-            if (Request.Form["enterkey"] != "")
-            {
-                Session["pnlSecurityOptions.Visible"] = true;
-            }
 
-            ToggleDisplay();
-
-            if (BubbleClick != null)
-                BubbleClick(this, e);
-        }
-
-        private void ToggleDisplay()
-        {
             if (Session["pnlSecurityOptions.Visible"] == null)
             {
                 pnlSecurityOptions.Visible = true;
-                imbSecurityOptions.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlSecurityOptions.Visible"] = true;
             }
             else
             {
                 pnlSecurityOptions.Visible = false;
-                imbSecurityOptions.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlSecurityOptions.Visible"] = null;
             }
-        }
 
+
+            if (BubbleClick != null)
+                BubbleClick(this, e);
+        }
         protected void rdoSecurityOption_OnCheckedChanged(object sender, EventArgs e)
         {
             Session["pnlSecurityOptions.Visible"] = null;
@@ -123,25 +109,46 @@ namespace Profiles.Edit.Modules.SecurityOptions
 
             //Set the new selected row
             RadioButton rb = (RadioButton)sender;
-            GridViewRow row = (GridViewRow)rb.NamingContainer;  
+            GridViewRow row = (GridViewRow)rb.NamingContainer;
             ((RadioButton)row.FindControl("rdoSecurityOption")).Checked = true;
-
-            litVisibility.Text = "(" + ((HiddenField)row.Cells[0].FindControl("hdnLabel")).Value + ")";
+            imbSecurityOptions.Text = "Edit Visibility (" + row.Cells[1].Text + ")";
             UpdateSecuritySetting(((HiddenField)row.Cells[0].FindControl("hdnPrivacyCode")).Value);
         }
 
         private void UpdateSecuritySetting(string securitygroup)
         {
-            Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-            data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup));
+            // maybe be able to make this more general purpose
+            Edit.Utilities.DataIO secdata = new Profiles.Edit.Utilities.DataIO();
+
+            if (!"0".Equals(securitygroup))
+            {
+                Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
+                if (this.PredicateURI.Equals("http://profiles.catalyst.harvard.edu/ontology/prns#hasGroupSettings"))
+                {
+                    data.UpdateGroupSecurity(this.Subject, Convert.ToInt32(securitygroup));
+                }
+                else if (this.PredicateURI.Equals("http://profiles.catalyst.harvard.edu/ontology/prns#emailEncrypted"))
+                {
+                    if (Convert.ToInt32(securitygroup) >= -10 && Convert.ToInt32(securitygroup) < 0)
+                        data.UpdateSecuritySetting(this.Subject, data.GetStoreNode("http://vivoweb.org/ontology/core#email"), -20);
+                    else
+                        data.UpdateSecuritySetting(this.Subject, data.GetStoreNode("http://vivoweb.org/ontology/core#email"), Convert.ToInt32(securitygroup));
+                }
+
+                data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup));
+
+                divHidden.Visible = false;
+            }
+            Framework.Utilities.Cache.AlterDependency(this.Subject.ToString());
         }
 
-        public XmlDataDocument SecurityGroups { get; set; }
+
+        public XmlDocument SecurityGroups { get; set; }
 
         public Int64 Subject { get; set; }
         public string PredicateURI { get; set; }
         public int PrivacyCode { get; set; }
-
+        public XmlDocument PropertyListXML { get; set; }
         public class SecurityItem
         {
             public SecurityItem(string label, string description, int privacycode)

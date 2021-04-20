@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
-using System.Text;
 using System.Xml;
-using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
 
 namespace Profiles.Profile.Modules.CustomViewPersonSameDepartment
 {
@@ -46,7 +37,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonSameDepartment
                 string insitutitionuri = xml.SelectSingleNode("Network/InstitutionURI").InnerText;
                 string searchrequest = string.Empty;
 
-                search.SearchRequest("", "", "", "", insitutitionuri, "", departmenturi, "", "", "", "http://xmlns.com/foaf/0.1/Person", "25", "0", "", "", "","", ref searchrequest);
+                search.SearchRequest("", "", "", "", insitutitionuri, "", departmenturi, "", "", "", "http://xmlns.com/foaf/0.1/Person", "25", "0", "", "", "","", false, ref searchrequest);
 
                 this.SearchRequest = searchrequest;
 
@@ -81,9 +72,8 @@ namespace Profiles.Profile.Modules.CustomViewPersonSameDepartment
 
             if (e.Item.ItemType == ListItemType.Footer)
             {
-                Literal litFooter = (Literal)e.Item.FindControl("litFooter");
-                litFooter.Text = "<a href='" + Root.Domain + "/search/default.aspx?searchtype=people&searchfor=&SearchRequest=" + this.SearchRequest + "'>" +
-              "<img alt=' ' style='margin-right:2px;position:relative;top:1px;border:0'  src='" + Root.Domain + "/Framework/Images/icon_squareArrow.gif'></img>Search Department</a>";
+                HyperLink moreurl = (HyperLink)e.Item.FindControl("moreurl");
+                moreurl.NavigateUrl = Root.Domain + "/search/default.aspx?searchtype=people&searchfor=&SearchRequest=" + this.SearchRequest;
 
             }
 

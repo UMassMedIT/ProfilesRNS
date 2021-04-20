@@ -12,16 +12,9 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
-using System.Xml.Xsl;
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
-using System.Globalization;
 using Profiles.Edit.Utilities;
 using System.Web.UI.HtmlControls;
 using System.Configuration;
@@ -50,10 +43,10 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             Page.Header.Controls.Add(jsscript);
 
             /* Add client side before postback code to save the editor contents on submit.  */
-            if (!ScriptManager.GetCurrent(Page).IsInAsyncPostBack)
-            {
-                ScriptManager.RegisterOnSubmitStatement(this, this.GetType(), "beforePostback", "beforePostback()");
-            } 
+            //if (!ScriptManager.GetCurrent(Page).IsInAsyncPostBack)
+            //{
+            //    ScriptManager.RegisterOnSubmitStatement(this, this.GetType(), "beforePostback", "beforePostback()");
+            //} 
 
 
         }
@@ -79,7 +72,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
 
             litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
-            litEditProperty.Text = "Add " + PropertyLabel;
+            btnEditProperty.Text = "Add " + PropertyLabel;
 
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, predicateuri, false, true, false);
             this.MaxCardinality = this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@MaxCardinality").Value;
@@ -105,13 +98,13 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             {
 
                 btnInsertCancel_OnClick(sender, e);
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlInsertProperty.Visible"] = null;
             }
             else
             {
                 pnlInsertProperty.Visible = true;
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertProperty.Visible"] = true;
 
             }
@@ -304,7 +297,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             if (!editaddnew)
             {
                 btnEditProperty.Visible = false;
-                imbAddArror.Visible = false;
+                imbAddArrow.Visible = false;
             }
 
             this.SubjectID = Convert.ToInt64(base.GetRawQueryStringItem("subject"));
@@ -329,7 +322,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
 
                 if (MaxCardinality == literalstate.Count.ToString())
                 {
-                    imbAddArror.Visible = false;
+                    imbAddArrow.Visible = false;
                     btnEditProperty.Visible = false;
                     btnInsertProperty.Visible = false;                    
                 }
@@ -341,7 +334,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             {
                 lblNoItems.Visible = true;
                 GridViewProperty.Visible = false;
-                imbAddArror.Visible = true;
+                imbAddArrow.Visible = true;
                 btnEditProperty.Visible = true;
                 if (MaxCardinality == "1")
                 { 

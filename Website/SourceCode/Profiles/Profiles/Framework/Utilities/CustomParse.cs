@@ -10,10 +10,6 @@
     For details, see: LICENSE.txt 
   
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Xml;
 
 namespace Profiles.Framework.Utilities
@@ -49,6 +45,8 @@ namespace Profiles.Framework.Utilities
             XmlNode xpathnode;
             if (custom == null) { return ""; }
             if (custom == string.Empty) { return ""; }
+
+            custom = custom.Replace("[[[Root]]]", Root.Domain);
 
             start = custom.IndexOf("{{{");
             while (start >= 0)
