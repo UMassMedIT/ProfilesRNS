@@ -18,6 +18,7 @@ using Profiles.Framework.Utilities;
 using Profiles.Edit.Utilities;
 using System.Web.UI.HtmlControls;
 using System.Configuration;
+using System.Web.UI;
 
 namespace Profiles.Edit.Modules.EditDataTypeProperty
 {
@@ -43,10 +44,10 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             Page.Header.Controls.Add(jsscript);
 
             /* Add client side before postback code to save the editor contents on submit.  */
-            //if (!ScriptManager.GetCurrent(Page).IsInAsyncPostBack)
-            //{
-            //    ScriptManager.RegisterOnSubmitStatement(this, this.GetType(), "beforePostback", "beforePostback()");
-            //} 
+            if (!ScriptManager.GetCurrent(Page).IsInAsyncPostBack)
+            {
+                ScriptManager.RegisterOnSubmitStatement(this, this.GetType(), "beforePostback", "beforePostback()");
+            }
 
 
         }

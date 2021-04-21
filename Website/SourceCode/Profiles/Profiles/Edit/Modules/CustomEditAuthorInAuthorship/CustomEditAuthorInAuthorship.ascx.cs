@@ -13,7 +13,7 @@ using System.IO;
 using Profiles.Framework.Utilities;
 
 
-
+using System.Configuration;
 
 namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 {
@@ -78,7 +78,11 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 phDeletePub.Visible = false;
                 phDisableDisambig.Visible = false;
             }
+        }
 
+        private String NIHEUtilzURI
+        {
+            get; set;
         }
 
 
@@ -104,6 +108,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             }
 
+            NIHEUtilzURI = ConfigurationManager.AppSettings["NIH.EUtilz.URI"];
             if (_personId == 0)
             {
                 if (Session["CurrentPersonEditing"] != null)
@@ -406,8 +411,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         //Inserts comma seperated string of PubMed Ids into the db
         private void InsertPubMedIds(string value)
         {
-
-            string uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?retmax=1000&db=pubmed&retmode=xml&id=" + value;
+            string uri = String.Format("{0}/efetch.fcgi?retmax=1000&db=pubmed&retmode=xml&id={1}", NIHEUtilzURI, value);
 
             System.Xml.XmlDocument myXml = new System.Xml.XmlDocument();
             myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
@@ -563,7 +567,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             Hashtable MyParameters = new Hashtable();
 
-            string uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&usehistory=y&retmax=100&retmode=xml&term=" + value;
+            string uri = String.Format("{0}/esearch.fcgi?db=pubmed&usehistory=y&retmax=100&retmode=xml&term={1}", NIHEUtilzURI, value);
             System.Xml.XmlDocument myXml = new System.Xml.XmlDocument();
             myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
 
@@ -587,7 +591,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 //do nothing. its a blank search
             }
 
-            uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?retmin=0&retmax=100&retmode=xml&db=Pubmed&query_key=" + queryKey + "&webenv=" + webEnv;
+            uri = String.Format("{0}/esummary.fcgi?retmin=0&retmax=100&retmode=xml&db=Pubmed&query_key={1}&webenv={2}", NIHEUtilzURI, queryKey, webEnv);
             myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
 
             string pubMedAuthors = "";
@@ -666,7 +670,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             CheckBox cb = (CheckBox)e.Row.FindControl("chkPubMed");
 
-            cb.Attributes.Add("cheked", "");
+            cb.Attributes.Add("checked", "");
 
             if (drv["checked"].ToString() == "0")
                 cb.Checked = false;

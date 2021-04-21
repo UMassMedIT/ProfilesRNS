@@ -37,6 +37,8 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomEditSocialMediaPlugIns" FileName="EditFeaturedPresentations.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditSocialMediaPlugIns" FileName="EditTwitter.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditSocialMediaPlugIns" FileName="EditFeaturedVideos.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditSummary" FileName="CustomEditSummary.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditLabUrl" FileName="CustomEditLabUrl.ascx" Enabled="true"/>
 </ModuleList>
 
 

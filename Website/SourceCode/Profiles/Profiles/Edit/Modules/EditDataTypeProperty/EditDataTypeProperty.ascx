@@ -12,6 +12,70 @@
             return true;
         }
     })();
+
+    /* Names of the links provided in the GridView */
+    var cancelLink = 'lnkCancel';
+    var editLink = 'lnkEdit';
+    var editProperty = 'btnEditProperty';
+
+    /* Add function that will fire after ajax request completes on the page */
+    $(document).ready(function () {
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+    });
+
+    function endRequestHandler(sender, args) {
+
+        /* Edit Button on row clicked */
+        if (sender._postBackSettings.sourceElement.id.endsWith(editLink)) {
+            initEditor();
+        }
+
+        /* Initial Add */
+        if (sender._postBackSettings.sourceElement.id.endsWith(editProperty)) {
+            initEditor();
+        }
+
+        /* Cancel clicked */
+        if (sender._postBackSettings.sourceElement.id.endsWith(cancelLink)) {
+        }
+    }
+
+    function initEditor() {
+        /* Remove any existing instances of the editor */
+        tinymce.EditorManager.remove('div.editableHtmlContainer');
+
+        /* Give the removal just a fraction of a second to run before we re-init the editor */
+        setTimeout(function () {
+            tinymce.init({
+                selector: 'div.editableHtmlContainer',
+                inline: true,
+                menubar: false,
+                fixed_toolbar_container: '.tinymceToolbar',
+                plugins: 'paste lists link image print preview table media<%= getHTMLEditorConfigurablePluginsOptions() %>',
+                toolbar1: 'undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | indent outdent | bullist numlist',
+                toolbar2: 'link image media | print preview | table<%= getHTMLEditorConfigurableToolbarOptions() %>',
+                paste_word_valid_elements: "b,strong,i,em,h1,h2,h3,p,ol,ul,li",
+                paste_retain_style_properties: "color font-size",
+                content_css: '/Framework/CSS/profiles.css',
+                init_instance_callback: function (editor) {
+                    //Set focus on editor so toolbar appears
+                    editor.fire('focus');
+                },
+                setup: function (editor) {
+                    //Store content in hidden input for update and stop blur to keep toolbar appearing
+                    editor.on('blur', function (e) {
+                        $('[id*=NewContentHidden]').val(editor.getContent());
+                        return false;
+                    });
+                }
+            });
+        }, 10);
+    }
+
+    function beforePostback() {
+        tinymce.triggerSave();
+    }
+
 </script>
 
 <asp:UpdatePanel ID="upnlEditSection" runat="server" UpdateMode="Conditional">
@@ -80,14 +144,18 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="alignLeft" ItemStyle-CssClass="alignLeft">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtLabel" Rows="5" runat="server" TextMode="MultiLine" Width="100%" Height="400px" Text='<%# Bind("Literal") %>' />
-                                        <asp:HiddenField ID="hdLabel" runat="server" Value='<%# Bind("Literal") %>'></asp:HiddenField>
+                                        <div class="tinymceToolbar"></div>
+                                        <asp:Panel ID="editableDiv" runat="server" CssClass="editableHtmlContainer">
+                                            <asp:Literal ID="editableLiteral" runat="server" Text='<%# Bind("Literal") %>'></asp:Literal>
+                                        </asp:Panel>
+                                        <asp:HiddenField ID="editNewContentHidden" runat="server"></asp:HiddenField>
+                                        <asp:HiddenField ID="oldContentHidden" runat="server" Value='<%# Bind("Literal") %>'></asp:HiddenField>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblLabel" runat="server"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" HeaderText="Action" ItemStyle-CssClass="alignCenterAction">
+                                <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" HeaderText="Action" ItemStyle-CssClass="alignCenterAction" ItemStyle-VerticalAlign="Top">
                                     <EditItemTemplate>
                                         <asp:LinkButton ID="lnkUpdate" runat="server" OnClientClick="Javascript:return verifyChars();" CausesValidation="True" CommandName="Update" Text="Save" />&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
                                         <asp:LinkButton ID="lnkCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
