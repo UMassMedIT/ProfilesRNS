@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
-    
-    
-    public partial class CustomEditEducationalTraining {
-        
+namespace Profiles.Edit.Modules.CustomEditEducationalTraining
+{
+
+
+    public partial class CustomEditEducationalTraining
+    {
+
         /// <summary>
         /// upnlEditSection control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlEditSection;
-        
+
         /// <summary>
         /// updateProgress control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress updateProgress;
-        
+
         /// <summary>
         /// hiddenSubjectID control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hiddenSubjectID;
-        
+
         /// <summary>
         /// litBackLink control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litBackLink;
-        
+
         /// <summary>
         /// pnlSecurityOptions control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSecurityOptions;
-        
+
         /// <summary>
         /// securityOptions control.
         /// </summary>
@@ -65,34 +67,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
-        
-        /// <summary>
-        /// pnlEditEducation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEditEducation;
-        
-        /// <summary>
-        /// imbAddArrow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbAddArrow;
-        
-        /// <summary>
-        /// btnEditEducation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnEditEducation;
-        
+
         /// <summary>
         /// pnlInsertEducationalTraining control.
         /// </summary>
@@ -101,7 +76,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlInsertEducationalTraining;
-        
+
         /// <summary>
         /// txtInstitution control.
         /// </summary>
@@ -110,7 +85,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtInstitution;
-        
+
         /// <summary>
         /// txtLocation control.
         /// </summary>
@@ -119,7 +94,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLocation;
-        
+
         /// <summary>
         /// txtEducationalTrainingDegree control.
         /// </summary>
@@ -128,7 +103,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEducationalTrainingDegree;
-        
+
         /// <summary>
         /// txtEndYear control.
         /// </summary>
@@ -137,7 +112,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndYear;
-        
+
         /// <summary>
         /// txtFieldOfStudy control.
         /// </summary>
@@ -146,34 +121,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFieldOfStudy;
-        
-        /// <summary>
-        /// btnInsertEducationalTraining2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnInsertEducationalTraining2;
-        
-        /// <summary>
-        /// btnInsertEducationalTraining control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnInsertEducationalTraining;
-        
-        /// <summary>
-        /// btnInsertCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnInsertCancel;
-        
+
         /// <summary>
         /// GridViewEducation control.
         /// </summary>
@@ -182,7 +130,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewEducation;
-        
+
         /// <summary>
         /// lblNoEducation control.
         /// </summary>

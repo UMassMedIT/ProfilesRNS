@@ -47,8 +47,8 @@ this website.
 <div style="padding-bottom: 16px; padding-top: 16px;"><b>Privacy Levels</b></div>
 <asp:Literal runat="server" ID="litSecurityKey"></asp:Literal>
 <script type="text/javascript">
-    jQuery(window).load(function () {
-        $(".editBackLink").css("margin-top", "0px");        
-    });
+
+   $(window).on('load', function () { $(".editBackLink").css("margin-top", "0px");   });
+
 </script>
 
