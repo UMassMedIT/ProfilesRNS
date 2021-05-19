@@ -20,7 +20,7 @@
 
             #prns-nav ul.prns-main,
             #prns-nav ul.prns-main > li {
-                background-color: #383737;
+                background-color: #000F9F;
                 height: 39px;
             }
 
@@ -31,14 +31,14 @@
 
                     #prns-nav ul.prns-main li a {
                         display: inline-block;
-                        background: #383737;
+                        background: #000F9F;
                         padding: 10px 16px;
                         text-decoration: none;
                         transition: 0.2s;
                         font-size: 14px;
                         color: #fff;
-                        border-right: 1px solid #ccc;  
-                        height:39px;                      
+                        border-right: 1px solid #fff;
+                        height: 39px;
                     }
 
                     #prns-nav ul.prns-main li.search a {
@@ -46,11 +46,15 @@
                     }
 
                     #prns-nav ul.prns-main li.landed a {
-                        background-color: #000;
+                        background-color: #F2F2F2;
+                        font-weight:bold;
+                        color: #000F9F;
                     }
 
                     #prns-nav ul.prns-main li a:hover {
-                        background-color: #555;
+                        background-color: #F2F2F2;
+                        color: #666666;
+                        text-decoration:underline;
                     }
 
                     #prns-nav ul.prns-main li.icon {
@@ -77,38 +81,40 @@
                 
             }
                 #prns-nav ul.drop li a {
-                    background: #383737 none repeat scroll 0 0;                    
+                    background: #F2F2F2 none repeat scroll 0 0;
+                    color:#333;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     width: 255px;
-                    height:37px;
+                    height: 37px;
                 }
 
 #search-drop ul.drop li a {
-    background: #383737 none repeat scroll 0 0;
+    background: #F2F2F2 none repeat scroll 0 0;
+    color:#333;
     border: medium none;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 134px;
-    border-left:1px solid #999;
-    border-right:1px solid #999;
+}
+
+#search-drop ul.drop li.landed a {
+    font-weight:normal;
 }
 
 li#search-drop a:hover {
-    background: #555 !important;
-    color: #000 !important;
-
-      
+    background: #F2F2F2 !important;
+    color: #000F9F !important;
 }
+
 #search-drop ul.drop li:hover {
-    background: #edebeb !important;
+    background: #F2F2F2 !important;
     color: #000 !important;
 }
 
 #prns-nav ul.drop li a:hover {
-    background: #edebeb !important;
     color: #000 !important;
 }
 
@@ -189,7 +195,7 @@ li#search-drop a:hover {
 
 #prns-nav ul.usermenu ul.drop a {
     display: inline-block;   
-        background: #dcdada !important;
+    background: #dcdada !important;
     text-align: left;
     padding: 12px 18px;
     text-decoration: none;

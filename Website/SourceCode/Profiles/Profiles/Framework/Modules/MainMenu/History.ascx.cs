@@ -36,13 +36,13 @@ namespace Profiles.Framework.Modules.MainMenu
             lblHistoryItems.Text = "<li class='main-nav'><a href='" + Root.Domain + "/history'>History (" + total.ToString() + ")</a><ul class='drop'>";
             foreach (HistoryItem h in uh.GetItems(5))
             {                
-                lblHistoryItems.Text += "<li><a  style='border-left:1px solid #383737;border-right:1px solid #383737;' href='" + h.URI + "'>" + h.ItemLabel + "</a></li>";                
+                lblHistoryItems.Text += "<li><a  style='' href='" + h.URI + "'>" + h.ItemLabel + "</a></li>";                
                 count++;
             }
             if (total > 1)
-                lblHistoryItems.Text += "<li style='height:39px !important;'><a style='border-top:1px solid #ffffff;border-bottom:1px solid #383737;border-left:1px solid #383737;border-right:1px solid #383737;' href='" + Root.Domain + "/history'>See All " + total.ToString() + " Pages</a></li></ul></li>";
+                lblHistoryItems.Text += "<li style='height:39px !important;'><a style='' href='" + Root.Domain + "/history'>See All " + total.ToString() + " Pages</a></li></ul></li>";
             else if (total ==1)
-                lblHistoryItems.Text += "<li style='height:39px !important;'><a style='border-top:1px solid #ffffff;border-bottom:1px solid #383737;border-left:1px solid #383737;border-right:1px solid #383737;' href='" + Root.Domain + "/history'>See All Pages</a></li></ul></li>";            
+                lblHistoryItems.Text += "<li style='height:39px !important;'><a style='' href='" + Root.Domain + "/history'>See All Pages</a></li></ul></li>";            
 
 
 

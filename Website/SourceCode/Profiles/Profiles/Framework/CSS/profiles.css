@@ -261,10 +261,10 @@ div#catalyst-footer {
 }
 
 .institutionHeader {
-    background-color: #000;
+    background-color: #fff;
     text-align: center;
     padding: 30px 0px 30px 0px;
-    border-bottom: 8px solid #B23F45;
+    border-bottom: 8px solid #000F9F;
 }
 
 
