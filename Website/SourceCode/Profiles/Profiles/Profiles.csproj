@@ -110,6 +110,7 @@
     <Content Include="Edit\Modules\CustomEditLabUrl\CustomEditLabUrl.ascx" />
     <Content Include="Edit\Modules\CustomEditSummary\CustomEditSummary.ascx" />
     <Content Include="Framework\JavaScript\tinymce\themes\mobile\theme.min.js" />
+    <Content Include="LoginProcessShib\Modules\ModuleCatalogue.xml" />
     <Content Include="ProfileDetailsError\CSS\ProfileDetailsError.css" />
     <Content Include="ProfileDetailsError\Default.aspx" />
     <Content Include="ProfileDetailsError\Modules\ProfileDetailsError\ProfileDetailsError.ascx" />
