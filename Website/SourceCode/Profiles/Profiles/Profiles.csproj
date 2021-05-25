@@ -458,6 +458,7 @@
     <Content Include="Profile\XSLT\Website.xslt" />
     <Content Include="RobotsTxt.aspx" />
     <None Include="packages.config" />
+    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\ImageHandler.ashx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
