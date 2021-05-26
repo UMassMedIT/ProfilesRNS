@@ -155,7 +155,8 @@ namespace Profiles.Activity.Utilities
 
         private SortedList<Int64, Activity> GetRecentActivity(Int64 lastActivityLogID, int count, bool older)
         {
-            SortedList<Int64, Activity> activities = new SortedList<Int64, Activity>(new ReverseComparer());
+            DebugLogging.Log("GetRecentActivity - Begin");
+            SortedList <Int64, Activity> activities = new SortedList<Int64, Activity>(new ReverseComparer());
 
             string sql = "SELECT top " + count + "  i.activityLogID," +
                             "p.personid,n.nodeid,p.firstname,p.lastname," +
@@ -169,6 +170,7 @@ namespace Profiles.Activity.Utilities
                             "where p.IsActive=1 and (np.ViewSecurityGroup = -1 or (i.privacyCode = -1 and np.ViewSecurityGroup is null) or (i.privacyCode is null and np.ViewSecurityGroup is null))" +
                             (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "< " : "> ") + lastActivityLogID) : "") +
                             "order by i.activityLogID desc";
+            DebugLogging.Log("GetRecentActivity - SQL: " + sql);
             using (SqlDataReader reader = GetQueryOutputReader(sql))
             {
                 while (reader.Read())
@@ -301,6 +303,7 @@ namespace Profiles.Activity.Utilities
                     }
                 }
             }
+            DebugLogging.Log("GetRecentActivity - Return activities, with count: " + activities.Count());
             return activities;
         }
 
