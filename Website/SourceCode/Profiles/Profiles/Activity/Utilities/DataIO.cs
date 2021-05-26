@@ -303,7 +303,7 @@ namespace Profiles.Activity.Utilities
                     }
                 }
             }
-            DebugLogging.Log("GetRecentActivity - Return activities, with count: " + activities.Count());
+            DebugLogging.Log("GetRecentActivity - Return activities, with count: " + activities.Count);
             return activities;
         }
 
