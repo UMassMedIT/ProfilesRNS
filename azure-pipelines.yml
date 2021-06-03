@@ -89,8 +89,8 @@ stages:
       #services: { string: string | container } # container resources to run as a service container
       timeoutInMinutes: 10        # how long to run the job before automatically cancelling
       #cancelTimeoutInMinutes: nonEmptyString  # how much time to give 'run always even if cancelled tasks' before killing them
-      #variables:
-      #    GoogleMapsKey: "$(GoogleMapskey_Dev)"
+      variables:
+          GoogleMapsKey: "$(GoogleMapskey_Dev)"
        #   ProfilesDB: "$(ProfilesDB_Dev)"
 
       environment: 
