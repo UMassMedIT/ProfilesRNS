@@ -90,7 +90,7 @@ stages:
       timeoutInMinutes: 10        # how long to run the job before automatically cancelling
       #cancelTimeoutInMinutes: nonEmptyString  # how much time to give 'run always even if cancelled tasks' before killing them
       variables:
-        GoogleMapsKey: "$(GoogleMapskey_Dev)"
+        GoogleMapsKey: "$(GoogleMapskey_Value)"
         ProfilesDB: "$(ProfilesDB_Dev)"
 
       environment: 
