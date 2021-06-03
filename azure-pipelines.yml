@@ -91,7 +91,7 @@ stages:
       #cancelTimeoutInMinutes: nonEmptyString  # how much time to give 'run always even if cancelled tasks' before killing them
       variables:
           GoogleMapsKey: "$(GoogleMapskey_Dev)"
-       #   ProfilesDB: "$(ProfilesDB_Dev)"
+          ProfilesDB: "$(ProfilesDB_Dev)"
 
       environment: 
         name: Development
