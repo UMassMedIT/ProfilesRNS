@@ -129,31 +129,38 @@ namespace Profiles.Edit.Modules.EditSocialMedia.FeaturedPresentations
         }
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
+            pnlImportSlides.Visible = false;
+            imbDeleteArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+            pnlDeleteSlides.Visible = true;
+            pnlDelete.Visible = false;
+            phSecuritySettings.Visible = false;
 
-            if (Session["pnlDeleteSlides.Visible"] == null)
-            {
-                pnlImportSlides.Visible = false;
-                imbDeleteArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
-                pnlDeleteSlides.Visible = true;
-                pnlDelete.Visible = false;
-                phSecuritySettings.Visible = false;
-                Session["pnlDeleteSlides.Visible"] = true;
-            }
-            else
-            {
-                Session["pnlDeleteSlides.Visible"] = null;
-                pnlImportSlides.Visible = false;
-                imbDeleteArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
-                pnlDeleteSlides.Visible = false;
-                phSecuritySettings.Visible = true;
-                pnlDelete.Visible = true;
-            }
+            // Original code from Harvard Below
+            //if (Session["pnlDeleteSlides.Visible"] == null)
+            //{
+            //    pnlImportSlides.Visible = false;
+            //    imbDeleteArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+            //    pnlDeleteSlides.Visible = true;
+            //    pnlDelete.Visible = false;
+            //    phSecuritySettings.Visible = false;
+            //    Session["pnlDeleteSlides.Visible"] = true;
+            //}
+            //else
+            //{
+            //    Session["pnlDeleteSlides.Visible"] = null;
+            //    pnlImportSlides.Visible = false;
+            //    imbDeleteArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
+            //    pnlDeleteSlides.Visible = false;
+            //    phSecuritySettings.Visible = true;
+            //    pnlDelete.Visible = true;
+            //}
 
         }
 
         protected void btnSaveAndClose_OnClick(object sender, EventArgs e)
         {
             Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, txtUsername.Text.Trim(), "SlideShare Slide Share");
+            ResetDisplay();
             Response.Redirect(Request.Url.AbsoluteUri);
             Response.End();
         }
