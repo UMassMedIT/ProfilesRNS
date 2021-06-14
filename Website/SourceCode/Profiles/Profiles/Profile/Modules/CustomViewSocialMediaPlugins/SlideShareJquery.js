@@ -4,6 +4,11 @@ var g_ownerID = false;
 // ========================================
 rssCallback = function (strobj) {
 
+    // Check for nulls, if empty obj passed there's nothing to do. 
+    if (!strobj || strobj.length === 0) {
+        return;
+    }
+
     // process all the items found
     var links = JSON.parse(JSON.stringify(strobj));
     var extracted_data = [];
