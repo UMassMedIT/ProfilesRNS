@@ -745,9 +745,12 @@ div#catalyst-footer {
     min-height: 400px;
 }
 
+.htmlContainerSurround {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 /*PubMed Styles*/
-
 .textBoxSmall {
     width: 75px;
 }

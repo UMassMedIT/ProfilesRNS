@@ -115,13 +115,15 @@
                             <tr>
                                 <td width="750">
                                     <div class="tinymceToolbar"></div>
-                                    <asp:Panel ID="insertPropertyDiv" runat="server" CssClass="editableHtmlContainer"></asp:Panel>
-                                    <asp:HiddenField ID="insertNewContentHidden" runat="server"></asp:HiddenField>
+                                    <div class="htmlContainerSurround">
+                                        <asp:Panel ID="insertPropertyDiv" runat="server" CssClass="editableHtmlContainer"></asp:Panel>
+                                        <asp:HiddenField ID="insertNewContentHidden" runat="server"></asp:HiddenField>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    <div style="padding-bottom: 5px; text-align: left;">
+                                    <div style="padding-bottom: 5px; padding-left: 5px; text-align: left;">
                                         <asp:LinkButton ID="btnInsertProperty" runat="server" CausesValidation="False" OnClick="btnInsert_OnClick"
                                             Text="Save and add another&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;"></asp:LinkButton>
                                         <asp:LinkButton ID="btnInsertProperty2" runat="server" CausesValidation="False" OnClick="btnInsertClose_OnClick"
@@ -145,9 +147,11 @@
                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="alignLeft" ItemStyle-CssClass="alignLeft">
                                     <EditItemTemplate>
                                         <div class="tinymceToolbar"></div>
-                                        <asp:Panel ID="editableDiv" runat="server" CssClass="editableHtmlContainer">
-                                            <asp:Literal ID="editableLiteral" runat="server" Text='<%# Bind("Literal") %>'></asp:Literal>
-                                        </asp:Panel>
+                                        <div class="htmlContainerSurround">
+                                            <asp:Panel ID="editableDiv" runat="server" CssClass="editableHtmlContainer">
+                                                <asp:Literal ID="editableLiteral" runat="server" Text='<%# Bind("Literal") %>'></asp:Literal>
+                                            </asp:Panel>
+                                        </div>
                                         <asp:HiddenField ID="editNewContentHidden" runat="server"></asp:HiddenField>
                                         <asp:HiddenField ID="oldContentHidden" runat="server" Value='<%# Bind("Literal") %>'></asp:HiddenField>
                                     </EditItemTemplate>
