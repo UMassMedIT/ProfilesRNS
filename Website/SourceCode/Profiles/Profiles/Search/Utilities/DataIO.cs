@@ -748,7 +748,7 @@ namespace Profiles.Search.Utilities
                 try
                 {
 
-                    string sql = "EXEC [Profile.Data].[Organization.GetInstitutions] @OnlyActivePrimaryAffiliation=1";
+                    string sql = "EXEC [Profile.Data].[Organization.GetInstitutions] @OnlyActivePrimaryAffiliation=0";
 
                     using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                     {
