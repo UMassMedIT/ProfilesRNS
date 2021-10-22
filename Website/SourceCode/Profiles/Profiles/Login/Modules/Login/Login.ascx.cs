@@ -28,8 +28,27 @@ namespace Profiles.Login.Modules.Login
     public partial class Login : System.Web.UI.UserControl
     {
         Framework.Utilities.SessionManagement sm;
+        private bool loginDisabled = false;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            /* Determine if login is disabled, if so set flag.  */
+            string loginDisabledString = ConfigurationManager.AppSettings["Login.Disabled"];
+            loginDisabled = (!string.IsNullOrEmpty(loginDisabledString) && (loginDisabledString.ToLower().Equals("true")));
+            if (loginDisabled)
+            {
+                this.cmdSubmit.Visible = false;
+                string loginDisabledMessage = ConfigurationManager.AppSettings["Login.Disabled.Message"];
+                if (!string.IsNullOrEmpty(loginDisabledMessage))
+                {
+                    this.lblDisabledMessage.Text = loginDisabledMessage;
+                    this.lblDisabledMessage.Visible = true;
+                }
+                else
+                {
+                    this.lblDisabledMessage.Text = "Login has been temporarily been disabled during maintenance.";
+                }
+            }
 
             if (!IsPostBack)
             {
@@ -71,7 +90,10 @@ namespace Profiles.Login.Modules.Login
 
         protected void cmdSubmit_Click(object sender, EventArgs e)
         {
-
+            if (loginDisabled)
+            {
+                return;
+            }
             Profiles.Login.Utilities.DataIO data = new Profiles.Login.Utilities.DataIO();
 
             if (Request.QueryString["method"].ToString() == "login")

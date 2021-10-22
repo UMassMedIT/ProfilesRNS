@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Login.Modules.ShibLogin {
-    
-    
-    public partial class ShibLogin {
-        
+namespace Profiles.Login.Modules.ShibLogin
+{
+
+
+    public partial class ShibLogin
+    {
+
         /// <summary>
         /// panelLoginInfo control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Login.Modules.ShibLogin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelLoginInfo;
-        
+
         /// <summary>
         /// panelLoggedOut control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.Login.Modules.ShibLogin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelLoggedOut;
-        
+
         /// <summary>
         /// panelAlreadyLoggedIn control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Login.Modules.ShibLogin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelAlreadyLoggedIn;
-        
+
         /// <summary>
         /// cmdProceedToLogin control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Profiles.Login.Modules.ShibLogin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cmdProceedToLogin;
-        
+
         /// <summary>
         /// cmdProceedToSearch control.
         /// </summary>
@@ -56,7 +58,16 @@ namespace Profiles.Login.Modules.ShibLogin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cmdProceedToSearch;
-        
+
+        /// <summary>
+        /// lblDisabledMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDisabledMessage;
+
         /// <summary>
         /// lblError control.
         /// </summary>

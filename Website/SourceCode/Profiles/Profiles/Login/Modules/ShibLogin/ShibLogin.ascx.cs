@@ -35,6 +35,7 @@ namespace Profiles.Login.Modules.ShibLogin
         private const string METHOD_SHIB_LOGOUT_SUCCESS = "shiblogoutsuccess";
 
         private ShibAppSettings shibAppSettings = null;
+        private bool loginDisabled = false;
 
         SessionManagement sm;
         protected void Page_Load(object sender, EventArgs e)
@@ -47,6 +48,24 @@ namespace Profiles.Login.Modules.ShibLogin
             this.panelLoggedOut.Visible = false;
             this.cmdProceedToLogin.Visible = true;
             this.cmdProceedToSearch.Visible = false;
+
+            /* Determine if login is disabled, if so set flag.  */
+            string loginDisabledString = ConfigurationManager.AppSettings["Login.Disabled"];
+            loginDisabled = (!string.IsNullOrEmpty(loginDisabledString) && (loginDisabledString.ToLower().Equals("true")));
+            if (loginDisabled)
+            {
+                this.cmdProceedToLogin.Visible = false;
+                string loginDisabledMessage = ConfigurationManager.AppSettings["Login.Disabled.Message"];
+                if (!string.IsNullOrEmpty(loginDisabledMessage))
+                {
+                    this.lblDisabledMessage.Text = loginDisabledMessage;
+                    this.lblDisabledMessage.Visible = true;
+                }
+                else
+                {
+                    this.lblDisabledMessage.Text = "Login has been temporarily been disabled during maintenance.";
+                }
+            }
 
             shibAppSettings = new ShibAppSettings();
             if (shibAppSettings.InitializeAppSettings())
@@ -96,6 +115,10 @@ namespace Profiles.Login.Modules.ShibLogin
 
         private void beginLoginProcedure()
         {
+            if (loginDisabled)
+            {
+                return;
+            }
             string loggingPrefix = "ShibLogin - beginLoginProcedure - ";
             ShibUtil.Log(loggingPrefix + "Starting");
 
@@ -165,12 +188,20 @@ namespace Profiles.Login.Modules.ShibLogin
 
         protected void cmdProceedToLogin_Click(object sender, EventArgs e)
         {
+            if (loginDisabled)
+            {
+                return;
+            }
             beginLoginProcedure();
         }
 
 
         protected void cmdProceedToSearch_Click(object sender, EventArgs e)
         {
+            if (loginDisabled)
+            {
+                return;
+            }
             Response.Redirect(Root.Domain + "/search");
         }
     }
