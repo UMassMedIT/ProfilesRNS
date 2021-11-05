@@ -49,6 +49,7 @@
                                        
                                     </td>
                                     <td> 
+                                        <asp:Label runat="server" ID="lblDisabledMessage" ForeColor="Red" Font-Bold="true" Visible="false"></asp:Label>
                                         <asp:Button ID="cmdSubmit" runat="server" Text="Login" CssClass="login-button" OnClick="cmdSubmit_Click" />
                                     </td>
                                 </tr>
