@@ -53,7 +53,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
             Utilities.DataIO data = new Profiles.Framework.Utilities.DataIO();
 
-            litSearchOptions.Text = "<li class='first'><a class='search-drop' href='" + Root.Domain + "/search'>Find People</a></li><li class='last'><a class='search-drop' style='border-bottom:1px solid #383737;' href='" + Root.Domain + "/search/all'>Find Everything</a></li>";
+            //litSearchOptions.Text = "<li class='first'><a class='search-drop' href='" + Root.Domain + "/search'>Find People</a></li><li class='last'><a class='search-drop' style='border-bottom:1px solid #383737;' href='" + Root.Domain + "/search/all'>Find Everything</a></li>";
             litJs.Text = "";
             if (sm.Session().NodeID > 0)
             {
