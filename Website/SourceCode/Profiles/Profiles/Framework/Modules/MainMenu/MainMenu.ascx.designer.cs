@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Framework.Modules.MainMenu {
-    
-    
-    public partial class MainMenu {
-        
+namespace Profiles.Framework.Modules.MainMenu
+{
+
+
+    public partial class MainMenu
+    {
+
         /// <summary>
         /// ProfileHistory control.
         /// </summary>
@@ -20,16 +22,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Framework.Modules.MainMenu.History ProfileHistory;
-        
-        /// <summary>
-        /// litSearchOptions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litSearchOptions;
-        
+
         /// <summary>
         /// litLogin control.
         /// </summary>
@@ -38,7 +31,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litLogin;
-        
+
         /// <summary>
         /// litViewMyProfile control.
         /// </summary>
@@ -47,7 +40,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litViewMyProfile;
-        
+
         /// <summary>
         /// litEditThisProfile control.
         /// </summary>
@@ -56,7 +49,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litEditThisProfile;
-        
+
         /// <summary>
         /// litProxy control.
         /// </summary>
@@ -65,7 +58,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litProxy;
-        
+
         /// <summary>
         /// MyLists control.
         /// </summary>
@@ -74,7 +67,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Framework.Modules.MainMenu.MyLists MyLists;
-        
+
         /// <summary>
         /// litGroups control.
         /// </summary>
@@ -83,7 +76,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litGroups;
-        
+
         /// <summary>
         /// groupListDivider control.
         /// </summary>
@@ -92,7 +85,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl groupListDivider;
-        
+
         /// <summary>
         /// litLogOut control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litLogOut;
-        
+
         /// <summary>
         /// litJs control.
         /// </summary>

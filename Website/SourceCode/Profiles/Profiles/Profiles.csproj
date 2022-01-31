@@ -114,7 +114,10 @@
     <Content Include="Framework\Modules\MainMenu\default.aspx" />
     <Content Include="Framework\Modules\MainMenu\MyActiveNetwork.ascx" />
     <Content Include="Framework\Modules\MainMenu\MyLists.ascx" />
+    <Content Include="LoginProcessShib\Default.aspx" />
+    <Content Include="LoginProcessShib\Modules\LoginProcessShib\LoginProcessShib.ascx" />
     <Content Include="LoginProcessShib\Modules\ModuleCatalogue.xml" />
+    <Content Include="LoginProcessShib\PresentationXML\LoginProcessShibPresentation.xml" />
     <Content Include="ProfileDetailsError\CSS\ProfileDetailsError.css" />
     <Content Include="ProfileDetailsError\Default.aspx" />
     <Content Include="ProfileDetailsError\Modules\ProfileDetailsError\ProfileDetailsError.ascx" />

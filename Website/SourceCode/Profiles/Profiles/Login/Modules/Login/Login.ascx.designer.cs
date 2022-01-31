@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Login.Modules.Login {
-    
-    
-    public partial class Login {
-        
+namespace Profiles.Login.Modules.Login
+{
+
+
+    public partial class Login
+    {
+
         /// <summary>
         /// txtUserName control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Login.Modules.Login {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUserName;
-        
+
         /// <summary>
         /// txtPassword control.
         /// </summary>
@@ -29,7 +31,16 @@ namespace Profiles.Login.Modules.Login {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
-        
+
+        /// <summary>
+        /// lblDisabledMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDisabledMessage;
+
         /// <summary>
         /// cmdSubmit control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace Profiles.Login.Modules.Login {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cmdSubmit;
-        
+
         /// <summary>
         /// lblError control.
         /// </summary>

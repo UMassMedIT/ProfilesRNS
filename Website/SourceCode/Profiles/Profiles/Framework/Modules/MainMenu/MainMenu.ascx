@@ -37,15 +37,15 @@
             </li>--%>
             <HistoryItem:History runat="server" ID="ProfileHistory" Visible="true" />
             <li class="search main-nav" style="width: 492px;">
-                <input name="search" id="menu-search" placeholder="Search Profiles (people, publications, concepts, etc.)" type="text" style="padding-left: 5px;" />
-                <img style="cursor: pointer" alt="search" id="img-mag-glass" src="<%=ResolveUrl("~/framework/images/blackMagnifyGlass.png")%>" />
+<%--                <input name="search" id="menu-search" placeholder="Search Profiles (people, publications, concepts, etc.)" type="text" style="padding-left: 5px;" />
+                <img style="cursor: pointer" alt="search" id="img-mag-glass" src="<%=ResolveUrl("~/framework/images/blackMagnifyGlass.png")%>" />--%>
             </li>
             <li id="search-drop" class="last main-nav" style="float: right !important; width: 25px;">
-                <a href="#" style="padding: 0px; padding-top: 9px; margin: 0px;">
+<%--                <a href="#" style="padding: 0px; padding-top: 9px; margin: 0px;">
                     <img src="<%=ResolveUrl("~/framework/images/arrowDown.png") %>" /></a>
                 <ul class="drop" style="top: 39px; left: 835px;">
                     <asp:Literal runat="server" ID="litSearchOptions"></asp:Literal>
-                </ul>
+                </ul>--%>
             </li>
         </ul>
         <!-- USER LOGIN MSG / USER FUNCTION MENU -->

@@ -591,6 +591,9 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 //do nothing. its a blank search
             }
 
+            // Adding sleep as recommended by Harvard:  http://profiles.catalyst.harvard.edu/docs/ProfilesRNS_EUtilitiesAPI_Oct2020.pdf
+            System.Threading.Thread.Sleep(1000);
+
             uri = String.Format("{0}/esummary.fcgi?retmin=0&retmax=100&retmode=xml&db=Pubmed&query_key={1}&webenv={2}", NIHEUtilzURI, queryKey, webEnv);
             myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
 

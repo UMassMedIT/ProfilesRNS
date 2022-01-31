@@ -51,6 +51,7 @@
                                     <td> 
                                         <asp:Button ID="cmdProceedToLogin" runat="server" Text="Proceed To Login" CssClass="login-button" OnClick="cmdProceedToLogin_Click" />
                                         <asp:Button ID="cmdProceedToSearch" runat="server" Text="Proceed To Search" CssClass="login-button" visible="false" OnClick="cmdProceedToSearch_Click" />
+                                        <asp:Label runat="server" ID="lblDisabledMessage" ForeColor="Red" Font-Bold="true" Visible="false"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
