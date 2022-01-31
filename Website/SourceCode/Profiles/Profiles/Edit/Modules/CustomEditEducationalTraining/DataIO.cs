@@ -42,7 +42,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                     string division = dbreader["Division"].ToString();
                     int isVisible = Convert.ToInt32(dbreader["IsVisible"]);
                     if ((institution.Equals(organization)
-                        && department.Equals("All") && division.Equals("All") && isVisible == 1))
+                        && department.Equals("All") && division.Equals("All") && isVisible == 1) || institution.Equals("All"))
                     {
                         returnValue = true;
                         break;
