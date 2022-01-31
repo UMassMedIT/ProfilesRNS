@@ -12,23 +12,23 @@
     <xsl:if test="rdf:RDF/rdf:Description[1]/vivo:educationalTraining">
      
       <div style="margin-top:6px">
-        <table>
+        <table class="education">
           <tbody>
             <xsl:for-each select="rdf:RDF/rdf:Description[1]/vivo:educationalTraining">
               <xsl:variable name="educationalTrainingUri" select="@rdf:resource"/>              
               <tr>
-                <td>
+                <td class="educationLoc">
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$educationalTrainingUri]/prns:trainingAtOrganization"/>
                   <xsl:if test="/rdf:RDF[1]/rdf:Description[@rdf:about=$educationalTrainingUri]/prns:trainingAtOrganization and /rdf:RDF[1]/rdf:Description[@rdf:about=$educationalTrainingUri]/prns:trainingLocation">, </xsl:if>
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$educationalTrainingUri]/prns:trainingLocation"/>
                 </td>
-                <td>
+                <td class="educationDegree">
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$educationalTrainingUri]/vivo:degreeEarned"/>
                 </td>
-                <td>
+                <td class="educationEndDate">
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$educationalTrainingUri]/prns:endDate"/>
                 </td>
-                <td>
+                <td class="educationMajorField">
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$educationalTrainingUri]/vivo:majorField"/>
                 </td>
               </tr>
