@@ -15,8 +15,9 @@ variables:
   Parameters.Artifactname: 'ProfilesRNS_Drop'
   Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
   Parameters.packagetype: '*.zip'
-  Parameters.Websitename: 'w3.umassmed.edu'
+  Parameters.Websitename: 'ProfilesRNS_Dev'
   Parameters.VirtualApplication: 'Profiles'
+  Parameters.WebsitePhysicalPath: 'C:\WebContent\ProfilesRNS_Dev'
   Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
 
 
@@ -96,26 +97,17 @@ stages:
       environment: 
         name: Development
         resourceType: VirtualMachine
-        tags: Profiles_dev 
+        tags: Profiles_Dev_Azure 
         # Tags needs to be updated per Pipeline
       strategy: 
         runOnce:
           deploy:
             steps:
 
-             - task: IISWebAppManagementOnMachineGroup@0
-               displayName: 'IIS website config'
-               inputs:
-                 IISDeploymentType: 'IISWebsite'
-                 ActionIISWebsite: 'CreateOrUpdateWebsite'
-                 WebsiteName: 'Default Web Site'
-                 WebsitePhysicalPath: 'D:\WebContent\Profiles'
-                 WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
-
              - task: IISWebAppDeploymentOnMachineGroup@0
                displayName: 'IIS Web site Deploy'
                inputs:
-                 WebSiteName: 'Default Web Site'
+                 WebSiteName: '$(Parameters.Websitename)'
                  Package: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)/$(Parameters.packagetype)'
                  RemoveAdditionalFilesFlag: true
                  XmlVariableSubstitution: true
@@ -124,10 +116,10 @@ stages:
                inputs:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
                 Contents: 'web.dev.config'
-                TargetFolder: 'D:\WebContent\Profiles'
+                TargetFolder: '$(Parameters.WebsitePhysicalPath)'
              - task: FileTransform@1
                inputs:
-                folderPath: 'D:\WebContent\Profiles'
+                folderPath: '$(Parameters.WebsitePhysicalPath)'
                 #FolderPath is pipeline specific
                 enableXmlTransform: true
                 xmlTransformationRules: '-transform web.Dev.config -xml web.config'
