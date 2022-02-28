@@ -1148,3 +1148,33 @@ table tbody .height25
 {
 	height: 24px;
 }
+
+/* Education Editing Layout */
+table.education {
+    width: 100%;
+    table-layout: fixed;
+}
+
+td.educationLoc {
+    width: 40%;
+    text-align: left;
+    padding-bottom: 8px;
+}
+
+td.educationDegree {
+    width: 10%;
+    text-align: left;
+    padding-bottom: 8px;
+}
+
+td.educationEndDate {
+    width: 20%;
+    max-width: 20%;
+    padding-bottom: 8px;
+}
+
+td.educationMajorField {
+    width: 30%;
+    max-width: 20%;
+    padding-bottom: 8px;
+}

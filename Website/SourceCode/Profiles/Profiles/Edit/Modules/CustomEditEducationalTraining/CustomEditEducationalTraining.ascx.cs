@@ -25,8 +25,22 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
     {
 
         Edit.Utilities.DataIO data;
+        private bool isUserDefaultProxyForOrg = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+            /* Enable Education Edit depending on if the user is a default proxy */
+            var data = new DataIO();
+            string organization = this.GetOrganizationFromRDF();
+            isUserDefaultProxyForOrg = data.IsUserDefaultProxyForOrganization(organization);
+            if (btnEditEducation != null)
+            {
+                btnEditEducation.Visible = isUserDefaultProxyForOrg;
+            }
+            if (imbAddArrow != null)
+            {
+                imbAddArrow.Visible = isUserDefaultProxyForOrg;
+            }
+
             this.FillEducationalTrainingGrid(false);
             
             if (!IsPostBack)
@@ -65,9 +79,67 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             securityOptions.PrivacyCode = Convert.ToInt32(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@ViewSecurityGroup").Value);
             securityOptions.SecurityGroups = new XmlDataDocument();
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
+
+            if (Request.QueryString["new"] != null && Session["new"] != null)
+            {
+                Session["pnlInsertEducationalTraining.Visible"] = null;
+                Session["new"] = null;
+
+                if (Session["newclose"] != null)
+                {
+                    Session["newclose"] = null;
+                    btnInsertCancel_OnClick(this,new EventArgs());
+
+                }
+                else
+                {
+                    btnEditEducation_OnClick(this, new EventArgs());
+                }
+
+            }
+
+            securityOptions.BubbleClick += SecurityDisplayed;
+
         }
 
         #region Education
+
+        private void SecurityDisplayed(object sender, EventArgs e)
+        {
+
+            
+            if (Session["pnlSecurityOptions.Visible"] == null)
+            {
+                pnlEditEducation.Visible = true;
+                
+            }
+            else
+            {
+                pnlEditEducation.Visible = false;
+                
+            }
+        }
+
+        protected void btnEditEducation_OnClick(object sender, EventArgs e)
+        {
+            if (Session["pnlInsertEducationalTraining.Visible"] == null)
+            {
+                btnInsertCancel_OnClick(sender, e);
+                pnlSecurityOptions.Visible = false;
+                pnlInsertEducationalTraining.Visible = true;
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+                Session["pnlInsertEducationalTraining.Visible"] = true;
+            }
+            else
+            {
+                Session["pnlInsertEducationalTraining.Visible"] = null;
+                pnlSecurityOptions.Visible = true;
+                pnlInsertEducationalTraining.Visible = false;
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
+
+            }
+            upnlEditSection.Update();
+        }
 
         protected void GridViewEducation_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -76,6 +148,8 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             TextBox txtEducationalTrainingDegree = null;
             TextBox txtEndDate = null;
             TextBox txtEducationalTrainingFieldOfStudy = null;
+            ImageButton lnkEdit = null;
+            ImageButton lnkDelete = null;
             HiddenField hdURI = null;
 
             EducationalTrainingState educationalTrainingState = null;
@@ -84,7 +158,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             {
                 e.Row.Cells[4].Attributes.Add("style", "border-left:0px;");
             }
-            catch (Exception) { }
+            catch (Exception ex) { }
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -95,14 +169,27 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                 txtEducationalTrainingFieldOfStudy = (TextBox)e.Row.Cells[2].FindControl("txtEducationalTrainingFieldOfStudy");
                 hdURI = (HiddenField)e.Row.Cells[3].FindControl("hdURI");
 
+                lnkEdit = (ImageButton)e.Row.Cells[4].FindControl("lnkEdit");
+                lnkDelete = (ImageButton)e.Row.Cells[4].FindControl("lnkDelete");
+
                 educationalTrainingState = (EducationalTrainingState)e.Row.DataItem;
                 hdURI.Value = educationalTrainingState.SubjectURI;
 
-                //if (educationalTrainingState.EditDelete == false)
-                //    lnkDelete.Visible = false;
+                if (educationalTrainingState.EditDelete == false)
+                    lnkDelete.Visible = false;
 
-                //if (educationalTrainingState.EditExisting == false)
-                //    lnkEdit.Visible = false;
+                if (educationalTrainingState.EditExisting == false)
+                    lnkEdit.Visible = false;
+
+                /* Enable Education Edit depending on if the user is a default proxy */
+                if (lnkDelete != null)
+                {
+                    lnkDelete.Visible = isUserDefaultProxyForOrg;
+                }
+                if (lnkEdit != null)
+                {
+                    lnkEdit.Visible = isUserDefaultProxyForOrg;
+                }
 
             }
 
@@ -116,6 +203,198 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
 
             }
 
+        }
+
+        protected void GridViewEducation_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridViewEducation.EditIndex = e.NewEditIndex;
+            this.FillEducationalTrainingGrid(false);
+
+            upnlEditSection.Update();
+        }
+
+        protected void GridViewEducation_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            TextBox txtEducationalTrainingInst = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingInst");
+            TextBox txtEducationalTrainingLocation = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingLocation");
+            TextBox txtEducationalTrainingDegree = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingDegree");
+            TextBox txtEndDate = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEndDate");
+            TextBox txtEducationalTrainingFieldOfStudy = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingFieldOfStudy");
+
+            HiddenField hdURI = (HiddenField)GridViewEducation.Rows[e.RowIndex].FindControl("hdURI");
+
+            //data.AddEducationalTraining(this.SubjectID, txtInstitution.Text, txtLocation.Text, txtEducationalTrainingDegree.Text, txtEndYear.Text, txtFieldOfStudy.Text, this.PropertyListXML);
+            data.UpdateEducationalTraining(hdURI.Value, this.SubjectID, txtEducationalTrainingInst.Text, txtEducationalTrainingLocation.Text, txtEducationalTrainingDegree.Text, txtEndDate.Text, txtEducationalTrainingFieldOfStudy.Text);
+            GridViewEducation.EditIndex = -1;
+            Session["pnlInsertEducationalTraining.Visible"] = null;
+            this.FillEducationalTrainingGrid(true);
+            upnlEditSection.Update();
+        }
+
+        protected void GridViewEducation_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+        {
+            this.FillEducationalTrainingGrid(false);
+            upnlEditSection.Update();
+        }
+
+        protected void GridViewEducation_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridViewEducation.EditIndex = -1;
+
+            this.FillEducationalTrainingGrid(false);
+            upnlEditSection.Update();
+        }
+
+        protected void GridViewEducation_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+            Int64 predicate = Convert.ToInt64(GridViewEducation.DataKeys[e.RowIndex].Values[1].ToString());
+            Int64 _object = Convert.ToInt64(GridViewEducation.DataKeys[e.RowIndex].Values[2].ToString());
+
+            data.DeleteTriple(this.SubjectID, predicate, _object);
+            this.FillEducationalTrainingGrid(true);
+
+            upnlEditSection.Update();
+        }
+
+        protected void btnInsertCancel_OnClick(object sender, EventArgs e)
+        {
+            Session["pnlInsertEducationalTraining.Visible"] = null;
+            txtEndYear.Text = "";
+            txtInstitution.Text = "";
+            txtEducationalTrainingDegree.Text = "";   
+            txtLocation.Text = "";
+            txtFieldOfStudy.Text = "";
+            pnlInsertEducationalTraining.Visible = false;
+            upnlEditSection.Update();
+        }
+
+        protected void btnInsert_OnClick(object sender, EventArgs e)
+        {
+            if (txtEducationalTrainingDegree.Text != "" || txtInstitution.Text != "" || txtLocation.Text != "" || txtFieldOfStudy.Text != "")
+            {
+                data.AddEducationalTraining(this.SubjectID, txtInstitution.Text, txtLocation.Text, txtEducationalTrainingDegree.Text, txtEndYear.Text, txtFieldOfStudy.Text, this.PropertyListXML);
+
+
+                txtEndYear.Text = "";
+                txtInstitution.Text = "";
+                txtEducationalTrainingDegree.Text = "";
+                           txtLocation.Text = "";
+                txtFieldOfStudy.Text = "";
+                Session["pnlInsertEducationalTraining.Visible"] = null;
+                btnEditEducation_OnClick(sender, e);
+                this.FillEducationalTrainingGrid(true);
+                if (GridViewEducation.Rows.Count == 1)
+                {
+                    Session["new"] = true;
+                    //stupid update panel bug we cant figure out.
+                    Response.Redirect(Request.Url.ToString() + "&new=true");
+                }
+                else
+                {
+                    this.FillEducationalTrainingGrid(true);
+                    upnlEditSection.Update();
+                }
+
+            }
+
+        }
+
+        protected void btnInsertClose_OnClick(object sender, EventArgs e)
+        {
+            if (txtEducationalTrainingDegree.Text != "" || txtInstitution.Text != "" || txtLocation.Text != "" || txtFieldOfStudy.Text != "")
+            {
+                Session["pnlInsertEducationalTraining.Visible"] = null;
+                data.AddEducationalTraining(this.SubjectID, txtInstitution.Text, txtLocation.Text, txtEducationalTrainingDegree.Text, txtEndYear.Text, txtFieldOfStudy.Text, this.PropertyListXML);
+
+                this.FillEducationalTrainingGrid(true);
+
+
+                if (GridViewEducation.Rows.Count == 1)
+                {
+                    Session["new"] = true;
+                    Session["newclose"] = true;
+                    //stupid update panel bug we cant figure out.
+                    Response.Redirect(Request.Url.ToString() + "&new=true");
+                }
+                else
+                {
+                    btnInsertCancel_OnClick(sender, e);
+                    upnlEditSection.Update();
+                }
+
+
+              
+            }
+
+        }
+        protected void ibUp_Click(object sender, EventArgs e)
+        {
+
+            GridViewRow row = ((ImageButton)sender).Parent.Parent as GridViewRow;
+
+            GridViewEducation.EditIndex = -1;
+            Int64 predicate = Convert.ToInt64(GridViewEducation.DataKeys[row.RowIndex].Values[1].ToString());
+            Int64 _object = Convert.ToInt64(GridViewEducation.DataKeys[row.RowIndex].Values[2].ToString());
+
+            data.MoveTripleDown(this.SubjectID, predicate, _object);
+
+            this.FillEducationalTrainingGrid(true);
+
+            upnlEditSection.Update();
+
+        }
+
+        protected void ibDown_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = ((ImageButton)sender).Parent.Parent as GridViewRow;
+            GridViewEducation.EditIndex = -1;
+
+            Int64 predicate = Convert.ToInt64(GridViewEducation.DataKeys[row.RowIndex].Values[1].ToString());
+            Int64 _object = Convert.ToInt64(GridViewEducation.DataKeys[row.RowIndex].Values[2].ToString());
+
+            data.MoveTripleUp(this.SubjectID, predicate, _object);
+
+            this.FillEducationalTrainingGrid(true);
+
+            upnlEditSection.Update();
+
+        }
+
+        /// <summary>
+        /// Get the organization for the RDF the user is trying to edit.  First find the isPrimaryPosition node and then it's sibling 
+        /// "positionInOrganization" resource path.  Then get the resource to get the name.  
+        /// </summary>
+        /// <returns>The organization from the RDF data</returns>
+        protected string GetOrganizationFromRDF()
+        {
+            string organization = string.Empty;
+            try
+            {
+                var primaryPositionNode = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/prns:isPrimaryPosition", base.Namespaces);
+                if (primaryPositionNode != null)
+                {
+                    // Make sure this is the primary position section of the RDF
+                    if (primaryPositionNode.InnerText == "true")
+                    {
+                        // Now that we have the correct node go back to the parent and iterate the children to get the org. 
+                        foreach (XmlNode childNode in primaryPositionNode.ParentNode.ChildNodes)
+                        {
+                            // Find the pos in org node
+                            if (childNode.Name == "vivo:positionInOrganization")
+                            {
+                                if (childNode.Attributes.Count > 0 && childNode.Attributes[0].Name == "rdf:resource")
+                                {
+                                    organization = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + childNode.Attributes[0].Value + "']/rdfs:label", base.Namespaces).InnerText;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+            return organization;
         }
 
         protected void FillEducationalTrainingGrid(bool refresh)
@@ -140,9 +419,30 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             string predicateuri = string.Empty;
             string method = string.Empty;
 
+            bool editexisting = false;
+            bool editaddnew = false;
+            bool editdelete = false;
+
+
+            if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditExisting").Value.ToLower() == "true" ||
+             this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
+                editexisting = true;
+
+            if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditAddNew").Value.ToLower() == "true" ||
+                this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
+                editaddnew = true;
+
+            if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditDelete").Value.ToLower() == "true" ||
+                this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
+                editdelete = true;
+
+            if (!editaddnew)
+                btnEditEducation.Visible = false;
+
             this.SubjectID = Convert.ToInt64(base.GetRawQueryStringItem("subject"));
             predicate = Convert.ToInt64(data.GetStoreNode(Server.UrlDecode(base.GetRawQueryStringItem("predicateuri")).Replace("!", "#")));
             predicateuri = base.GetRawQueryStringItem("predicateuri").Replace("!", "#");
+
 
             foreach (XmlNode property in (base.BaseData).SelectNodes("rdf:RDF/rdf:Description/prns:hasConnection/@rdf:resource", base.Namespaces))
             {
@@ -176,7 +476,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                     oldfieldofstudyvalue = string.Empty;
 
                 educationalTrainingState.Add(new EducationalTrainingState(awarduri, predicate, oldobjectid, oldinstitutionvalue, oldlocationvalue,
-                    olddegreevalue, oldenddatevalue, oldfieldofstudyvalue, false, false));
+                    olddegreevalue, oldenddatevalue, oldfieldofstudyvalue, editexisting, editdelete));
 
             }
 
@@ -203,5 +503,9 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
         private Int64 PredicateID { get; set; }
         private XmlDocument XMLData { get; set; }
         private XmlDocument PropertyListXML { get; set; }
+
+
+
+
     }
 }

@@ -476,6 +476,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Edit\Modules\CustomEditEducationalTraining\DataIO.cs" />
     <Compile Include="Edit\Modules\CustomEditLabUrl\CustomEditLabUrl.ascx.cs">
       <DependentUpon>CustomEditLabUrl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
