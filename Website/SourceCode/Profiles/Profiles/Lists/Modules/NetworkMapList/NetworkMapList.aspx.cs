@@ -135,31 +135,33 @@ namespace Profiles.Lists.Modules.NetworkMapList
 
             try
             {
-
+                DebugLogging.Log("NetworkMapList.cs - MapPlotPeople  populate cLat, cLong, sLevel");
                 string cLat = GetDefaultZoom().Latitude;
                 string cLong = GetDefaultZoom().Longitude;
                 string sLevel = GetDefaultZoom().ZoomLevel;
 
+                DebugLogging.Log("NetworkMapList.cs - MapPlotPeople  append cLong cLat") ;
                 htmlBuilder.Append("longitude = " + cLong + ";");
                 htmlBuilder.Append("latitude = " + cLat + ";");
 
 
                 // PRNS object hiearchy template 
+                DebugLogging.Log("NetworkMapList.cs - MapPlotPeople  append if (typeof");
                 htmlBuilder.AppendLine("if (typeof ProfilesRNS === \"undefined\") ProfilesRNS = {};");
                 htmlBuilder.AppendLine("if (typeof ProfilesRNS.currentPage === \"undefined\") ProfilesRNS.currentPage = {};");
                 htmlBuilder.AppendLine("if (typeof ProfilesRNS.currentPage.data === \"undefined\") ProfilesRNS.currentPage.data = {};");
 
 
-
+                DebugLogging.Log("NetworkMapList.cs - MapPlotPeople  append ProfilesRNS.currentPage.data.mapCenter");
                 htmlBuilder.AppendLine(String.Format(" ProfilesRNS.currentPage.data.mapCenter = new google.maps.LatLng({0},{1},{2});", cLat, cLong, sLevel));
 
-               // htmlBuilder.AppendLine(string.Format("zoomMap({0},{1},{2});", sLevel, cLat, cLong));
+                // htmlBuilder.AppendLine(string.Format("zoomMap({0},{1},{2});", sLevel, cLat, cLong));
 
-
+                DebugLogging.Log("NetworkMapList.cs - MapPlotPeople  GenerateGMapLocations");
                 Dictionary<string, GoogleMapLocation> gMapLocation = GenerateGMapLocations(reader);
                 WriteGMapLocations(gMapLocation, htmlBuilder);
-                
 
+                DebugLogging.Log("NetworkMapList.cs - MapPlotPeople  append ProfilesRNS.currentPage.data.network");
                 var locArrayIndex = 0;
                 htmlBuilder.AppendLine("ProfilesRNS.currentPage.data.network = [");
                 while (reader2.Read())
@@ -175,6 +177,7 @@ namespace Profiles.Lists.Modules.NetworkMapList
             }
             catch (Exception ex)
             {
+                DebugLogging.Log("NetworkMapList.cs - MapPlotPeople - " + ex.Message);
                 string err = ex.Message;
             }
             finally

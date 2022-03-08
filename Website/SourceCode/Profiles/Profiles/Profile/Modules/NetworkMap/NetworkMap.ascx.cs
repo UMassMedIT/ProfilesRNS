@@ -152,6 +152,7 @@ namespace Profiles.Profile.Modules.NetworkMap
                 }
                 catch (Exception ex)
                 {
+                    DebugLogging.Log("NetworkMap.cs - MapPlotPeople exception - " + ex.Message);
                     string err = ex.Message;
                 }
                 finally
@@ -165,6 +166,7 @@ namespace Profiles.Profile.Modules.NetworkMap
                 htmlBuilder.AppendLine("</script>");
 
                 googleCode = htmlBuilder.ToString();
+                
             }
 
             private static string writeTableLocations(Dictionary<string, GoogleMapLocation> locationsDict)
