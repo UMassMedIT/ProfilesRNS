@@ -116,7 +116,7 @@ stages:
              - task: CopyFiles@1
                inputs:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
-                Contents: 'web.dev.config'
+                Contents: 'web.dev-cloud.config'
                 TargetFolder: '$(Parameters.WebsitePhysicalPath)'
              - task: FileTransform@1
                inputs:
