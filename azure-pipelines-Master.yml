@@ -72,7 +72,7 @@ stages:
         ProfilesDB: "$(ProfilesDB_Dev)"
 
     environment: 
-        name: Development
+        name: Test
         resourceType: VirtualMachine
         tags: Profiles_Test_Azure 
         # Tags needs to be updated per Pipeline
