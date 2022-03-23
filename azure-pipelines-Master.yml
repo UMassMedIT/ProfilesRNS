@@ -6,6 +6,7 @@ variables:
   Parameters.solution: '**/Website/SourceCode/Profiles/Profiles.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  Parameters.Websitename: 'Default Web Site'
   Parameters.Artifactname: 'ProfilesRNS_Drop'
   Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
   Parameters.packagetype: '*.zip'
