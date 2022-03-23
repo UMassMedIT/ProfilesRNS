@@ -1,13 +1,7 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
-
 trigger:
- branches:
-   include:
-     - Master
-
+  branches:
+    include:
+    - Master
 variables:
   Parameters.solution: '**/Website/SourceCode/Profiles/Profiles.sln'
   buildPlatform: 'Any CPU'
@@ -15,10 +9,9 @@ variables:
   Parameters.Artifactname: 'ProfilesRNS_Drop'
   Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
   Parameters.packagetype: '*.zip'
-  #Parameters.Websitename: ' .umassmed.edu'
-  #Parameters.VirtualApplication: 'Profiles'
+  Parameters.VirtualApplication: 'Profiles'
+  Parameters.WebsitePhysicalPath: 'C:\WebContent\ProfilesRNS'
   Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
-
 
 
 stages:
@@ -28,7 +21,6 @@ stages:
     pool:
       name: Azure Pipelines
       vmImage: windows-latest
-      # vmImage requires update per pipeline
       demands:
       - msbuild
       - visualstudio
@@ -38,7 +30,6 @@ stages:
       displayName: Use NuGet 4.4.1
       inputs:
         versionSpec: 4.4.1
-
     - task: NuGetCommand@2
       displayName: NuGet restore
       inputs:
@@ -52,7 +43,6 @@ stages:
         platform: $(BuildPlatform)
         configuration: $(BuildConfiguration)
         msbuildArgs: $(Parameters.msbuildArgs)
-
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build/TransformConfig'
       inputs:
@@ -60,60 +50,42 @@ stages:
         TargetFolder: $(Build.ArtifactStagingDirectory)/build/TransformConfig
         Contents: $(Parameters.Contents)
         flattenFolders: true
-        
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
         PathtoPublish: $(build.artifactstagingdirectory)/build/Profiles.zip
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
-
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
         PathtoPublish: $(build.artifactstagingdirectory)/build/TransformConfig
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
-
-- stage: Test_Deploy  
+- stage: Test_Deploy
   jobs:
-    - deployment: DeployProfiles_Test
-      displayName: DeployProfiles_Test
-      #pool:                # see pool schema
-        #name: SSP Deploy
-        #demands: 
-      #dependsOn: Build
-      #condition: succeeded('Build')
-      continueOnError: true                # 'true' if future jobs should run even if this job fails; defaults to 'false'
-      # container: containerReference # container to run the job inside
-      #services: { string: string | container } # container resources to run as a service container
-      timeoutInMinutes: 10        # how long to run the job before automatically cancelling
-      #cancelTimeoutInMinutes: nonEmptyString  # how much time to give 'run always even if cancelled tasks' before killing them
-      #variables:
+  - deployment: DeployProfiles_Test
+    displayName: DeployProfiles_Test
+    continueOnError: true
+    timeoutInMinutes: 10
+    variables:
+        GoogleMapsKey: "$(GoogleMapskey_Value)"
+        ProfilesDB: "$(ProfilesDB_Dev)"
 
-      environment: 
+    environment: 
         name: Development
         resourceType: VirtualMachine
-        tags: Profiles_test
+        tags: Profiles_Test_Azure 
         # Tags needs to be updated per Pipeline
-      strategy: 
+    strategy: 
         runOnce:
           deploy:
             steps:
 
-             - task: IISWebAppManagementOnMachineGroup@0
-               displayName: 'IIS website config'
-               inputs:
-                 IISDeploymentType: 'IISWebsite'
-                 ActionIISWebsite: 'CreateOrUpdateWebsite'
-                 WebsiteName: 'Default Web Site'
-                 WebsitePhysicalPath: 'D:\WebContent\Profiles'
-                 WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
-
              - task: IISWebAppDeploymentOnMachineGroup@0
                displayName: 'IIS Web site Deploy'
                inputs:
-                 WebSiteName: 'Default Web Site'
+                 WebSiteName: '$(Parameters.Websitename)'
                  Package: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)/$(Parameters.packagetype)'
                  RemoveAdditionalFilesFlag: true
                  XmlVariableSubstitution: true
@@ -122,10 +94,11 @@ stages:
                inputs:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
                 Contents: 'web.dev.config'
-                TargetFolder: 'D:\WebContent\Profiles'
+                 #need update once the web.test.config file is created.
+                TargetFolder: '$(Parameters.WebsitePhysicalPath)'
              - task: FileTransform@1
                inputs:
-                folderPath: 'D:\WebContent\Profiles'
+                folderPath: '$(Parameters.WebsitePhysicalPath)'
                 #FolderPath is pipeline specific
                 enableXmlTransform: true
                 xmlTransformationRules: '-transform web.Dev.config -xml web.config'
