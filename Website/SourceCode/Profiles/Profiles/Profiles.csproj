@@ -474,6 +474,9 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Web.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Edit\Modules\CustomEditEducationalTraining\DataIO.cs" />
@@ -2282,7 +2285,7 @@
     <None Include="Properties\PublishProfiles\Local IIS Folder.pubxml" />
     <None Include="Properties\PublishProfiles\Profiles DEV - profilesbetaweb.pubxml" />
     <None Include="Properties\PublishProfiles\Profiles PROD - ProfilesWebPrd.pubxml" />
-    <None Include="Properties\PublishProfiles\Profiles STAGING - profilesstg.pubxml" />
+    <None Include="Properties\PublishProfiles\Profiles TEST - profilesstg.pubxml" />
     <None Include="Properties\PublishProfiles\profilesbetaweb.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -2307,9 +2310,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Staging.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
@@ -2339,7 +2339,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
     <OutputPath>bin\</OutputPath>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
