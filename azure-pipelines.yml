@@ -115,14 +115,14 @@ stages:
              - task: CopyFiles@1
                inputs:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
-                Contents: 'web.dev.config'
+                Contents: 'web.dev-cloud.config'
                 TargetFolder: '$(Parameters.WebsitePhysicalPath)'
              - task: FileTransform@1
                inputs:
                 folderPath: '$(Parameters.WebsitePhysicalPath)'
                 #FolderPath is pipeline specific
                 enableXmlTransform: true
-                xmlTransformationRules: '-transform web.Dev.config -xml web.config'
+                xmlTransformationRules: '-transform web.dev-cloud.config -xml web.config'
 
              - task: DeleteFiles@1
                inputs:
