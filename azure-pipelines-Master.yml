@@ -70,7 +70,8 @@ stages:
     continueOnError: true
     timeoutInMinutes: 10
     variables:
-        ProfilesDB: "$(ProfilesDB_Dev)"
+        GoogleMapsKey: "$(GoogleMapskey_Value)"
+        ProfilesDB: "$(ProfilesDB_Test)"
 
     environment: 
         name: Test
