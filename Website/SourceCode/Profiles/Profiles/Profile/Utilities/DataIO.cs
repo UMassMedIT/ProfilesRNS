@@ -997,16 +997,20 @@ namespace Profiles.Profile.Utilities
             Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation link = new Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation();
             try
             {
+                DebugLogging.Log("GetGoogleMapZoomLinks - Attempting to Load ~/Profile/Modules/NetworkMap/config.xml");
                 String Filepath = HttpContext.Current.Server.MapPath("~/Profile/Modules/NetworkMap/config.xml");
                 vals.Load(Filepath);
                 //vals.Load(Root.Domain + "/Profile/Modules/NetworkMap/config.xml");
             }
             catch (Exception e)
             {
+                DebugLogging.Log("GetGoogleMapZoomLinks - exception " + e.Message);
                 throw new Exception(e.Message);
             }
-
-            foreach (XmlElement x in vals.SelectNodes("mapconfig/Zoom"))
+            DebugLogging.Log("GetGoogleMapZoomLinks - Iterate for mapconfig/Zoom");
+            var zoomNodes = vals.SelectNodes("mapconfig/Zoom");
+            DebugLogging.Log("GetGoogleMapZoomLinks - ZoomNodes count: " + zoomNodes.Count);
+            foreach (XmlElement x in zoomNodes)
             {
 
                 link.Latitude = x.SelectSingleNode("CenterLat").InnerText;
@@ -1015,6 +1019,8 @@ namespace Profiles.Profile.Utilities
                 link.Label = x.SelectSingleNode("Label").InnerText;
                 link.SortOrder = x.SelectSingleNode("SortOrder").InnerText;
                 link.DefaultLevel = x.SelectSingleNode("DefaultLevel").InnerText;
+
+                DebugLogging.Log(string.Format("GetGoogleMapZoomLinks - Add link Latitude: {0}, Long: {1}", link.Latitude, link.Longitude));
 
                 linklist.Add(link);
                 link = new Profiles.Profile.Modules.NetworkMap.NetworkMap.GoogleMapLocation();

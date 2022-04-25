@@ -15,7 +15,7 @@ variables:
   Parameters.Artifactname: 'ProfilesRNS_Drop'
   Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
   Parameters.packagetype: '*.zip'
-  Parameters.Websitename: 'ProfilesRNS_Dev'
+  Parameters.Websitename: 'Default Web Site'
   Parameters.VirtualApplication: 'Profiles'
   Parameters.WebsitePhysicalPath: 'C:\WebContent\ProfilesRNS_Dev'
   Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
@@ -80,8 +80,16 @@ stages:
   jobs:
     - deployment: DeployProfiles_Dev
       displayName: DeployProfiles_Dev
-      continueOnError: false                # 'true' if future jobs should run even if this job fails; defaults to 'false'
+      #pool:                # see pool schema
+        #name: SSP Deploy
+        #demands: 
+      #dependsOn: Build
+      #condition: succeeded('Build')
+      continueOnError: true                # 'true' if future jobs should run even if this job fails; defaults to 'false'
+      # container: containerReference # container to run the job inside
+      #services: { string: string | container } # container resources to run as a service container
       timeoutInMinutes: 10        # how long to run the job before automatically cancelling
+      #cancelTimeoutInMinutes: nonEmptyString  # how much time to give 'run always even if cancelled tasks' before killing them
       variables:
         GoogleMapsKey: "$(GoogleMapskey_Value)"
         ProfilesDB: "$(ProfilesDB_Dev)"
@@ -95,15 +103,6 @@ stages:
         runOnce:
           deploy:
             steps:
-
-             - task: IISWebAppManagementOnMachineGroup@0
-               displayName: 'IIS website config'
-               inputs:
-                 IISDeploymentType: 'IISWebsite'
-                 ActionIISWebsite: 'CreateOrUpdateWebsite'
-                 WebsiteName: '$(Parameters.Websitename)'
-                 WebsitePhysicalPath: '$(Parameters.WebsitePhysicalPath)'
-                 WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
 
              - task: IISWebAppDeploymentOnMachineGroup@0
                displayName: 'IIS Web site Deploy'
@@ -123,7 +122,7 @@ stages:
                 folderPath: '$(Parameters.WebsitePhysicalPath)'
                 #FolderPath is pipeline specific
                 enableXmlTransform: true
-                xmlTransformationRules: '-transform web.Dev.config -xml web.config'
+                xmlTransformationRules: '-transform web.dev.config -xml web.config'
 
              - task: DeleteFiles@1
                inputs:

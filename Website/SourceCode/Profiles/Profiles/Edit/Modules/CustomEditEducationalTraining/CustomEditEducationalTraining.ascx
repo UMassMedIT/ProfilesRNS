@@ -20,6 +20,12 @@
         <asp:Panel runat="server" ID="pnlSecurityOptions">
             <security:Options runat="server" ID="securityOptions"></security:Options>
         </asp:Panel>
+        <asp:Panel runat="server" ID="pnlEditEducation">
+            <div class="EditMenuItem">
+                <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnEditEducation_OnClick" ID="imbAddArrow" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
+                <asp:LinkButton ID="btnEditEducation" runat="server" OnClick="btnEditEducation_OnClick">Add Education and Training</asp:LinkButton>
+            </div>
+        </asp:Panel>      
         <asp:Panel ID="pnlInsertEducationalTraining" runat="server" CssClass="EditPanel" Visible="false">
             <div style="display: inline-flex;">
                 <div>
@@ -43,10 +49,23 @@
                     <asp:TextBox ID="txtFieldOfStudy" runat="server" MaxLength="100" Width="175px" />
                 </div>
             </div>
+            <div class="actionbuttons">
+                <asp:LinkButton ID="btnInsertEducationalTraining2" runat="server" CausesValidation="False" OnClick="btnInsertClose_OnClick"
+                    Text="Save"/>
+                &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
+                                         <asp:LinkButton ID="btnInsertEducationalTraining" runat="server" CausesValidation="False" OnClick="btnInsert_OnClick"
+                                             Text="Save and add another"/>
+                &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
+                                        <asp:LinkButton ID="btnInsertCancel" runat="server" CausesValidation="False" OnClick="btnInsertCancel_OnClick"
+                                            Text="Cancel"/>
+            </div>
+
         </asp:Panel>
         <div class="editPage">
             <asp:GridView ID="GridViewEducation" runat="server" AutoGenerateColumns="False" DataKeyNames="SubjectURI,Predicate, Object" GridLines="Both"
-                 OnRowDataBound="GridViewEducation_RowDataBound"
+                OnRowCancelingEdit="GridViewEducation_RowCancelingEdit" OnRowDataBound="GridViewEducation_RowDataBound"
+                OnRowDeleting="GridViewEducation_RowDeleting" OnRowEditing="GridViewEducation_RowEditing"
+                OnRowUpdated="GridViewEducation_RowUpdated" OnRowUpdating="GridViewEducation_RowUpdating"
                 CssClass="editBody">
                 <HeaderStyle CssClass="topRow" />
                 <Columns>
@@ -90,6 +109,35 @@
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("FieldOfStudy") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" HeaderText="Action" ItemStyle-CssClass="alignCenterAction">
+                        <EditItemTemplate>                            
+                                <asp:LinkButton ID="lnkUpdate" runat="server"
+                                    CausesValidation="True" CommandName="Update" Text="Save"/>
+                                &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp
+                                <asp:LinkButton ID="lnkCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"/>                            
+                        </EditItemTemplate>
+                        <ItemTemplate>                            
+                                <span>
+                                    <asp:ImageButton OnClick="ibUp_Click" runat="server" CommandArgument="up" CommandName="action"
+                                        ID="ibUp" ImageUrl="~/Edit/Images/icon_up.gif" AlternateText="Move Up" />
+                                    <asp:ImageButton runat="server" ID="ibUpGray" Enabled="false" Visible="false" ImageUrl="~/Edit/Images/Icon_rounded_ArrowGrayUp.png" AlternateText="Move Up" />
+                                </span>
+                                <span>
+                                    <asp:ImageButton runat="server" OnClick="ibDown_Click" ID="ibDown" CommandArgument="down"
+                                        CommandName="action" ImageUrl="~/Edit/Images/icon_down.gif" AlternateText="Move Down" />
+                                    <asp:ImageButton runat="server" ID="ibDownGray" Enabled="false" Visible="false" ImageUrl="~/Edit/Images/Icon_rounded_ArrowGrayDown.png" AlternateText="Move Down" />
+                                </span>
+                                <span>
+                                    <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/icon_edit.gif"
+                                        CausesValidation="False" CommandName="Edit" AlternateText="Edit"></asp:ImageButton>
+                                </span>
+                                <span>
+                                    <asp:ImageButton ID="lnkDelete" runat="server" ImageUrl="~/Edit/Images/icon_delete.gif"
+                                        CommandName="Delete" OnClientClick="Javascript:return confirm('Are you sure you want to delete this entry?');"
+                                        AlternateText="Delete"></asp:ImageButton>
+                                </span>                            
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
