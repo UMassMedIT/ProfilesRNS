@@ -136,6 +136,7 @@ namespace Profiles.LoginProcessShib.Modules
             catch (Exception exception)
             {
                 ShibUtil.Log(loggingPrefix + " Exception Thrown " + exception.Message);
+                Response.Write(exception.Message);
             }
         }
 
