@@ -67,68 +67,75 @@ namespace Profiles.LoginProcessShib.Modules
         private void processShibbolethResponse()
         {
             string loggingPrefix = "LoginProcessShib - Method processShibbolethResponse - ";
-            ShibUtil.Log(loggingPrefix + "Starting");
-
-            /* Temp logging of headers */
-            var headers = String.Empty;
-            foreach (var key in Request.Headers.AllKeys)
+            try
             {
-                headers += key + "=" + Request.Headers[key] + Environment.NewLine;
-            }
-            ShibUtil.Log(loggingPrefix + " headers - " + headers);
+                ShibUtil.Log(loggingPrefix + "Starting");
 
-            /* Temp logging of Request.Form */
-            string keysAndFormValues = String.Empty;
-            foreach (string key in Request.Form.Keys)
-            {
-                keysAndFormValues += key + ": " + Request.Form[key] + " | ";
-            }
-            ShibUtil.Log(loggingPrefix + "keys and form values - " + keysAndFormValues);
-
-            // added by Eric
-            // If they specify an Idp, then check that they logged in from the configured IDP
-            bool authenticated = false;
-
-            ShibUtil.Log(loggingPrefix + "ShibIdentityProvider from Request.Headers.Get:  " + Request.Headers.Get("ShibIdentityProvider"));
-
-            if (shibAppSettings.ShibIdentityProviderAppSettingValue == null ||
-                shibAppSettings.ShibIdentityProviderAppSettingValue.ToString().Equals(Request.Headers.Get("ShibIdentityProvider").ToString(), StringComparison.InvariantCultureIgnoreCase))
-            {
-
-                ShibUtil.Log(loggingPrefix + "Authenticated check header " + Request.Headers.Get(shibAppSettings.ShibUsernameHeaderAppSettingValue));
-                ShibUtil.Log(loggingPrefix + "Authenticated check request " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue]);
-                String userName = Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString(); //"025693078";
-
-                if (!string.IsNullOrEmpty(userName))
+                /* Temp logging of headers */
+                var headers = String.Empty;
+                foreach (var key in Request.Headers.AllKeys)
                 {
-                    Login.Utilities.DataIO data = new Login.Utilities.DataIO();
-                    User user = new User();
+                    headers += key + "=" + Request.Headers[key] + Environment.NewLine;
+                }
+                ShibUtil.Log(loggingPrefix + " headers - " + headers);
 
-                    user.UserName = userName;
-                    ShibUtil.Log(loggingPrefix + "Calling - data.UserLoginExternal with userName: " + userName);
-                    if (data.UserLoginExternal(ref user))
+                /* Temp logging of Request.Form */
+                string keysAndFormValues = String.Empty;
+                foreach (string key in Request.Form.Keys)
+                {
+                    keysAndFormValues += key + ": " + Request.Form[key] + " | ";
+                }
+                ShibUtil.Log(loggingPrefix + "keys and form values - " + keysAndFormValues);
+
+                // added by Eric
+                // If they specify an Idp, then check that they logged in from the configured IDP
+                bool authenticated = false;
+
+                ShibUtil.Log(loggingPrefix + "ShibIdentityProvider from Request.Headers.Get:  " + Request.Headers.Get("ShibIdentityProvider"));
+
+                if (shibAppSettings.ShibIdentityProviderAppSettingValue == null ||
+                    shibAppSettings.ShibIdentityProviderAppSettingValue.ToString().Equals(Request.Headers.Get("ShibIdentityProvider").ToString(), StringComparison.InvariantCultureIgnoreCase))
+                {
+
+                    ShibUtil.Log(loggingPrefix + "Authenticated check header " + Request.Headers.Get(shibAppSettings.ShibUsernameHeaderAppSettingValue));
+                    ShibUtil.Log(loggingPrefix + "Authenticated check request " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue]);
+                    String userName = Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString(); //"025693078";
+
+                    if (!string.IsNullOrEmpty(userName))
                     {
-                        ShibUtil.Log(loggingPrefix + "Authenticated with profile access " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString());
-                        authenticated = true;
-                    }
-                    else
-                    {
-                        ShibUtil.Log(loggingPrefix + "Authenticated no profile access " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString());
-                        authenticated = false;
+                        Login.Utilities.DataIO data = new Login.Utilities.DataIO();
+                        User user = new User();
+
+                        user.UserName = userName;
+                        ShibUtil.Log(loggingPrefix + "Calling - data.UserLoginExternal with userName: " + userName);
+                        if (data.UserLoginExternal(ref user))
+                        {
+                            ShibUtil.Log(loggingPrefix + "Authenticated with profile access " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString());
+                            authenticated = true;
+                        }
+                        else
+                        {
+                            ShibUtil.Log(loggingPrefix + "Authenticated no profile access " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString());
+                            authenticated = false;
+                        }
                     }
                 }
+                if (!authenticated)
+                {
+                    this.panelLoginSuccessful.Visible = false;
+                    this.panelLoginFailed.Visible = true;
+                    this.cmdProceedToSearch.Visible = false;
+                }
+                else
+                {
+                    this.panelLoginSuccessful.Visible = true;
+                    this.panelLoginFailed.Visible = false;
+                    this.cmdProceedToSearch.Visible = true;
+                }
             }
-            if (!authenticated)
+            catch (Exception exception)
             {
-                this.panelLoginSuccessful.Visible = false;
-                this.panelLoginFailed.Visible = true;
-                this.cmdProceedToSearch.Visible = false;
-            }
-            else
-            {
-                this.panelLoginSuccessful.Visible = true;
-                this.panelLoginFailed.Visible = false;
-                this.cmdProceedToSearch.Visible = true;
+                ShibUtil.Log(loggingPrefix + " Exception Thrown " + exception.Message);
             }
         }
 
