@@ -104,6 +104,13 @@ stages:
           deploy:
             steps:
 
+             - task: IISWebAppManagementOnMachineGroup@0
+               displayName: 'Stop Profiles AppPool'
+               inputs:
+                 IISDeploymentType: 'IISApplicationPool'
+                 ActionIISApplicationPool: 'StopAppPool'
+                 StartStopRecycleAppPoolName: 'ProfilesRNS_Dev'
+
              - task: IISWebAppDeploymentOnMachineGroup@0
                displayName: 'IIS Web site Deploy'
                inputs:
@@ -124,6 +131,12 @@ stages:
                 enableXmlTransform: true
                 xmlTransformationRules: '-transform web.dev.config -xml web.config'
 
+             - task: IISWebAppManagementOnMachineGroup@0
+               displayName: 'Start Profiles AppPool'
+               inputs:
+                IISDeploymentType: 'IISApplicationPool'
+                ActionIISApplicationPool: 'StartAppPool'
+                StartStopRecycleAppPoolName: 'ProfilesRNS_Dev'
              - task: DeleteFiles@1
                inputs:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
