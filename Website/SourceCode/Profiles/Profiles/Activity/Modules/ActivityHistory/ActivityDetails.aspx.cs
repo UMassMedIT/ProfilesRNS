@@ -56,25 +56,29 @@ namespace Profiles.Activity
         {
             Profiles.Activity.Utilities.DataIO data = new Profiles.Activity.Utilities.DataIO();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            List<Profiles.Activity.Utilities.Activity> activities = null;
-            if (newActivities)
+            List<Profiles.Activity.Utilities.Activity> activities = new List<Profiles.Activity.Utilities.Activity>();
+            try
             {
-                // get the latest and remove any that we already have
-                activities = new List<Profiles.Activity.Utilities.Activity>();
-                // we should probably make the data function smart enough to not return a bunch we already have
-                // to save the loop
-                foreach (Profiles.Activity.Utilities.Activity activity in data.GetActivity(-1, count, true))
+                if (newActivities)
                 {
-                    if (activity.Id > referenceActivityId)
+                    // get the latest and remove any that we already have
+                    // we should probably make the data function smart enough to not return a bunch we already have
+                    // to save the loop
+                    foreach (Profiles.Activity.Utilities.Activity activity in data.GetActivity(-1, count, true))
                     {
-                        activities.Add(activity);
+                        if (activity.Id > referenceActivityId)
+                        {
+                            activities.Add(activity);
+                        }
                     }
                 }
+                else
+                {
+                    activities = data.GetActivity(referenceActivityId, count, true);
+                }
             }
-            else
-            {
-                activities = data.GetActivity(referenceActivityId, count, true);
-            }
+            catch { }
+
             return serializer.Serialize(activities);
         }
     
