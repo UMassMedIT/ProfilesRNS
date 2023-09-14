@@ -97,7 +97,7 @@ stages:
       environment: 
         name: Development
         resourceType: VirtualMachine
-        tags: Profiles_Dev_Azure 
+        tags: Profiles_Dev_Terraform 
         # Tags needs to be updated per Pipeline
       strategy: 
         runOnce:
