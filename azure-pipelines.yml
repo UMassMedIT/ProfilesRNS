@@ -15,7 +15,7 @@ variables:
   Parameters.Artifactname: 'ProfilesRNS_Drop'
   Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
   Parameters.packagetype: '*.zip'
-  Parameters.Websitename: 'Default Web Site'
+  Parameters.Websitename: 'ProfilesRNS_Dev'
   Parameters.VirtualApplication: 'Profiles'
   Parameters.WebsitePhysicalPath: 'C:\WebContent\ProfilesRNS_Dev'
   Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
