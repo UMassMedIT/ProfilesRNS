@@ -98,8 +98,7 @@ namespace Profiles.LoginProcessShib.Modules
                 {
 
                     ShibUtil.Log(loggingPrefix + "Authenticated check header " + Request.Headers.Get(shibAppSettings.ShibUsernameHeaderAppSettingValue));
-                    ShibUtil.Log(loggingPrefix + "Authenticated check request " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue]);
-                    String userName = Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString(); //"025693078";
+                    var userName = Request.Headers.Get(shibAppSettings.ShibUsernameHeaderAppSettingValue).ToString(); 
 
                     if (!string.IsNullOrEmpty(userName))
                     {
@@ -110,12 +109,12 @@ namespace Profiles.LoginProcessShib.Modules
                         ShibUtil.Log(loggingPrefix + "Calling - data.UserLoginExternal with userName: " + userName);
                         if (data.UserLoginExternal(ref user))
                         {
-                            ShibUtil.Log(loggingPrefix + "Authenticated with profile access " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString());
+                            ShibUtil.Log(loggingPrefix + "Authenticated with profile access " + userName.ToString());
                             authenticated = true;
                         }
                         else
                         {
-                            ShibUtil.Log(loggingPrefix + "Authenticated no profile access " + Request[shibAppSettings.ShibUsernameHeaderAppSettingValue].ToString());
+                            ShibUtil.Log(loggingPrefix + "Authenticated no profile access " + userName.ToString());
                             authenticated = false;
                         }
                     }
