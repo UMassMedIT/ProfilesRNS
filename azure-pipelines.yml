@@ -125,6 +125,13 @@ stages:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
                 Contents: 'web.dev.config'
                 TargetFolder: '$(Parameters.WebsitePhysicalPath)'
+                
+#             - task: AzureKeyVault@1
+#               inputs:
+#                 azureSubscription: 'YourServiceConnection' # Replace with your service connection
+#                 KeyVaultName: 'YourKeyVaultName' # Replace with your KeyVault name
+#                 SecretsFilter: '*' # or list the specific secrets you need
+
              - task: FileTransform@1
                inputs:
                 folderPath: '$(Parameters.WebsitePhysicalPath)'
