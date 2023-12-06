@@ -126,11 +126,17 @@ stages:
                 Contents: 'web.dev.config'
                 TargetFolder: '$(Parameters.WebsitePhysicalPath)'
                 
-#             - task: AzureKeyVault@1
-#               inputs:
-#                 azureSubscription: 'YourServiceConnection' # Replace with your service connection
-#                 KeyVaultName: 'YourKeyVaultName' # Replace with your KeyVault name
-#                 SecretsFilter: '*' # or list the specific secrets you need
+             - task: AzureKeyVault@1
+               inputs:
+                 azureSubscription: 'Azure-Production' # Replace with your service connection
+                 KeyVaultName: 'umwazkvprofilesshared'
+                 SecretsFilter: 'ORCID-ClientID'
+                 RunAsPreJob: false
+
+             - powershell: |
+                $configFile = "$(Parameters.WebsitePhysicalPath)\web.config" 
+                (Get-Content $configFile) -replace '__ORCID.ClientID__', '$(ORCID-ClientID)' | Set-Content $configFile
+               displayName: 'Replace Tokens in web.config'
 
              - task: FileTransform@1
                inputs:
