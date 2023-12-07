@@ -134,7 +134,7 @@ stages:
                  RunAsPreJob: false
 
              - powershell: |
-                $configFile = "$(Parameters.WebsitePhysicalPath)\web.config" 
+                $configFile = "$(Parameters.WebsitePhysicalPath)\web.dev.config" 
                 (Get-Content $configFile) -replace '__ORCIDClientID__', "$(ORCIDClientID)" | Set-Content $configFile
                 (Get-Content $configFile) -replace '__ORCIDClientSecret__', "$(ORCIDClientSecret)" | Set-Content $configFile
                 (Get-Content $configFile) -replace '__GoogleMapsKey__', "$(GoogleMapsKey)" | Set-Content $configFile
