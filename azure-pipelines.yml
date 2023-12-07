@@ -130,13 +130,14 @@ stages:
                inputs:
                  azureSubscription: 'Azure-Production' # Replace with your service connection
                  KeyVaultName: 'umwazkvprofilesshared'
-                 SecretsFilter: 'ORCIDClientID, ORCIDClientSecret'
+                 SecretsFilter: 'ORCIDClientID, ORCIDClientSecret, GoogleMapsKey'
                  RunAsPreJob: false
 
              - powershell: |
                 $configFile = "$(Parameters.WebsitePhysicalPath)\web.config" 
                 (Get-Content $configFile) -replace '__ORCIDClientID__', '$(ORCIDClientID)' | Set-Content $configFile
                 (Get-Content $configFile) -replace '__ORCIDClientSecret__', '$(ORCIDClientSecret)' | Set-Content $configFile
+                (Get-Content $configFile) -replace '__GoogleMapsKey__', '$(GoogleMapsKey)' | Set-Content $configFile
                displayName: 'Replace Tokens in web.config'
 
              - task: FileTransform@1
