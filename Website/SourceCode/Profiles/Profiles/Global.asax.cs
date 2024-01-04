@@ -19,8 +19,6 @@ using System.Web.Compilation;
 using System.Diagnostics;
 
 using Profiles.Framework.Utilities;
-using Microsoft.ApplicationInsights.Extensibility;
-using System.Configuration;
 
 namespace Profiles
 {
@@ -64,13 +62,6 @@ namespace Profiles
             
             Framework.Utilities.DebugLogging.Log("SESSION CREATED for: " + session.Session().SessionID);
             session = null;
-
-            // Set app insights connection string if configured. 
-            string appInsightsConnString = ConfigurationManager.AppSettings["AppInsights.ConnectionString"];
-            if (!string.IsNullOrEmpty(appInsightsConnString))
-            {
-                TelemetryConfiguration.Active.ConnectionString = appInsightsConnString;
-            }
         }
 
 
