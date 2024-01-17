@@ -2,11 +2,12 @@ trigger:
   branches:
     include:
     - Master
+
 variables:
   Parameters.solution: '**/Website/SourceCode/Profiles/Profiles.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  Parameters.Websitename: 'Default Web Site'
+  Parameters.Websitename: 'ProfilesRNS'
   Parameters.Artifactname: 'ProfilesRNS_Drop'
   Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
   Parameters.packagetype: '*.zip'
@@ -27,16 +28,19 @@ stages:
       - visualstudio
       - vstest
     steps:
+
     - task: NuGetToolInstaller@0
       displayName: Use NuGet 4.4.1
       inputs:
         versionSpec: 4.4.1
+
     - task: NuGetCommand@2
       displayName: NuGet restore
       inputs:
         command: 'restore'
         restoreSolution: '$(Parameters.solution)'
         feedsToUse: 'config'
+
     - task: VSBuild@1
       displayName: Build solution
       inputs:
@@ -44,6 +48,7 @@ stages:
         platform: $(BuildPlatform)
         configuration: $(BuildConfiguration)
         msbuildArgs: $(Parameters.msbuildArgs)
+
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/build/TransformConfig'
       inputs:
@@ -51,18 +56,21 @@ stages:
         TargetFolder: $(Build.ArtifactStagingDirectory)/build/TransformConfig
         Contents: $(Parameters.Contents)
         flattenFolders: true
+
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
         PathtoPublish: $(build.artifactstagingdirectory)/build/Profiles.zip
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
+
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
         PathtoPublish: $(build.artifactstagingdirectory)/build/TransformConfig
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
+
 - stage: Test_Deploy
   jobs:
   - deployment: DeployProfiles_Test
@@ -103,6 +111,21 @@ stages:
                 Contents: 'web.Test.config'
                  #need update once the web.test.config file is created.
                 TargetFolder: '$(Parameters.WebsitePhysicalPath)'
+
+             - task: AzureKeyVault@1
+               inputs:
+                 azureSubscription: 'Azure-Production' # Replace with your service connection
+                 KeyVaultName: 'umwazkvprofilesshared'
+                 SecretsFilter: 'ORCIDClientID, ORCIDClientSecret, GoogleMapsKey'
+                 RunAsPreJob: false
+
+             - powershell: |
+                $configFile = "$(Parameters.WebsitePhysicalPath)\web.dev.config" 
+                (Get-Content $configFile) -replace '__ORCIDClientID__', "$(ORCIDClientID)" | Set-Content $configFile
+                (Get-Content $configFile) -replace '__ORCIDClientSecret__', "$(ORCIDClientSecret)" | Set-Content $configFile
+                (Get-Content $configFile) -replace '__GoogleMapsKey__', "$(GoogleMapsKey)" | Set-Content $configFile
+               displayName: 'Replace Tokens in web.config'
+
              - task: FileTransform@1
                inputs:
                 folderPath: '$(Parameters.WebsitePhysicalPath)'
