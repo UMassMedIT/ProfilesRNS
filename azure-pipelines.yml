@@ -15,7 +15,6 @@ variables:
   Parameters.WebsitePhysicalPath: 'E:\WebContent\ProfilesRNS_Dev'
   Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
 
-
 stages:
 - stage: Build_Application
   jobs:
@@ -84,7 +83,7 @@ stages:
       environment: 
         name: Development
         resourceType: VirtualMachine
-        tags: Profiles_Dev_Azure 
+        tags: Profiles_Dev_Terraform
         # Tags needs to be updated per Pipeline
       strategy: 
         runOnce:
