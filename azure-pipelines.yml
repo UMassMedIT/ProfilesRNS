@@ -1,8 +1,3 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
-
 trigger:
  branches:
    include:
@@ -15,11 +10,10 @@ variables:
   Parameters.Artifactname: 'ProfilesRNS_Drop'
   Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
   Parameters.packagetype: '*.zip'
-  Parameters.Websitename: 'ProfilesRNS_Dev'
+  Parameters.Websitename: 'ProfilesRNS'
   Parameters.VirtualApplication: 'Profiles'
   Parameters.WebsitePhysicalPath: 'E:\WebContent\ProfilesRNS_Dev'
   Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
-
 
 
 stages:
@@ -29,17 +23,16 @@ stages:
     pool:
       name: Azure Pipelines
       vmImage: windows-latest
-      # vmImage requires update per pipeline
       demands:
       - msbuild
       - visualstudio
       - vstest
     steps:
+
     - task: NuGetToolInstaller@0
-      displayName: Use NuGet 6.6.1
+      displayName: Use NuGet 4.4.1
       inputs:
-        versionSpec: '6.6.1'
-        checkLatest: true
+        versionSpec: 4.4.1
 
     - task: NuGetCommand@2
       displayName: NuGet restore
@@ -47,6 +40,7 @@ stages:
         command: 'restore'
         restoreSolution: '$(Parameters.solution)'
         feedsToUse: 'config'
+
     - task: VSBuild@1
       displayName: Build solution
       inputs:
@@ -62,7 +56,7 @@ stages:
         TargetFolder: $(Build.ArtifactStagingDirectory)/build/TransformConfig
         Contents: $(Parameters.Contents)
         flattenFolders: true
-        
+
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifact
       inputs:
@@ -77,20 +71,12 @@ stages:
         ArtifactName: $(Parameters.ArtifactName)
       condition: succeededOrFailed()
 
-- stage: Development  
+- stage: Development_Deploy
   jobs:
     - deployment: DeployProfiles_Dev
       displayName: DeployProfiles_Dev
-      #pool:                # see pool schema
-        #name: SSP Deploy
-        #demands: 
-      #dependsOn: Build
-      #condition: succeeded('Build')
-      continueOnError: true                # 'true' if future jobs should run even if this job fails; defaults to 'false'
-      # container: containerReference # container to run the job inside
-      #services: { string: string | container } # container resources to run as a service container
-      timeoutInMinutes: 10        # how long to run the job before automatically cancelling
-      #cancelTimeoutInMinutes: nonEmptyString  # how much time to give 'run always even if cancelled tasks' before killing them
+      continueOnError: true 
+      timeoutInMinutes: 10 
       variables:
         GoogleMapsKey: "$(GoogleMapskey_Value)"
         ProfilesDB: "$(ProfilesDB_Dev)"
@@ -98,7 +84,7 @@ stages:
       environment: 
         name: Development
         resourceType: VirtualMachine
-        tags: Profiles_Dev_Terraform 
+        tags: Profiles_Dev_Azure 
         # Tags needs to be updated per Pipeline
       strategy: 
         runOnce:
@@ -125,7 +111,7 @@ stages:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
                 Contents: 'web.dev.config'
                 TargetFolder: '$(Parameters.WebsitePhysicalPath)'
-                
+
              - task: AzureKeyVault@1
                inputs:
                  azureSubscription: 'Azure-Production' # Replace with your service connection
@@ -153,6 +139,7 @@ stages:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StartAppPool'
                 StartStopRecycleAppPoolName: 'ProfilesRNS_Dev'
+
              - task: DeleteFiles@1
                inputs:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
