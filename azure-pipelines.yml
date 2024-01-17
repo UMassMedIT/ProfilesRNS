@@ -95,7 +95,7 @@ stages:
                inputs:
                  IISDeploymentType: 'IISApplicationPool'
                  ActionIISApplicationPool: 'StopAppPool'
-                 StartStopRecycleAppPoolName: 'ProfilesRNS_Dev'
+                 StartStopRecycleAppPoolName: 'ProfilesRNS'
 
              - task: IISWebAppDeploymentOnMachineGroup@0
                displayName: 'IIS Web site Deploy'
@@ -137,7 +137,7 @@ stages:
                inputs:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StartAppPool'
-                StartStopRecycleAppPoolName: 'ProfilesRNS_Dev'
+                StartStopRecycleAppPoolName: 'ProfilesRNS'
 
              - task: DeleteFiles@1
                inputs:
