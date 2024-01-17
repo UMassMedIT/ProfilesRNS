@@ -15,7 +15,6 @@ variables:
   Parameters.WebsitePhysicalPath: 'E:\WebContent\ProfilesRNS'
   Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
 
-
 stages:
 - stage: Build_Application
   jobs:
@@ -30,9 +29,9 @@ stages:
     steps:
 
     - task: NuGetToolInstaller@0
-      displayName: Use NuGet 4.4.1
+      displayName: Use NuGet 6.6.1
       inputs:
-        versionSpec: 4.4.1
+        versionSpec: 6.6.1
 
     - task: NuGetCommand@2
       displayName: NuGet restore
@@ -84,7 +83,7 @@ stages:
     environment: 
         name: Test
         resourceType: VirtualMachine
-        tags: Profiles_Test_Azure 
+        tags: Profiles_Test_Terraform
         # Tags needs to be updated per Pipeline
     strategy: 
         runOnce:
@@ -96,7 +95,7 @@ stages:
                inputs:
                  IISDeploymentType: 'IISApplicationPool'
                  ActionIISApplicationPool: 'StopAppPool'
-                 StartStopRecycleAppPoolName: 'ProfilesRNS_Test'
+                 StartStopRecycleAppPoolName: 'ProfilesRNS'
              - task: IISWebAppDeploymentOnMachineGroup@0
                displayName: 'IIS Web site Deploy'
                inputs:
@@ -138,7 +137,7 @@ stages:
                inputs:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StartAppPool'
-                StartStopRecycleAppPoolName: 'ProfilesRNS_Test'
+                StartStopRecycleAppPoolName: 'ProfilesRNS'
 
              - task: DeleteFiles@1
                inputs:
