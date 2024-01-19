@@ -32,7 +32,6 @@ stages:
       displayName: Use NuGet 6.6.1
       inputs:
         versionSpec: 6.6.1
-
     - task: NuGetCommand@2
       displayName: NuGet restore
       inputs:
