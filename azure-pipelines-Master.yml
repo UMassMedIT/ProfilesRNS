@@ -143,3 +143,76 @@ stages:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
                 Contents: $(Parameters.packagetype)
 
+- stage: Prod_Deploy
+  jobs:
+  - deployment: DeployProfiles_Prod
+    displayName: DeployProfiles_Prod
+    continueOnError: true
+    timeoutInMinutes: 10
+    variables:
+        GoogleMapsKey: "$(GoogleMapskey_Value)"
+        ProfilesDB: "$(ProfilesDB_Prod)"
+
+    environment: 
+        name: Prod
+        resourceType: VirtualMachine
+        tags: Profiles_Prod_Terraform
+        # Tags needs to be updated per Pipeline
+    strategy: 
+        runOnce:
+          deploy:
+            steps:
+
+             - task: IISWebAppManagementOnMachineGroup@0
+               displayName: 'Stop Profiles AppPool'
+               inputs:
+                 IISDeploymentType: 'IISApplicationPool'
+                 ActionIISApplicationPool: 'StopAppPool'
+                 StartStopRecycleAppPoolName: 'ProfilesRNS'
+             - task: IISWebAppDeploymentOnMachineGroup@0
+               displayName: 'IIS Web site Deploy'
+               inputs:
+                 WebSiteName: '$(Parameters.Websitename)'
+                 Package: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)/$(Parameters.packagetype)'
+                 RemoveAdditionalFilesFlag: true
+                 XmlVariableSubstitution: true
+
+             - task: CopyFiles@1
+               inputs:
+                SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
+                Contents: 'web.Prod.config'
+                TargetFolder: '$(Parameters.WebsitePhysicalPath)'
+
+             - task: AzureKeyVault@1
+               inputs:
+                 azureSubscription: 'Azure-Production' # Replace with your service connection
+                 KeyVaultName: 'umwazkvprofilesshared'
+                 SecretsFilter: 'ORCIDClientID, ORCIDClientSecret, GoogleMapsKey'
+                 RunAsPreJob: false
+
+             - powershell: |
+                $configFile = "$(Parameters.WebsitePhysicalPath)\web.Prod.config" 
+                (Get-Content $configFile) -replace '__ORCIDClientID__', "$(ORCIDClientID)" | Set-Content $configFile
+                (Get-Content $configFile) -replace '__ORCIDClientSecret__', "$(ORCIDClientSecret)" | Set-Content $configFile
+                (Get-Content $configFile) -replace '__GoogleMapsKey__', "$(GoogleMapsKey)" | Set-Content $configFile
+               displayName: 'Replace Tokens in web.config'
+
+             - task: FileTransform@1
+               inputs:
+                folderPath: '$(Parameters.WebsitePhysicalPath)'
+                #FolderPath is pipeline specific
+                enableXmlTransform: true
+                xmlTransformationRules: '-transform web.Prod.config -xml web.config'
+
+             - task: IISWebAppManagementOnMachineGroup@0
+               displayName: 'Start Profiles AppPool'
+               inputs:
+                IISDeploymentType: 'IISApplicationPool'
+                ActionIISApplicationPool: 'StartAppPool'
+                StartStopRecycleAppPoolName: 'ProfilesRNS'
+
+             - task: DeleteFiles@1
+               inputs:
+                SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
+                Contents: $(Parameters.packagetype)
+
