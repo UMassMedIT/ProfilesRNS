@@ -154,7 +154,7 @@ stages:
         ProfilesDB: "$(ProfilesDB_Prod)"
 
     environment: 
-        name: Prod
+        name: Production
         resourceType: VirtualMachine
         tags: Profiles_Prod_Terraform
         # Tags needs to be updated per Pipeline
