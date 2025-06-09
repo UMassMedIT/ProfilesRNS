@@ -4,16 +4,29 @@ trigger:
     - Master
 
 variables:
-  Parameters.solution: '**/Website/SourceCode/Profiles/Profiles.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  Parameters.Websitename: 'ProfilesRNS'
-  Parameters.Artifactname: 'ProfilesRNS_Drop'
-  Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
-  Parameters.packagetype: '*.zip'
-  Parameters.VirtualApplication: 'Profiles'
-  Parameters.WebsitePhysicalPath: 'E:\WebContent\ProfilesRNS'
-  Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
+  - group: Tenable.io
+  - name: Parameters.solution
+    value: '**/Website/SourceCode/Profiles/Profiles.sln'
+  - name: buildPlatform
+    value: "Any CPU"
+  - name: buildConfiguration
+    value:  'Release'
+  - name: Parameters.Websitename
+    value:  'ProfilesRNS'
+  - name: Parameters.Artifactname
+    value:  'ProfilesRNS_Drop'
+  - name: Parameters.Contents
+    value: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
+  - name: Parameters.packagetype 
+    value: '*.zip'
+  - name: Parameters.VirtualApplication
+    value: 'Profiles'
+  - name: Parameters.WebsitePhysicalPath
+    value: 'E:\WebContent\ProfilesRNS'
+  - name: Parameters.msbuildArgs
+    value:  '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
+
+
 
 stages:
 - stage: Build_Application
@@ -142,6 +155,26 @@ stages:
                inputs:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
                 Contents: $(Parameters.packagetype)
+
+- stage: Test_Tenable_io
+  jobs:
+    - job: Tenable_io_Scan_TestEnv
+      pool:
+        name: Azure Pipelines
+        vmImage: windows-latest
+      displayName: 'Launch Tenable.io Scan for ProfilesRNS NonProd Website'
+      steps:
+             - task: PowerShell@2
+               #displayName: Launch Tenable.io
+               inputs:
+                 targetType: 'inline'
+                 script: |
+                   $headers=@{}
+                   $headers.Add("accept", "application/json")
+                   $headers.Add("X-ApiKeys", "accessKey=$(Tenable.accessKey);secretKey=$(Tenable.secretKey)")
+                   $response = Invoke-WebRequest -Uri 'https://cloud.tenable.com/was/v2/configs/77cbe739-9f52-4ddf-8cda-ea71c67280a8/scans' -Method POST -Headers $headers
+
+
 
 - stage: Prod_Deploy
   jobs:
