@@ -4,16 +4,27 @@ trigger:
      - develop
 
 variables:
-  Parameters.solution: '**/Website/SourceCode/Profiles/Profiles.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  Parameters.Websitename: 'ProfilesRNS'
-  Parameters.Artifactname: 'ProfilesRNS_Drop'
-  Parameters.Contents: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
-  Parameters.packagetype: '*.zip'
-  Parameters.VirtualApplication: 'Profiles'
-  Parameters.WebsitePhysicalPath: 'E:\WebContent\ProfilesRNS'
-  Parameters.msbuildArgs: '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
+  - group: Tenable.io
+  - name: Parameters.solution
+    value: '**/Website/SourceCode/Profiles/Profiles.sln'
+  - name: buildPlatform
+    value: "Any CPU"
+  - name: buildConfiguration
+    value:  'Release'
+  - name: Parameters.Websitename
+    value:  'ProfilesRNS'
+  - name: Parameters.Artifactname
+    value:  'ProfilesRNS_Drop'
+  - name: Parameters.Contents
+    value: '**/Website/SourceCode/Profiles/Profiles/web.**.config'
+  - name: Parameters.packagetype 
+    value: '*.zip'
+  - name: Parameters.VirtualApplication
+    value: 'Profiles'
+  - name: Parameters.WebsitePhysicalPath
+    value: 'E:\WebContent\ProfilesRNS'
+  - name: Parameters.msbuildArgs
+    value:  '/t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)\build"'
 
 stages:
 - stage: Build_Application
