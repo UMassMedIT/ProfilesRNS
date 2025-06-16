@@ -119,7 +119,7 @@ stages:
                 Contents: 'web.dev.config'
                 TargetFolder: '$(Parameters.WebsitePhysicalPath)'
 
-             - task: AzureKeyVault@1
+             - task: AzureKeyVault@2
                inputs:
                  azureSubscription: 'Azure-Production' # Replace with your service connection
                  KeyVaultName: 'umwazkvprofilesshared'
