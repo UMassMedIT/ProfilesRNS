@@ -156,23 +156,23 @@ stages:
                 SourceFolder: '$(Build.ArtifactStagingDirectory)/../$(Parameters.ArtifactName)'
                 Contents: $(Parameters.packagetype)
 
-- stage: Test_Tenable_io
-  jobs:
-    - job: Tenable_io_Scan_TestEnv
-      pool:
-        name: Azure Pipelines
-        vmImage: windows-latest
-      displayName: 'Launch Tenable.io Scan for ProfilesRNS NonProd Website'
-      steps:
-             - task: PowerShell@2
-               #displayName: Launch Tenable.io
-               inputs:
-                 targetType: 'inline'
-                 script: |
-                   $headers=@{}
-                   $headers.Add("accept", "application/json")
-                   $headers.Add("X-ApiKeys", "accessKey=$(Tenable.accessKey);secretKey=$(Tenable.secretKey)")
-                   $response = Invoke-WebRequest -Uri 'https://cloud.tenable.com/was/v2/configs/77cbe739-9f52-4ddf-8cda-ea71c67280a8/scans' -Method POST -Headers $headers
+# - stage: Test_Tenable_io
+#   jobs:
+#     - job: Tenable_io_Scan_TestEnv
+#       pool:
+#         name: Azure Pipelines
+#         vmImage: windows-latest
+#       displayName: 'Launch Tenable.io Scan for ProfilesRNS NonProd Website'
+#       steps:
+#              - task: PowerShell@2
+#                #displayName: Launch Tenable.io
+#                inputs:
+#                  targetType: 'inline'
+#                  script: |
+#                    $headers=@{}
+#                    $headers.Add("accept", "application/json")
+#                    $headers.Add("X-ApiKeys", "accessKey=$(Tenable.accessKey);secretKey=$(Tenable.secretKey)")
+#                    $response = Invoke-WebRequest -Uri 'https://cloud.tenable.com/was/v2/configs/77cbe739-9f52-4ddf-8cda-ea71c67280a8/scans' -Method POST -Headers $headers
 
 
 
