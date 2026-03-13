@@ -173,7 +173,9 @@ stages:
                    $headers.Add("accept", "application/json")
                    $headers.Add("X-ApiKeys", "accessKey=$(Tenable.accessKey);secretKey=$(Tenable.secretKey)")
                    $response = Invoke-WebRequest -Uri 'https://cloud.tenable.com/was/v2/configs/77cbe739-9f52-4ddf-8cda-ea71c67280a8/scans' -Method POST -Headers $headers
-
+                 failOnStderr: true
+                 pwsh: true
+                 
 - stage: Prod_Deploy
   jobs:
   - deployment: DeployProfiles_Prod
