@@ -104,6 +104,7 @@ stages:
 
              - task: IISWebAppManagementOnMachineGroup@0
                displayName: 'Stop Profiles AppPool'
+               continueOnError: true   
                inputs:
                  IISDeploymentType: 'IISApplicationPool'
                  ActionIISApplicationPool: 'StopAppPool'
