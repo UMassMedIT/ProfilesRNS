@@ -22,13 +22,19 @@
     }
 
     function GetRecords(newActivities) {
-        var referenceActivityId = newActivities ? $(".act-id").first().text() : $(".act-id").last().text();
+        //var referenceActivityId = newActivities ? $(".act-id").first().text() : $(".act-id").last().text();
+        var referenceActivityId = newActivities ? $(".act-id").first().text().trim() : $(".act-id").last().text().trim();
         // only set this the first time
         activitySize = activitySize || $(".act-id").length;
         $.ajax({
             type: "POST",
             url: "<%=GetURLDomain()%>/Activity/Modules/ActivityHistory/ActivityDetails.aspx/GetActivities",
-            data: '{"referenceActivityId": "' + referenceActivityId + '", "count": "' + activitySize + '", "newActivities": "' + newActivities + '"}',
+            //data: '{"referenceActivityId": "' + referenceActivityId + '", "count": "' + activitySize + '", "newActivities": "' + newActivities + '"}',
+            data: JSON.stringify({
+                referenceActivityId: referenceActivityId,
+                count: activitySize,
+                newActivities: newActivities
+            }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: OnSuccess,
