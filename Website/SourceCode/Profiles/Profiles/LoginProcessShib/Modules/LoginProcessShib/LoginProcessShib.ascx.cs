@@ -33,6 +33,7 @@ namespace Profiles.LoginProcessShib.Modules
         private const string METHOD_LOGOUT = "logout";
         private const string METHOD_SHIBBOLETH = "shibboleth";
         private const string METHOD_LOGIN = "login";
+        private const string SHIB_STATE_SESSION_KEY = "Profiles.ShibAuth.State";
 
         private ShibAppSettings shibAppSettings = null;
 
@@ -52,7 +53,18 @@ namespace Profiles.LoginProcessShib.Modules
 
                     if (methodQueryStringValue == METHOD_SHIBBOLETH)
                     {
-                        processShibbolethResponse();
+                        if (IsValidShibbolethState())
+                        {
+                            processShibbolethResponse();
+                        }
+                        else
+                        {
+                            ShibUtil.Log(loggingPrefix + "Invalid or missing Shibboleth state token.");
+                            this.panelLoginSuccessful.Visible = false;
+                            this.panelLoginFailed.Visible = true;
+                            this.cmdProceedToSearch.Visible = false;
+                            this.lblError.Text = "Unable to complete login. Please start login again from the login page.";
+                        }
                     }
                 }
             }
@@ -62,6 +74,24 @@ namespace Profiles.LoginProcessShib.Modules
                 this.cmdProceedToSearch.Visible = false;
                 this.lblError.Text = "Single sign-on configuration incomplete.  Contact your administrator.";
             }
+        }
+
+        private bool IsValidShibbolethState()
+        {
+            string expectedState = Convert.ToString(HttpContext.Current.Session[SHIB_STATE_SESSION_KEY]);
+            string providedState = Request.QueryString["state"];
+
+            if (string.IsNullOrEmpty(expectedState) || string.IsNullOrEmpty(providedState))
+            {
+                return false;
+            }
+
+            bool isValid = string.Equals(expectedState, providedState, StringComparison.Ordinal);
+
+            // One-time use token to block replay.
+            HttpContext.Current.Session.Remove(SHIB_STATE_SESSION_KEY);
+
+            return isValid;
         }
 
         private void processShibbolethResponse()

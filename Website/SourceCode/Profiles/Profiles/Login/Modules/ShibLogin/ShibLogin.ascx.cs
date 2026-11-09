@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Xml;
 using System.Configuration;
+using System.Security.Cryptography;
 using Profiles.Framework.Utilities;
 using System.IO;
 using Profiles.Login.Objects;
@@ -27,6 +28,7 @@ namespace Profiles.Login.Modules.ShibLogin
         private const string METHOD_LOGOUT = "logout";
         private const string METHOD_LOGIN = "login";
         private const string METHOD_SHIB_LOGOUT_SUCCESS = "shiblogoutsuccess";
+        private const string SHIB_STATE_SESSION_KEY = "Profiles.ShibAuth.State";
 
         private ShibAppSettings shibAppSettings = null;
         private bool loginDisabled = false;
@@ -133,9 +135,24 @@ namespace Profiles.Login.Modules.ShibLogin
             {
                 ShibUtil.Log(loggingPrefix + " - Redirect to LoginProcessShib to begin login procedure.");
 
+                // Use a one-time, session-bound nonce for the Shibboleth handoff to prevent CSRF login forcing.
+                string shibState = CreateShibbolethStateToken();
+                HttpContext.Current.Session[SHIB_STATE_SESSION_KEY] = shibState;
+
                 /* Redirect to the LoginProcessShib page so the authentication will be triggered. */
-                Response.Redirect(Root.Domain + "/LoginProcessShib/default.aspx?method=shibboleth");
+                Response.Redirect(Root.Domain + "/LoginProcessShib/default.aspx?method=shibboleth&state=" + HttpUtility.UrlEncode(shibState));
             }
+        }
+
+        private string CreateShibbolethStateToken()
+        {
+            byte[] tokenBytes = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(tokenBytes);
+            }
+
+            return Convert.ToBase64String(tokenBytes);
         }
 
         /// <summary>
