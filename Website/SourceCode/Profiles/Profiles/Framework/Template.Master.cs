@@ -27,6 +27,9 @@ namespace Profiles.Framework
         {
             try
             {
+                // Dynamic HTML pages should never be cacheable by shared intermediaries.
+                ApplyNoStoreCacheHeaders();
+
                 /* Addressing Cookie Without SameSite Attribute Scan finding.  Check Anti-Forgery Token */
                 if (IsPostBack)
                 {
@@ -79,6 +82,18 @@ namespace Profiles.Framework
                 Response.Redirect(Root.Domain + "/error/default.aspx");
                 Response.End();
             }
+        }
+
+        private void ApplyNoStoreCacheHeaders()
+        {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+            Response.Cache.SetMaxAge(TimeSpan.Zero);
+            Response.Cache.SetProxyMaxAge(TimeSpan.Zero);
+            Response.Cache.AppendCacheExtension("must-revalidate, proxy-revalidate");
+            Response.Headers["Pragma"] = "no-cache";
         }
 
 

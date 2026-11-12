@@ -75,6 +75,9 @@ namespace Profiles
         {
             Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() start ");
 
+            // Route-driven responses are dynamic; prevent intermediaries from caching by URL shape.
+            ApplyNoStoreCacheHeaders();
+
 
             string param0 = string.Empty; //Application Name {default for this install is profile}
             string param1 = string.Empty;
@@ -230,6 +233,18 @@ namespace Profiles
 
             Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() end ");
 
+        }
+
+        private void ApplyNoStoreCacheHeaders()
+        {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+            Response.Cache.SetMaxAge(TimeSpan.Zero);
+            Response.Cache.SetProxyMaxAge(TimeSpan.Zero);
+            Response.Cache.AppendCacheExtension("must-revalidate, proxy-revalidate");
+            Response.Headers["Pragma"] = "no-cache";
         }
     }
 }
