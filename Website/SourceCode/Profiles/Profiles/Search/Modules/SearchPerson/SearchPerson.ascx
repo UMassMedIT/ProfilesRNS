@@ -136,7 +136,7 @@
                                         <th>Keywords
                                         </th>
                                         <td colspan="2" class="fieldOptions">
-                                            <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText" title="Keywords"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText" title="Keywords" MaxLength="512"></asp:TextBox>
                                             <asp:CheckBox runat="server" ID="chkExactphrase" Text="&nbsp;Search for exact phrase" />
 
                                         </td>

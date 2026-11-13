@@ -17,6 +17,7 @@ using System.Web.UI;
 using System.Xml;
 using System.Xml.Xsl;
 using System.Configuration;
+using System.Text;
 
 using Profiles.Framework.Utilities;
 using Profiles.Search.Utilities;
@@ -42,6 +43,34 @@ namespace Profiles.Search.Modules.SearchResults
 
         public XmlDocument SearchData { get; set; }
 
+        private static string NormalizeExactPhrase(string exactPhrase)
+        {
+            return "true".Equals(exactPhrase, StringComparison.OrdinalIgnoreCase) ? "true" : "false";
+        }
+
+        private static string NormalizeSearchFor(string searchFor)
+        {
+            if (string.IsNullOrEmpty(searchFor))
+            {
+                return string.Empty;
+            }
+
+            StringBuilder normalized = new StringBuilder(searchFor.Length);
+            foreach (char c in searchFor)
+            {
+                if (!char.IsControl(c))
+                {
+                    normalized.Append(c);
+                }
+            }
+
+            if (normalized.Length > 512)
+            {
+                normalized.Length = 512;
+            }
+
+            return normalized.ToString();
+        }
 
         private void DrawProfilesModule()
         {
@@ -132,8 +161,7 @@ namespace Profiles.Search.Modules.SearchResults
 
 
 
-            if (searchfor == null)
-                searchfor = string.Empty;
+            searchfor = NormalizeSearchFor(searchfor);
 
             if (String.IsNullOrEmpty(Request.QueryString["lname"])==false)
                 lname = Request.QueryString["lname"];
@@ -282,11 +310,10 @@ namespace Profiles.Search.Modules.SearchResults
                 divisionallexcept = Request.QueryString["divisionallexcept"];
 
             }
-
+            
             if (String.IsNullOrEmpty(Request.QueryString["exactphrase"])==false)
             {
-                exactphrase = Request.QueryString["exactphrase"];
-
+                exactphrase = NormalizeExactPhrase(Request.QueryString["exactphrase"]);
             }
 
 
@@ -452,7 +479,7 @@ namespace Profiles.Search.Modules.SearchResults
                     else
                         args.AddParam("why", "", false);
 
-                    litEverythingResults.Text = HttpUtility.HtmlDecode( XslHelper.TransformInMemory(Server.MapPath("~/Search/Modules/SearchResults/PeopleResults.xslt"), args, this.SearchData.OuterXml));
+                    litEverythingResults.Text = XslHelper.TransformInMemory(Server.MapPath("~/Search/Modules/SearchResults/PeopleResults.xslt"), args, this.SearchData.OuterXml);
                     break;
             }
         }

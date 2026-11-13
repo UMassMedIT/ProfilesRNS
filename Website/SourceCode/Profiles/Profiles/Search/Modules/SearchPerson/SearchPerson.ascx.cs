@@ -24,6 +24,16 @@ namespace Profiles.Search.Modules.SearchPerson
 {
     public partial class SearchPerson : BaseModule
     {
+        private static string NormalizeSearchText(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
+
+            return value.Length > 512 ? value.Substring(0, 512) : value;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Request.Form[this.hdnSearch.UniqueID].IsNullOrEmpty())
@@ -308,7 +318,7 @@ namespace Profiles.Search.Modules.SearchPerson
         {
             string lname = Request.Form[this.txtLname.UniqueID];
             string fname = Request.Form[this.txtFname.UniqueID];
-            string searchfor = Request.Form[this.txtSearchFor.UniqueID];
+            string searchfor = NormalizeSearchText(Request.Form[this.txtSearchFor.UniqueID]);
             string exactphrase = Request.Form[this.chkExactphrase.UniqueID];
             string facrank = Request.Form[this.hidList.UniqueID];
 

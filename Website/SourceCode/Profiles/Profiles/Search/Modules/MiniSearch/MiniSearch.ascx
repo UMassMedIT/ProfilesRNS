@@ -59,7 +59,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="txtKeyword" id="txtKeyword" title="keyword" style="width: 150px" />
+                            <input type="text" name="txtKeyword" id="txtKeyword" title="keyword" style="width: 150px" maxlength="512" />
                         </td>
                     </tr>
                     <tr>
