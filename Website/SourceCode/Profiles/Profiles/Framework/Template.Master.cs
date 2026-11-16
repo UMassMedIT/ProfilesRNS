@@ -27,8 +27,11 @@ namespace Profiles.Framework
         {
             try
             {
-                // Dynamic HTML pages should never be cacheable by shared intermediaries.
-                ApplyNoStoreCacheHeaders();
+                // Only disable caching for authenticated sessions to avoid caching personalized content.
+                if (IsAuthenticatedSession())
+                {
+                    ApplyNoStoreCacheHeaders();
+                }
 
                 /* Addressing Cookie Without SameSite Attribute Scan finding.  Check Anti-Forgery Token */
                 if (IsPostBack)
@@ -94,6 +97,14 @@ namespace Profiles.Framework
             Response.Cache.SetProxyMaxAge(TimeSpan.Zero);
             Response.Cache.AppendCacheExtension("must-revalidate, proxy-revalidate");
             Response.Headers["Pragma"] = "no-cache";
+        }
+
+        private bool IsAuthenticatedSession()
+        {
+            SessionManagement sessionmanagement = new SessionManagement();
+            Session session = sessionmanagement.Session();
+
+            return session != null && (session.UserID > 0 || session.PersonID > 0);
         }
 
 

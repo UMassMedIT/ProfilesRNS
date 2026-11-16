@@ -139,6 +139,35 @@ namespace Profiles
             Framework.Utilities.DebugLogging.Log("*** {Application_BeginRequest} IIS IS Processing: " + path);           
         }
 
+        // Apply cache policy based on response content type instead of URL shape/extension.
+        void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            ApplyContentTypeAwareCachePolicy();
+        }
+
+        private void ApplyContentTypeAwareCachePolicy()
+        {
+            if (Response == null || Request == null)
+            {
+                return;
+            }
+
+            string contentType = Response.ContentType ?? string.Empty;
+
+            if (contentType.StartsWith("text/html", StringComparison.OrdinalIgnoreCase) ||
+                contentType.StartsWith("application/xhtml+xml", StringComparison.OrdinalIgnoreCase))
+            {
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.Cache.SetNoStore();
+                Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+                Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+                Response.Cache.SetMaxAge(TimeSpan.Zero);
+                Response.Cache.SetProxyMaxAge(TimeSpan.Zero);
+                Response.Cache.AppendCacheExtension("must-revalidate, proxy-revalidate");
+                Response.Headers["Pragma"] = "no-cache";
+            }
+        }
+
         //***************************************************************************************************************************************
         /// <summary>
         /// 

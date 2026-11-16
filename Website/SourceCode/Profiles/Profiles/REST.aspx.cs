@@ -75,9 +75,6 @@ namespace Profiles
         {
             Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() start ");
 
-            // Route-driven responses are dynamic; prevent intermediaries from caching by URL shape.
-            ApplyNoStoreCacheHeaders();
-
 
             string param0 = string.Empty; //Application Name {default for this install is profile}
             string param1 = string.Empty;
@@ -159,6 +156,12 @@ namespace Profiles
             //When a session has expired the Framework.Session.SessionLogout() method is called.
             SessionManagement sessionmanagement = new SessionManagement();
             Session session = sessionmanagement.Session();
+
+            // Prevent caching only for authenticated session responses to avoid caching personalized content.
+            if (session != null && (session.UserID > 0 || session.PersonID > 0))
+            {
+                ApplyNoStoreCacheHeaders();
+            }
 
             URLResolve resolve = data.GetResolvedURL(param0,
                                    param1,
