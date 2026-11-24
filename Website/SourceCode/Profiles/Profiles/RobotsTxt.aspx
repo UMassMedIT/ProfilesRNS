@@ -3,7 +3,8 @@
 Response.ContentType = "text/plain";
 
 string host = Request.Url.Host.ToLowerInvariant();
-if (host == "profiles-dev.umassmed.edu" || host == "profiles-uat.umassmed.edu" || host == "localhost")
+bool isLowerEnvironment = host.Contains("dev") || host.Contains("uat") || host.Contains("localhost");
+if (isLowerEnvironment)
 {
     // Block all bots from indexing (if they respect robots.txt) for lower envs.  
     Response.Write("User-Agent: *" + Environment.NewLine);
