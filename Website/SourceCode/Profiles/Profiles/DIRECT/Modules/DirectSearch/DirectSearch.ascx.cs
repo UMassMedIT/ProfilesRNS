@@ -40,6 +40,12 @@ namespace Profiles.DIRECT.Modules.DirectSearch
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (HasDuplicateQueryStringParameter("keyword") || HasDuplicateQueryStringParameter("searchtype"))
+            {
+                RejectBadRequest();
+                return;
+            }
+
             if (Request.QueryString["stop"] == null)
             {
                 // GetResultXMLDocument();
@@ -51,7 +57,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
 
             Session["DIRECTKEYWORD"] = this.GetKeywordString();
             Session["DIRECTSEARCHREQUEST"] = Request.QueryString["searchrequest"];
-            Session["DIRECTSEARCHTYPE"] = Request.QueryString["searchtype"];
+            Session["DIRECTSEARCHTYPE"] = GetSingleQueryStringValue("searchtype");
 
             
         }
@@ -65,7 +71,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
         {
             try
             {
-                KeywordString = Request.QueryString["keyword"];
+                KeywordString = GetSingleQueryStringValue("keyword");
 
                 if (KeywordString == null)
                     KeywordString = string.Empty;
@@ -76,6 +82,28 @@ namespace Profiles.DIRECT.Modules.DirectSearch
             catch (Exception ex) { }
 
             return KeywordString;
+        }
+
+        private bool HasDuplicateQueryStringParameter(string parameterName)
+        {
+            string[] values = Request.QueryString.GetValues(parameterName);
+            return values != null && values.Length > 1;
+        }
+
+        private string GetSingleQueryStringValue(string parameterName)
+        {
+            string[] values = Request.QueryString.GetValues(parameterName);
+            if (values == null || values.Length == 0)
+                return null;
+
+            return values[0];
+        }
+
+        private void RejectBadRequest()
+        {
+            Response.StatusCode = 400;
+            Response.TrySkipIisCustomErrors = true;
+            Context.ApplicationInstance.CompleteRequest();
         }
 
 
